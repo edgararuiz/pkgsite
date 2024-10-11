@@ -1,3 +1,6 @@
+#' Converts Rd to Quarto files
+#' @param file_in The name of the source Rd file
+#' @inheritParams write_reference
 #' @export
 rd_to_qmd <- function(
     file_in,

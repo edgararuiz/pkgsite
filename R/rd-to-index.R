@@ -16,8 +16,12 @@ reference_index_convert <- function(index_list) {
   out <- map(
     out,
     \(x) {
-      x$description <- paste0("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", x$description)
-      x
+      c(
+        x$links,
+        "", "", 
+        paste0("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", x$description),
+        ""
+      )
     }
   )
   as.character(reduce(out, c))

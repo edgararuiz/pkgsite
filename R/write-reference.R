@@ -1,3 +1,17 @@
+#' Writes the reference pages and index as Quarto files
+#' 
+#' @param pkg The path to the package or a `pkgdown` package object
+#' @param folder The target folder to save the new Quarto files to
+#' @param examples Flag that sets the examples code chuck to be evaluated when
+#' the Quarto document is rendered
+#' @param not_run_examples Flag that sets the "do not run" examples code chuck
+#' to be evaluated when the Quarto document is rendered
+#' @param template The path to a Quarto file that can be used as the template
+#' for all of the resulting reference files
+#' @param index_file The name assigned to the resulting index Quarto file
+#' @param index_template The path to a Quarto file that can be used as the 
+#' template for the index Quarto file
+#' 
 #' @export
 write_reference <- function(
     pkg = ".",
@@ -10,8 +24,8 @@ write_reference <- function(
   write_reference_index(
     pkg = pkg,
     folder = folder,
-    file = index_file,
-    template = index_template
+    index_file = index_file,
+    index_template = index_template
   )
   write_reference_pages(
     pkg = pkg,
@@ -26,13 +40,13 @@ write_reference <- function(
 write_reference_index <- function(
     pkg = ".",
     folder = "reference",
-    file = "index.qmd",
-    template = system.file("templates/_index.qmd", package = "pkgsite")) {
+    index_file = "index.qmd",
+    index_template = system.file("templates/_index.qmd", package = "pkgsite")) {
   if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
   try(dir_create(folder), silent = TRUE)
-  ref <- path(folder, file)
+  ref <- path(folder, index_file)
   try(file_delete(ref), silent = TRUE)
-  writeLines(rd_to_index(pkg, template), ref)
+  writeLines(rd_to_index(pkg, index_template), ref)
   cli_inform(col_green(ref))
 }
 
