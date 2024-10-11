@@ -1,12 +1,13 @@
 #' @export
 rd_to_qmd <- function(
-    file_in, 
-    pkg = ".", 
-    template = system.file("templates/_reference.qmd", package = "pkgsite")
-    ) {
+    file_in,
+    pkg = ".",
+    examples = TRUE,
+    not_run_examples = FALSE,
+    template = system.file("templates/_reference.qmd", package = "pkgsite")) {
   if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
   parsed <- rd_to_list(file_in, pkg)
-  con <- reference_convert(parsed)
+  con <- reference_convert(parsed, examples, not_run_examples)
   read_template <- readLines(template)
   out <- map(read_template, parse_line_tag, con)
   out <- discard(out, is.null)
@@ -85,8 +86,6 @@ parse_line_tag <- function(line, con) {
         }
       }
     }
-
-
     tag_content
   } else {
     line
@@ -100,7 +99,9 @@ reference_entry <- function(x, title = NULL) {
   out
 }
 
-reference_convert <- function(x, output = "qmd") {
+reference_convert <- function(x,
+                              examples = TRUE,
+                              not_run_examples = FALSE) {
   res <- list()
   for (i in seq_along(x)) {
     curr <- x[[i]]
@@ -109,17 +110,20 @@ reference_convert <- function(x, output = "qmd") {
 
     if (curr_name == "examples") {
       run_examples <- FALSE
-      if (output == "md") {
-        out <- map(curr, reference_qmd_example, FALSE)
-        out <- list_c(out)
-      } else {
-        out <- list()
-        if (!is.null(curr$code_run)) {
-          out <- c(out, "```{r}", curr$code_run, "```")
-        }
-        if (!is.null(curr$code_dont_run)) {
-          out <- c(out, "```{r}", curr$code_dont_run, "```")
-        }
+      out <- list()
+      ex_run <- "```r"
+      ex_not <- "```r"
+      if (examples) {
+        ex_run <- "```{r}"
+      }
+      if (not_run_examples) {
+        ex_not <- "```{r}"
+      }
+      if (!is.null(curr$code_run)) {
+        out <- c(out, ex_run, curr$code_run, "```")
+      }
+      if (!is.null(curr$code_dont_run)) {
+        out <- c(out, ex_not, curr$code_dont_run, "```")
       }
     }
 
@@ -155,7 +159,6 @@ reference_arguments <- function(x) {
   rows <- paste0("| ", lines, " |")
   c("|Arguments|Description|", "|---|---|", rows)
 }
-
 
 reference_qmd_example <- function(x, run = FALSE) {
   # x <- x[x != "\n"]
