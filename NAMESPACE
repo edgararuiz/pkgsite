@@ -2,5 +2,9 @@
 
 export(rd_to_list)
 export(rd_to_qmd)
+import(fs)
 import(pkgdown)
 import(purrr)
+importFrom(rlang,empty_env)
+importFrom(rlang,env)
+importFrom(rlang,env_bind)

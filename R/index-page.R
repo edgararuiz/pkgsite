@@ -1,4 +1,7 @@
-reference_index <- function(pkg = ".") {
+reference_index <- function(
+    pkg = ".",
+    template = system.file("templates/_index.qmd", package = "pkgsite")
+    ) {
   if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
   ref_list <- reference_to_list_index(pkg)
   ref_convert <- reference_index_convert(ref_list)
@@ -13,14 +16,8 @@ reference_index <- function(pkg = ".") {
     }
   )
   res <- reduce(res, c)
-  c(
-    "---",
-    "toc: false",
-    "---",
-    "<img src=\"../figures/favicon/apple-touch-icon-76x76.png\" style=\"float:right\" />",
-    "",
-    res
-  )
+  res <- list("reference" = res)
+  template_parse(template, res)
 }
 
 reference_index_convert <- function(index_list) {
@@ -34,7 +31,7 @@ reference_index_convert <- function(index_list) {
           \(.x) paste0(
             .x$links,
             "\n\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
-            .x$desc,
+            .x$description,
             "\n\n"
           )
         )
@@ -55,7 +52,7 @@ reference_links <- function(x) {
   desc <- x$title
   list(
     links = funcs,
-    desc = desc
+    description = desc
   )
 }
 

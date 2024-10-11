@@ -8,12 +8,16 @@ rd_to_qmd <- function(
   if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
   parsed <- rd_to_list(file_in, pkg)
   con <- reference_convert(parsed, examples, not_run_examples)
-  read_template <- readLines(template)
-  out <- map(read_template, parse_line_tag, con)
+  out <- template_parse(template, con)
   out <- discard(out, is.null)
   out <- list_flatten(out)
   out <- list_c(out)
   as.character(out)
+}
+
+template_parse <- function(template, con) {
+  read_template <- readLines(template)
+  map(read_template, parse_line_tag, con)  
 }
 
 parse_line_tag <- function(line, con) {

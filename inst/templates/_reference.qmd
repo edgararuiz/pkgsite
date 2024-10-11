@@ -5,13 +5,6 @@ execute:
   freeze: true
 ---
 
-```{r}
-#| include: false
-source("../utils/knitr-print.R")
-```
-
-[{{{{notitle.source}}}}](https://github.com/mlverse/mall/blob/main/{{{{notitle.source}}}})
-
 ## {{{{notitle.alias}}}}
 
 {{{{title.description}}}}
