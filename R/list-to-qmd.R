@@ -1,18 +1,14 @@
-reference_to_qmd <- function(file_in, pkg = ".", template = NULL) {
+#' @export
+rd_to_qmd <- function(
+    file_in, 
+    pkg = ".", 
+    template = system.file("templates/_reference.qmd", package = "pkgsite")
+    ) {
   if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
-  parsed <- reference_to_list_page(file_in, pkg)
+  parsed <- rd_to_list(file_in, pkg)
   con <- reference_convert(parsed)
-
-  if (is.null(template)) {
-    template_path <- "../utils/website/_reference.qmd"
-  } else {
-    template_path <- template
-  }
-
-
-  template <- readLines(template_path)
-
-  out <- map(template, parse_line_tag, con)
+  read_template <- readLines(template)
+  out <- map(read_template, parse_line_tag, con)
   out <- discard(out, is.null)
   out <- list_flatten(out)
   out <- list_c(out)

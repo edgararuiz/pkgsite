@@ -14,7 +14,7 @@ build_reference <- function(pkg = ".", folder = "reference") {
     \(x) {
       p <- path_ext_remove(x)
       p <- paste0(folder, "/", p, ".qmd")
-      qmd <- reference_to_qmd(x, pkg)
+      qmd <- rd_to_qmd(x, pkg)
       try(file_delete(p))
       writeLines(qmd, p)
       cli_inform(col_green(p))
