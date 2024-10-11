@@ -6,21 +6,20 @@ write_reference <- function(
     not_run_examples = FALSE,
     template = system.file("templates/_reference.qmd", package = "pkgsite"),
     index_file = "index.qmd",
-    index_template = system.file("templates/_index.qmd", package = "pkgsite")
-    ) {
+    index_template = system.file("templates/_index.qmd", package = "pkgsite")) {
   write_reference_index(
     pkg = pkg,
     folder = folder,
     file = index_file,
     template = index_template
-    )
+  )
   write_reference_pages(
-    pkg = pkg, 
-    folder = folder, 
-    examples = examples, 
-    not_run_examples = not_run_examples, 
+    pkg = pkg,
+    folder = folder,
+    examples = examples,
+    not_run_examples = not_run_examples,
     template = template
-    )
+  )
 }
 
 #' @export
