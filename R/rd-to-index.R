@@ -4,40 +4,23 @@ rd_to_index <- function(
     template = system.file("templates/_index.qmd", package = "pkgsite")) {
   if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
   ref_list <- reference_to_list_index(pkg)
-  ref_convert <- reference_index_convert(ref_list)
-  res <- imap(
-    ref_convert,
-    \(.x, .y) {
-      if (.y == 1) {
-        .x
-      } else {
-        c(" ", paste("##", .y), " ", .x)
-      }
-    }
-  )
-  res <- reduce(res, c)
+  res <- reference_index_convert(ref_list)
   res <- list("reference" = res)
-  template_parse(template, res)
+  res <- template_parse(template, res)
+  reduce(res, c)
 }
 
 reference_index_convert <- function(index_list) {
   out <- map(index_list, \(.x) map(.x, reference_links))
-  map(
+  out <- list_flatten(out)
+  out <- map(
     out,
-    \(.x) {
-      c(
-        map_chr(
-          .x,
-          \(.x) paste0(
-            .x$links,
-            "\n\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
-            .x$description,
-            "\n\n"
-          )
-        )
-      )
+    \(x) {
+      x$description <- paste0("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", x$description)
+      x
     }
   )
+  as.character(reduce(out, c))
 }
 
 reference_links <- function(x) {
