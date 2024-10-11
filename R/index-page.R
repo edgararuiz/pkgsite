@@ -64,7 +64,7 @@ reference_to_list_index <- function(pkg) {
   pkg_ref <- pkg$meta$reference
   pkg_topics <- pkg$topics
   pkg_topics <- pkg_topics[!pkg_topics$internal, ]
-  topics_env <- pkgdown:::match_env(pkg_topics)
+  topics_env <- match_env(pkg_topics)
   if (is.null(pkg_ref)) {
     x <- list(data.frame(contents = pkg_topics$name))
   } else {
