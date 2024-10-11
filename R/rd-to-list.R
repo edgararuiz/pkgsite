@@ -216,7 +216,7 @@ tag_single <- function(x, rm_return = TRUE) {
 }
 
 tag_flatten <- function(x) {
-  x <- list_c(map(x, tag_single)) 
+  x <- list_c(map(x, tag_single))
   c(x, new_paragraph_symbol)
 }
 
@@ -250,7 +250,7 @@ tag_LIST <- function(x) {
 }
 
 tag_describe <- function(x) {
-  out <- map(list_c(x), \(.x) .x[[1]]) 
+  out <- map(list_c(x), \(.x) .x[[1]])
   out <- map(out, tag_single)
   out_nulls <- !map_lgl(out, is.null)
   out <- out[out_nulls]
@@ -258,7 +258,7 @@ tag_describe <- function(x) {
 }
 
 tag_dontrun <- function(x) {
-  out <- list_c(map(x, tag_single)) 
+  out <- list_c(map(x, tag_single))
   c(do_not_run_symbol, out)
 }
 
@@ -269,23 +269,23 @@ tag_sub_section <- function(x) {
   } else {
     out <- map(x, tag_single)
   }
-  out <- map(list_c(out), remove_return) 
+  out <- map(list_c(out), remove_return)
   c(out, new_paragraph_symbol)
 }
 
 tag_itemize1 <- function(x) {
-  x <- map(x, tag_single, FALSE) 
-  x <- map(list_c(x), remove_return) 
+  x <- map(x, tag_single, FALSE)
+  x <- map(list_c(x), remove_return)
   c(x, new_paragraph_symbol)
 }
 
 tag_code <- function(x) {
-  x <-  reduce(map(x, tag_single), paste0) 
+  x <- reduce(map(x, tag_single), paste0)
   paste0("`", x, "`")
 }
 
 tag_preformatted <- function(x) {
-  x <- reduce(as.character(x), function(x, y) c(x, new_paragraph_symbol, y)) 
+  x <- reduce(as.character(x), function(x, y) c(x, new_paragraph_symbol, y))
   c("```", new_paragraph_symbol, x, new_paragraph_symbol, "```")
 }
 

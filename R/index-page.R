@@ -30,14 +30,14 @@ reference_index_convert <- function(index_list) {
     \(.x) {
       c(
         map_chr(
-          .x, 
+          .x,
           \(.x) paste0(
-            .x$links, 
-            "\n\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", 
-            .x$desc, 
+            .x$links,
+            "\n\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",
+            .x$desc,
             "\n\n"
-            )
           )
+        )
       )
     }
   )
