@@ -1,7 +1,7 @@
-reference_index <- function(
+#' @export
+rd_to_index <- function(
     pkg = ".",
-    template = system.file("templates/_index.qmd", package = "pkgsite")
-    ) {
+    template = system.file("templates/_index.qmd", package = "pkgsite")) {
   if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
   ref_list <- reference_to_list_index(pkg)
   ref_convert <- reference_index_convert(ref_list)

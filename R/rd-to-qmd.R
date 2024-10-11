@@ -17,7 +17,7 @@ rd_to_qmd <- function(
 
 template_parse <- function(template, con) {
   read_template <- readLines(template)
-  map(read_template, parse_line_tag, con)  
+  map(read_template, parse_line_tag, con)
 }
 
 parse_line_tag <- function(line, con) {
