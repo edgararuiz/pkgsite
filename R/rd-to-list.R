@@ -1,3 +1,4 @@
+#' @export
 reference_to_list_page <- function(file_in, pkg) {
   if (is.character(pkg)) pkg <- as_pkgdown(pkg)
   out <- tags_process(tags_get(file_in, pkg))
