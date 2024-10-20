@@ -33,4 +33,5 @@ docs/
 po/*~
 # RStudio Connect folder
 rsconnect/
-reference
+
+/.quarto/

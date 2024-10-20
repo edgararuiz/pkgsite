@@ -1,0 +1,21 @@
+project:
+  type: website
+  output-dir: docs
+  
+execute: 
+  freeze: true 
+  eval: true
+  
+website:
+  title: pkgsite
+  navbar:
+    left:
+      - href: reference/index.qmd
+        text: Reference  
+  
+pkgsite: 
+  reference-index:
+    - rd_to_qmd
+    - write_reference
+
+    

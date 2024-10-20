@@ -1,0 +1,15 @@
+---
+title: Package index
+toc: false
+---
+
+[rd_to_qmd()](rd_to_qmd.html)
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts Rd to Quarto files
+
+[write_reference()](write_reference.html)
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writes the reference pages and index as Quarto files
+

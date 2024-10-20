@@ -1,0 +1,40 @@
+---
+title: "Converts Rd to Quarto files"
+execute:
+  eval: true
+  freeze: true
+---
+
+## rd_to_qmd
+
+## Description
+ Converts Rd to Quarto files 
+
+
+## Usage
+```r
+ 
+rd_to_qmd( 
+  file_in, 
+  pkg = ".", 
+  examples = TRUE, 
+  not_run_examples = FALSE, 
+  template = system.file("templates/_reference.qmd", package = "pkgsite") 
+) 
+```
+
+## Arguments
+|Arguments|Description|
+|---|---|
+| file_in | The name of the source Rd file |
+| pkg | The path to the package or a `pkgdown` package object |
+| examples | Flag that sets the examples code chuck to be evaluated when the Quarto document is rendered |
+| not_run_examples | Flag that sets the "do not run" examples code chuck to be evaluated when the Quarto document is rendered |
+| template | The path to a Quarto file that can be used as the template for all of the resulting reference files |
+
+
+
+
+
+
+
