@@ -1,5 +1,5 @@
 #' Writes the reference pages and index as Quarto files
-#' 
+#'
 #' @param pkg The path to the package or a `pkgdown` package object
 #' @param folder The target folder to save the new Quarto files to
 #' @param examples Flag that sets the examples code chuck to be evaluated when
@@ -9,9 +9,9 @@
 #' @param template The path to a Quarto file that can be used as the template
 #' for all of the resulting reference files
 #' @param index_file The name assigned to the resulting index Quarto file
-#' @param index_template The path to a Quarto file that can be used as the 
+#' @param index_template The path to a Quarto file that can be used as the
 #' template for the index Quarto file
-#' 
+#'
 #' @export
 write_reference <- function(
     pkg = ".",

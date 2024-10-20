@@ -2,23 +2,22 @@
 rd_to_index <- function(
     pkg = ".",
     template = system.file("templates/_index.qmd", package = "pkgsite")) {
-  if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
-  ref_list <- reference_to_list_index(pkg)
-  res <- reference_index_convert(ref_list)
+  if (is.character(pkg)) pkg <- as_pkgdown(pkg)
+  topics <- transpose(pkg$topics)
+  res <- reference_index_convert(topics)
   res <- list("reference" = res)
   res <- template_parse(template, res)
   reduce(res, c)
 }
 
 reference_index_convert <- function(index_list) {
-  out <- map(index_list, \(.x) map(.x, reference_links))
-  out <- list_flatten(out)
+  out <- map(index_list, reference_links)
   out <- map(
     out,
     \(x) {
       c(
         x$links,
-        "", "", 
+        "", "",
         paste0("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", x$description),
         ""
       )
@@ -41,44 +40,4 @@ reference_links <- function(x) {
     links = funcs,
     description = desc
   )
-}
-
-reference_to_list_index <- function(pkg) {
-  if (is.character(pkg)) pkg <- as_pkgdown(pkg)
-  pkg_ref <- pkg$meta$reference
-  pkg_topics <- pkg$topics
-  pkg_topics <- pkg_topics[!pkg_topics$internal, ]
-  topics_env <- match_env(pkg_topics)
-  if (is.null(pkg_ref)) {
-    x <- list(data.frame(contents = pkg_topics$name))
-  } else {
-    x <- pkg_ref
-  }
-  sections_list <- map(
-    seq_along(x),
-    \(.x) {
-      ref <- x[[.x]]
-      topic_list <- map(
-        ref$contents,
-        ~ {
-          item_numbers <- NULL
-          try(
-            item_numbers <- eval(parse(text = paste0("`", .x, "`")), topics_env),
-            silent = TRUE
-          )
-          if (is.null(item_numbers)) {
-            item_numbers <- eval(parse(text = .x), topics_env)
-          }
-          item_numbers
-        }
-      )
-      topic_ids <- as.numeric(list_c(topic_list))
-      transpose(pkg_topics[topic_ids, ])
-    }
-  )
-  if (!is.null(pkg_ref)) {
-    sections_title <- map_chr(pkg_ref, \(.x) .x$title)
-    names(sections_list) <- sections_title
-  }
-  sections_list
 }
