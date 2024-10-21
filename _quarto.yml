@@ -15,7 +15,5 @@ website:
   
 pkgsite: 
   reference-index:
-    - rd_to_qmd
-    - write_reference
-
-    
+      - write_reference
+      - rd_to_qmd        

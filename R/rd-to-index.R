@@ -11,9 +11,18 @@ rd_to_index <- function(
 }
 
 reference_index_convert <- function(index_list) {
-  out <- map(index_list, reference_links)
+  pkg_site <- read_quarto()
+  ref <- map(index_list, reference_links)
+  if(!is.null(pkg_site)) {
+    reference_index <- pkg_site[["reference-index"]]
+    if(is.null(names(reference_index)[[1]])) {
+      ref <- map(reference_index, \(x) ref[path(x, ext = "Rd")])
+      ref <- list_flatten(ref)
+      ref <- set_names(ref, reference_index)
+    }
+  }
   out <- map(
-    out,
+    ref,
     \(x) {
       c(
         x$links,

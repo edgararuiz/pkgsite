@@ -3,4 +3,9 @@
 #' @import purrr
 #' @import cli
 #' @import fs
-NULL
+#' @import yaml
+
+read_quarto <- function() {
+  quarto <- read_yaml("_quarto.yml")
+  quarto$pkgsite
+}
