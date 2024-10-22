@@ -46,7 +46,7 @@ write_reference_index <- function(
   try(dir_create(folder), silent = TRUE)
   ref <- path(folder, index_file)
   try(file_delete(ref), silent = TRUE)
-  writeLines(rd_to_index(pkg, index_template), ref)
+  writeLines(index_to_qmd(pkg, index_template), ref)
   cli_inform(col_green(ref))
 }
 

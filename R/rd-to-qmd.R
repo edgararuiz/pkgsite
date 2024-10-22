@@ -9,6 +9,14 @@ rd_to_qmd <- function(
     not_run_examples = FALSE,
     template = system.file("templates/_reference.qmd", package = "pkgsite")) {
   if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
+  
+  yaml_template <- NULL
+  if (!is.null(pkg_site)) {
+    reference <- pkg_site[["reference"]]
+    yaml_template <- reference$template
+  }
+  pkg_template <- system.file("templates/_reference.qmd", package = "pkgsite")
+  template <- template %||% yaml_template %||% pkg_template
   parsed <- rd_to_list(file_in, pkg)
   con <- reference_convert(parsed, examples, not_run_examples)
   out <- template_parse(template, con)

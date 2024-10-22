@@ -4,15 +4,13 @@ index_to_qmd <- function(
     template = NULL) {
   pkg_site <- read_quarto()
   index <- NULL
-  if(!is.null(pkg_site)) {
-    index <- pkg_site[["reference"]][["index"]]  
-    if(is.null(template)) {
-      template <- index$template
-    }
+  yaml_template <- NULL
+  if (!is.null(pkg_site)) {
+    index <- pkg_site[["reference"]][["index"]]
+    yaml_template <- index$template
   }
-  if(is.null(template)) {
-    template <- system.file("templates/_index.qmd", package = "pkgsite")  
-  }
+  pkg_template <- system.file("templates/_index.qmd", package = "pkgsite")
+  template <- template %||% yaml_template %||% pkg_template
   out <- reference_index_convert(pkg, index)
   out <- template_parse(template, out)
   reduce(out, c)
@@ -32,13 +30,13 @@ reference_index_convert <- function(pkg, index = NULL) {
   topics <- transpose(pkg$topics)
   ref <- map(topics, reference_links)
   if (!is.null(index)) {
-    reference_index <- index[["contents"]]
-    if (is.null(names(reference_index)[[1]])) {
-      ref <- map(reference_index, \(x) ref[path(x, ext = "Rd")])
+    contents <- index[["contents"]]
+    if (is.null(names(contents)[[1]])) {
+      ref <- map(contents, \(x) ref[path(x, ext = "Rd")])
       ref <- list_flatten(ref)
     } else {
       out <- map(
-        reference_index$sections,
+        contents$sections,
         \(x){
           ref <- ref[path(x$contents, ext = "Rd")]
           ref <- map(ref, fun_line)
