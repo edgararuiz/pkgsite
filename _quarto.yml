@@ -14,6 +14,13 @@ website:
         text: Reference  
   
 pkgsite: 
-  reference-index:
-      - write_reference
-      - rd_to_qmd        
+    dir: "."
+    reference:
+      dir: reference
+      template: inst/templates/_reference.qmd
+      not_run_examples: true
+      index:
+        template: inst/templates/_index.qmd
+        contents:
+          - write_reference
+          - rd_to_qmd

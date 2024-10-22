@@ -2,15 +2,13 @@
 rd_to_index <- function(
     pkg = ".",
     template = system.file("templates/_index.qmd", package = "pkgsite")) {
-  if (is.character(pkg)) pkg <- as_pkgdown(pkg)
-  topics <- transpose(pkg$topics)
-  res <- reference_index_convert(topics)
+  res <- reference_index_convert(pkg)
   res <- list("reference" = res)
   res <- template_parse(template, res)
   reduce(res, c)
 }
 
-reference_index_convert <- function(index_list) {
+reference_index_convert <- function(pkg) {
   out <- NULL
   fun_line <- function(x) {
     c(
@@ -21,9 +19,11 @@ reference_index_convert <- function(index_list) {
     )
   }
   pkg_site <- read_quarto()
-  ref <- map(index_list, reference_links)
+  if (is.character(pkg)) pkg <- as_pkgdown(pkg)
+  topics <- transpose(pkg$topics)
+  ref <- map(topics, reference_links)
   if (!is.null(pkg_site)) {
-    reference_index <- pkg_site[["reference-index"]]
+    reference_index <- pkg_site[["reference"]][["index"]][["contents"]]
     if (is.null(names(reference_index)[[1]])) {
       ref <- map(reference_index, \(x) ref[path(x, ext = "Rd")])
       ref <- list_flatten(ref)
@@ -42,7 +42,7 @@ reference_index_convert <- function(index_list) {
     }
   } else {
     ref_list <- path_ext_remove(names(ref))
-    cli_bullets(paste("-", ref_list)) 
+    cli_bullets(paste("-", ref_list))
   }
   if (is.null(out)) {
     out <- map(ref, fun_line)
