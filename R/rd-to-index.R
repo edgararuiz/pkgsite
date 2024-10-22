@@ -11,28 +11,41 @@ rd_to_index <- function(
 }
 
 reference_index_convert <- function(index_list) {
+  out <- NULL
+  fun_line <- function(x) {
+    c(
+      x$links,
+      "", "",
+      paste0("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", x$description),
+      ""
+    )
+  }
   pkg_site <- read_quarto()
   ref <- map(index_list, reference_links)
-  if(!is.null(pkg_site)) {
+  if (!is.null(pkg_site)) {
     reference_index <- pkg_site[["reference-index"]]
-    if(is.null(names(reference_index)[[1]])) {
+    if (is.null(names(reference_index)[[1]])) {
       ref <- map(reference_index, \(x) ref[path(x, ext = "Rd")])
       ref <- list_flatten(ref)
-      ref <- set_names(ref, reference_index)
-    }
-  }
-  out <- map(
-    ref,
-    \(x) {
-      c(
-        x$links,
-        "", "",
-        paste0("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", x$description),
-        ""
+    } else {
+      out <- map(
+        reference_index$sections,
+        \(x){
+          ref <- ref[path(x$contents, ext = "Rd")]
+          ref <- map(ref, fun_line)
+          ref <- reduce(ref, c)
+          c("", "", paste0("## ", x$title), ref)
+        }
       )
     }
-  )
-  as.character(reduce(out, c))
+    out <- list_flatten(out)
+    out <- as.character(reduce(out, c))
+  }
+  if (is.null(out)) {
+    out <- map(ref, fun_line)
+    out <- as.character(reduce(out, c))
+  }
+  out
 }
 
 reference_links <- function(x) {
