@@ -14,13 +14,22 @@
 #'
 #' @export
 write_reference <- function(
-    pkg = ".",
-    folder = "reference",
+    pkg = NULL,
+    folder = NULL,
     examples = TRUE,
-    not_run_examples = FALSE,
-    template = system.file("templates/_reference.qmd", package = "pkgsite"),
-    index_file = "index.qmd",
-    index_template = system.file("templates/_index.qmd", package = "pkgsite")) {
+    not_run_examples = NULL,
+    template = NULL,
+    index_file = NULL,
+    index_template = NULL) {
+  pkg_site <- read_quarto()
+  pkg <- pkg %||% pkg_site[["dir"]] %||% "."
+  folder <- folder %||% pkg_site[["reference"]][["dir"]] %||% "reference"
+  not_run_examples <- not_run_examples %||%
+    pkg_site[["reference"]][["not_run_examples"]] %||%
+    FALSE
+  index_file <- index_file %||%
+    pkg_site[["reference"]][["index"]][["file"]] %||%
+    "index.qmd"
   write_reference_index(
     pkg = pkg,
     folder = folder,
@@ -41,7 +50,7 @@ write_reference_index <- function(
     pkg = ".",
     folder = "reference",
     index_file = "index.qmd",
-    index_template = system.file("templates/_index.qmd", package = "pkgsite")) {
+    index_template = NULL) {
   if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
   try(dir_create(folder), silent = TRUE)
   ref <- path(folder, index_file)

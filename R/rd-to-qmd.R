@@ -7,9 +7,9 @@ rd_to_qmd <- function(
     pkg = ".",
     examples = TRUE,
     not_run_examples = FALSE,
-    template = system.file("templates/_reference.qmd", package = "pkgsite")) {
+    template = NULL) {
   if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
-  
+  pkg_site <- read_quarto()
   yaml_template <- NULL
   if (!is.null(pkg_site)) {
     reference <- pkg_site[["reference"]]

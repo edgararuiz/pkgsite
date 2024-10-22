@@ -5,13 +5,13 @@
 \title{Writes the reference pages and index as Quarto files}
 \usage{
 write_reference(
-  pkg = ".",
-  folder = "reference",
+  pkg = NULL,
+  folder = NULL,
   examples = TRUE,
-  not_run_examples = FALSE,
-  template = system.file("templates/_reference.qmd", package = "pkgsite"),
-  index_file = "index.qmd",
-  index_template = system.file("templates/_index.qmd", package = "pkgsite")
+  not_run_examples = NULL,
+  template = NULL,
+  index_file = NULL,
+  index_template = NULL
 )
 }
 \arguments{
