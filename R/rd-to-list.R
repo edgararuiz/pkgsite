@@ -194,6 +194,7 @@ tag_translate.tag_email <- function(x) tag_url(x)
 tag_translate.tag_url <- function(x) tag_url(x)
 tag_translate.tag_itemize <- function(x) tag_itemize1(x)
 tag_translate.tag_dontrun <- function(x) tag_dontrun(x)
+tag_translate.tag_donttest <- function(x) tag_donttest(x)
 tag_translate.tag_enumerate <- function(x) tag_itemize1(x)
 tag_translate.tag_describe <- function(x) tag_describe(x)
 tag_translate.tag_subsection <- function(x) tag_sub_section(x)
@@ -261,6 +262,10 @@ tag_describe <- function(x) {
 tag_dontrun <- function(x) {
   out <- list_c(map(x, tag_single))
   c(do_not_run_symbol, out)
+}
+
+tag_donttest <- function(x) {
+  list_c(map(x, tag_single))
 }
 
 tag_sub_section <- function(x) {

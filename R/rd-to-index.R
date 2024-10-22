@@ -37,9 +37,12 @@ reference_index_convert <- function(index_list) {
           c("", "", paste0("## ", x$title), ref)
         }
       )
+      out <- list_flatten(out)
+      out <- as.character(reduce(out, c))
     }
-    out <- list_flatten(out)
-    out <- as.character(reduce(out, c))
+  } else {
+    ref_list <- path_ext_remove(names(ref))
+    cli_bullets(paste("-", ref_list)) 
   }
   if (is.null(out)) {
     out <- map(ref, fun_line)
