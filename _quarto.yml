@@ -12,7 +12,9 @@ website:
     left:
       - href: reference/index.qmd
         text: Reference  
-        
+    right:
+      - icon: github
+        href: https://github.com/edgararuiz/pkgsite
 format:
   html:
     toc: true
