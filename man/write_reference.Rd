@@ -26,7 +26,8 @@ the Quarto document is rendered}
 to be evaluated when the Quarto document is rendered}
 
 \item{template}{The path to a Quarto file that can be used as the template
-for all of the resulting reference files}
+for all of the resulting reference files. If left NULL, \code{pkgsite} will use
+its default template.}
 
 \item{index_file}{The name assigned to the resulting index Quarto file}
 

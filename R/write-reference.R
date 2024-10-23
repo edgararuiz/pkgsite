@@ -7,7 +7,8 @@
 #' @param not_run_examples Flag that sets the "do not run" examples code chuck
 #' to be evaluated when the Quarto document is rendered
 #' @param template The path to a Quarto file that can be used as the template
-#' for all of the resulting reference files
+#' for all of the resulting reference files. If left NULL, `pkgsite` will use
+#' its default template.
 #' @param index_file The name assigned to the resulting index Quarto file
 #' @param index_template The path to a Quarto file that can be used as the
 #' template for the index Quarto file
@@ -45,6 +46,8 @@ write_reference <- function(
   )
 }
 
+#' Writes the index of the reference pages into a Quarto file
+#' @inheritParams write_reference
 #' @export
 write_reference_index <- function(
     pkg = ".",
@@ -59,13 +62,15 @@ write_reference_index <- function(
   cli_inform(col_green(ref))
 }
 
+#' Converts the 'Rd' file into Quarto, and writes the file to a specified folder
+#' @inheritParams write_reference
 #' @export
 write_reference_pages <- function(
     pkg = ".",
     folder = "reference",
     examples = TRUE,
     not_run_examples = FALSE,
-    template = system.file("templates/_reference.qmd", package = "pkgsite")) {
+    template = NULL) {
   if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
   walk(
     pkg$topics$file_in,
