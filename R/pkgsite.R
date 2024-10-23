@@ -6,6 +6,13 @@
 #' @import yaml
 
 read_quarto <- function() {
-  quarto <- read_yaml("_quarto.yml")
-  quarto$pkgsite
+  suppressWarnings(
+    quarto <- try(read_yaml("_quarto.yml"), silent = TRUE)  
+  )
+  if(inherits(quarto, "try-error")) {
+    out <- NULL
+  } else {
+    out <- quarto$pkgsite  
+  }
+  out
 }

@@ -49,9 +49,6 @@ reference_index_convert <- function(pkg, index = NULL) {
       out <- list_flatten(out)
       out <- as.character(reduce(out, c))
     }
-  } else {
-    ref_list <- path_ext_remove(names(ref))
-    cli_bullets(paste("-", ref_list))
   }
   if (is.null(out)) {
     out <- map(ref, fun_line)
