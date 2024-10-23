@@ -1,3 +1,8 @@
+#' Converts a given 'Rd' file into a list object
+#' @description This function is meant to be used as a intermediate object
+#' that could be used as an easy way to convert the information inside the 'Rd'
+#' into other formats or outputs
+#' @inheritParams rd_to_qmd
 #' @export
 rd_to_list <- function(file_in, pkg = ".") {
   if (is.character(pkg)) pkg <- as_pkgdown(pkg)

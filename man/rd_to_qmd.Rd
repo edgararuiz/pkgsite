@@ -2,7 +2,7 @@
 % Please edit documentation in R/rd-to-qmd.R
 \name{rd_to_qmd}
 \alias{rd_to_qmd}
-\title{Converts Rd to Quarto files}
+\title{Converts 'Rd' to Quarto files}
 \usage{
 rd_to_qmd(
   file_in,
@@ -28,5 +28,5 @@ for all of the resulting reference files. If left NULL, \code{pkgsite} will use
 its default template.}
 }
 \description{
-Converts Rd to Quarto files
+Converts 'Rd' to Quarto files
 }
