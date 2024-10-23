@@ -10,11 +10,23 @@ website:
   title: pkgsite
   navbar:
     left:
+      - sidebar:articles
       - href: reference/index.qmd
         text: Reference  
     right:
       - icon: github
         href: https://github.com/edgararuiz/pkgsite
+
+  sidebar:
+    - id: articles
+      title: "Articles"
+      style: "docked"
+      background: light
+      collapse-level: 2
+      contents: 
+      - text: "Setup GitHub Pages"
+        href: articles/github-actions.qmd
+      
 format:
   html:
     toc: true

@@ -1,0 +1,50 @@
+---
+title: Setting up the Github Pages site
+---
+
+If the ultimate goal is to automate the rendering and publication of the site
+via Github Pages, then having a GitHub Action with the proper steps is very
+necessary. 
+
+Using the "stock" way that Quarto creates websites, will allows to avoid setting
+up a more complex deployment scheme, such as using Makefiles or Docker. 
+
+After creating up the `gh-pages` branch in your package's repository, and 
+setting it up as the target for the GitHub pages, you can create the job YAML
+file. Place the YAML file inside the '.github/workflows/' folder. 
+
+Here is an example YAML file that you can use. These are the currrent steps that
+this package, and `mall` use for deployment:
+
+```yaml
+on:
+  push:
+    branches: main
+
+name: Render and Publish
+
+permissions:
+    contents: write
+    pages: write
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Publish to GitHub Pages (and render)
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+```
