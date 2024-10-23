@@ -1,0 +1,31 @@
+---
+title: "Create a Quarto file that lists the available reference pages"
+execute:
+  eval: true
+  freeze: true
+---
+
+## index_to_qmd
+
+## Description
+ Create a Quarto file that lists the available reference pages 
+
+
+## Usage
+```r
+ 
+index_to_qmd(pkg = ".", template = NULL) 
+```
+
+## Arguments
+|Arguments|Description|
+|---|---|
+| pkg | The path to the package or a `pkgdown` package object |
+| template | The path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, `pkgsite` will use its default template. |
+
+
+
+
+
+
+

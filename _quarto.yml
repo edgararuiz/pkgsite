@@ -24,7 +24,14 @@ pkgsite:
         template: inst/templates/_index.qmd
         contents:
           sections:
-            - title: Functions
+            - title: Quarto file creation
               contents: 
               - write_reference
+              - write_reference_index
+              - write_reference_pages
+            - title: Conversion functions
+              contents:
+              - index_to_qmd
               - rd_to_qmd
+              - rd_to_list
+              
