@@ -19,7 +19,7 @@ rd_to_qmd(
   pkg = ".", 
   examples = TRUE, 
   not_run_examples = FALSE, 
-  template = system.file("templates/_reference.qmd", package = "pkgsite") 
+  template = NULL 
 ) 
 ```
 

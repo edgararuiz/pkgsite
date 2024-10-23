@@ -23,5 +23,8 @@ pkgsite:
         file: index.qmd
         template: inst/templates/_index.qmd
         contents:
-          - write_reference
-          - rd_to_qmd
+          sections:
+            - title: Functions
+              contents: 
+              - write_reference
+              - rd_to_qmd

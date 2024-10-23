@@ -41,7 +41,7 @@ reference_index_convert <- function(pkg, index = NULL) {
           ref <- ref[path(x$contents, ext = "Rd")]
           ref <- map(ref, fun_line)
           ref <- reduce(ref, c)
-          c("", "", paste0("## ", x$title), ref)
+          c("", "", paste0("## ", x$title), "", "", ref)
         }
       )
       out <- list_flatten(out)
