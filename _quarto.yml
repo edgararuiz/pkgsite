@@ -12,7 +12,21 @@ website:
     left:
       - href: reference/index.qmd
         text: Reference  
-  
+        
+format:
+  html:
+    toc: true
+    toc-expand: true
+    code-copy: true
+    code-overflow: wrap
+    code-toos: true
+    eval: true
+    freeze: true
+    css: site/styles.css
+    theme:
+      light: [cosmo, site/theme.scss]
+      dark: [cosmo, site/theme-dark.scss]
+        
 pkgsite: 
     dir: "."
     reference:
@@ -34,4 +48,3 @@ pkgsite:
               - index_to_qmd
               - rd_to_qmd
               - rd_to_list
-              
