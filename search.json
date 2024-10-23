@@ -91,6 +91,16 @@
     "text": "MIT License\nCopyright (c) 2024 pkgsite authors\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
   },
   {
+    "objectID": "articles/github-actions.html",
+    "href": "articles/github-actions.html",
+    "title": "Setting up the Github Pages site",
+    "section": "",
+    "text": "If the ultimate goal is to automate the rendering and publication of the site via Github Pages, then having a GitHub Action with the proper steps is very necessary.\nUsing the “stock” way that Quarto creates websites, will allows to avoid setting up a more complex deployment scheme, such as using Makefiles or Docker.\nAfter creating up the gh-pages branch in your package’s repository, and setting it up as the target for the GitHub pages, you can create the job YAML file. Place the YAML file inside the ‘.github/workflows/’ folder.\nHere is an example YAML file that you can use. These are the currrent steps that this package, and mall use for deployment:\non:\n  push:\n    branches: main\n\nname: Render and Publish\n\npermissions:\n    contents: write\n    pages: write\n\njobs:\n  build-deploy:\n    runs-on: ubuntu-latest\n    \n    steps:\n      - name: Check out repository\n        uses: actions/checkout@v4\n        \n      - name: Set up Quarto\n        uses: quarto-dev/quarto-actions/setup@v2\n        env:\n          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}\n          \n      - name: Publish to GitHub Pages (and render)\n        uses: quarto-dev/quarto-actions/publish@v2\n        with:\n          target: gh-pages\n        env:\n          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}",
+    "crumbs": [
+      "Setup GitHub Pages"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "pkgsite",
