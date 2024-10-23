@@ -1,3 +1,5 @@
+#' Create a Quarto file that lists the available reference pages
+#' @inheritParams rd_to_qmd
 #' @export
 index_to_qmd <- function(
     pkg = ".",
