@@ -8,3 +8,5 @@
 ^.*reference$
 ^.*\.quarto$
 ^.*site$
+^\.github$
+^.*articles$
