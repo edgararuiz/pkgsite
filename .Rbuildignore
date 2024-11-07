@@ -10,3 +10,4 @@
 ^.*site$
 ^\.github$
 ^.*articles$
+^codecov\.yml$
