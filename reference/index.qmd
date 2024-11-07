@@ -5,7 +5,7 @@ toc: false
 
 
 
-### Quarto file creation
+## Quarto file creation
 
 
 [write_reference()](write_reference.html)
@@ -25,7 +25,7 @@ toc: false
 
 
 
-### Conversion functions
+## Conversion functions
 
 
 [index_to_qmd()](index_to_qmd.html)

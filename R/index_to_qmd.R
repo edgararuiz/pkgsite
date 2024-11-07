@@ -4,7 +4,7 @@
 index_to_qmd <- function(
     pkg = ".",
     template = NULL) {
-  pkg_site <- read_quarto()
+  pkg_site <- read_quarto(pkg)
   index <- NULL
   yaml_template <- NULL
   if (!is.null(pkg_site)) {

@@ -9,7 +9,7 @@ rd_to_qmd <- function(
     not_run_examples = FALSE,
     template = NULL) {
   if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
-  pkg_site <- read_quarto()
+  pkg_site <- read_quarto(pkg)
   yaml_template <- NULL
   if (!is.null(pkg_site)) {
     reference <- pkg_site[["reference"]]
@@ -107,13 +107,6 @@ parse_line_tag <- function(line, con) {
   }
 }
 
-reference_entry <- function(x, title = NULL) {
-  out <- NULL
-  if (!is.null(title)) title <- paste("##", title)
-  if (!is.null(x)) out <- c(title, "", x, "")
-  out
-}
-
 reference_convert <- function(x,
                               examples = TRUE,
                               not_run_examples = FALSE) {
@@ -143,7 +136,7 @@ reference_convert <- function(x,
     }
 
     if (curr_name == "usage") {
-      out <- reference_qmd_example(curr, FALSE)
+      out <- c("```r", curr, "```")
     }
 
     if (curr_name == "arguments") out <- reference_arguments(curr)
@@ -173,13 +166,4 @@ reference_arguments <- function(x) {
   lines <- map_chr(x, ~ paste0(.x[[1]], " | ", paste0(.x[[2]], collapse = "<br>")))
   rows <- paste0("| ", lines, " |")
   c("|Arguments|Description|", "|---|---|", rows)
-}
-
-reference_qmd_example <- function(x, run = FALSE) {
-  # x <- x[x != "\n"]
-  if (run) {
-    out <- c("```{r}", x, "```")
-  } else {
-    out <- c("```r", x, "```")
-  }
 }

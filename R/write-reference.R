@@ -22,7 +22,7 @@ write_reference <- function(
     template = NULL,
     index_file = NULL,
     index_template = NULL) {
-  pkg_site <- read_quarto()
+  pkg_site <- read_quarto(pkg)
   pkg <- pkg %||% pkg_site[["dir"]] %||% "."
   folder <- folder %||% pkg_site[["reference"]][["dir"]] %||% "reference"
   not_run_examples <- not_run_examples %||%
