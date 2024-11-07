@@ -91,6 +91,13 @@
     "text": "MIT License\nCopyright (c) 2024 pkgsite authors\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
   },
   {
+    "objectID": "tests/testthat/test-pkg2/LICENSE.html",
+    "href": "tests/testthat/test-pkg2/LICENSE.html",
+    "title": "MIT License",
+    "section": "",
+    "text": "MIT License\nCopyright (c) 2024 mall authors\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+  },
+  {
     "objectID": "tests/testthat/test-pkg/LICENSE.html",
     "href": "tests/testthat/test-pkg/LICENSE.html",
     "title": "MIT License",
@@ -110,6 +117,13 @@
   {
     "objectID": "tests/testthat/test-pkg/NEWS.html",
     "href": "tests/testthat/test-pkg/NEWS.html",
+    "title": "mall 0.1.0",
+    "section": "",
+    "text": "mall 0.1.0\n\nInitial CRAN submission."
+  },
+  {
+    "objectID": "tests/testthat/test-pkg2/NEWS.html",
+    "href": "tests/testthat/test-pkg2/NEWS.html",
     "title": "mall 0.1.0",
     "section": "",
     "text": "mall 0.1.0\n\nInitial CRAN submission."
@@ -182,7 +196,21 @@
     "href": "reference/index.html",
     "title": "Package index",
     "section": "",
-    "text": "Quarto file creation\nwrite_reference()\n      Writes the reference pages and index as Quarto files\nwrite_reference_index()\n      Writes the index of the reference pages into a Quarto file\nwrite_reference_pages()\n      Converts the ‘Rd’ file into Quarto, and writes the file to a specified folder\n\n\nConversion functions\nindex_to_qmd()\n      Create a Quarto file that lists the available reference pages\nrd_to_qmd()\n      Converts ‘Rd’ to Quarto files\nrd_to_list()\n      Converts a given ‘Rd’ file into a list object"
+    "text": "write_reference()\n      Writes the reference pages and index as Quarto files\nwrite_reference_index()\n      Writes the index of the reference pages into a Quarto file\nwrite_reference_pages()\n      Converts the ‘Rd’ file into Quarto, and writes the file to a specified folder"
+  },
+  {
+    "objectID": "reference/index.html#quarto-file-creation",
+    "href": "reference/index.html#quarto-file-creation",
+    "title": "Package index",
+    "section": "",
+    "text": "write_reference()\n      Writes the reference pages and index as Quarto files\nwrite_reference_index()\n      Writes the index of the reference pages into a Quarto file\nwrite_reference_pages()\n      Converts the ‘Rd’ file into Quarto, and writes the file to a specified folder"
+  },
+  {
+    "objectID": "reference/index.html#conversion-functions",
+    "href": "reference/index.html#conversion-functions",
+    "title": "Package index",
+    "section": "Conversion functions",
+    "text": "Conversion functions\nindex_to_qmd()\n      Create a Quarto file that lists the available reference pages\nrd_to_qmd()\n      Converts ‘Rd’ to Quarto files\nrd_to_list()\n      Converts a given ‘Rd’ file into a list object"
   },
   {
     "objectID": "reference/write_reference.html#description",
