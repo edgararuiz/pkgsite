@@ -19,6 +19,31 @@ index_to_qmd <- function(
 }
 
 reference_index_convert <- function(pkg, index = NULL) {
+  
+  rd_names <- path_file(dir_ls(path(pkg, "man")))
+  rd_list <- map(rd_names, rd_to_list)
+  rd_list <- set_names(rd_list, rd_names)
+  
+  ref_lines <- imap(rd_list, \(x, y) {
+    qmd_name <- path(path_ext_remove(y), ext = "qmd")
+    c(
+      paste0("[", x$alias, "()](", qmd_name,")"),
+      "", "", 
+      paste0("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", x$title),
+      ""
+    )
+  })
+  ref_names <- path_ext_remove(names(ref_lines))
+  ref_lines <- set_names(ref_lines, ref_names)
+  
+  if(is.null(index)) {
+    out <- reduce(ref_lines, c)
+  } else {
+    out <- reduce(ref_lines, c)
+  }
+  
+  return(list("reference" = out))
+  
   out <- NULL
   fun_line <- function(x) {
     c(
@@ -29,12 +54,8 @@ reference_index_convert <- function(pkg, index = NULL) {
     )
   }
   
-  rd_names <- path_file(dir_ls(path(pkg, "man")))
-  rd_list <- map(rd_names, rd_to_list)
-  rd_list <- set_names(rd_list, rd_names)
-  
-  rd_list[[1]]$title
-  
+
+
   if (is.character(pkg)) pkg <- as_pkgdown(pkg)
   topics <- transpose(pkg$topics)
   ref <- map(topics, reference_links)
