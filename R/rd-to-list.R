@@ -59,6 +59,8 @@ rd_extract_text <- function(x, collapse = TRUE) {
   if (collapse) {
     rd_txt <- paste0(rd_txt, collapse = " ")
   }
+  rd_txt <- gsub("‘", "`", rd_txt)
+  rd_txt <- gsub("’", "`", rd_txt)
   rd_txt
 }
 
