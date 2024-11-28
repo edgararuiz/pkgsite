@@ -36,67 +36,17 @@ reference_index_convert <- function(pkg, index = NULL) {
   ref_names <- path_ext_remove(names(ref_lines))
   ref_lines <- set_names(ref_lines, ref_names)
   
-  if(is.null(index)) {
-    out <- reduce(ref_lines, c)
-  } else {
-    out <- reduce(ref_lines, c)
-  }
-  
-  return(list("reference" = out))
-  
-  out <- NULL
-  fun_line <- function(x) {
-    c(
-      x$links,
-      "", "",
-      paste0("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", x$description),
-      ""
-    )
-  }
-  
-
-
-  if (is.character(pkg)) pkg <- as_pkgdown(pkg)
-  topics <- transpose(pkg$topics)
-  ref <- map(topics, reference_links)
-  if (!is.null(index)) {
-    contents <- index[["contents"]]
-    if (is.null(names(contents)[[1]])) {
-      ref <- map(contents, \(x) ref[path(x, ext = "Rd")])
-      ref <- list_flatten(ref)
-    } else {
-      out <- map(
-        contents$sections,
-        \(x){
-          ref <- ref[path(x$contents, ext = "Rd")]
-          ref <- map(ref, fun_line)
-          ref <- reduce(ref, c)
-          c("", "", paste0("## ", x$title), "", "", ref)
-        }
-      )
-      out <- list_flatten(out)
-      out <- as.character(reduce(out, c))
+  if(!is.null(index)) {
+    sections <- index[["contents"]][["sections"]]
+    if(!is.null(sections)) {
+      ref_lines <- map(contents, \(x) {
+        refs <- map(x$contents, \(y) ref_lines[names(ref_lines) == y])
+        c(list(list(title = paste0("##", x$title), "")), refs)
+      })
+      ref_lines <- list_flatten(ref_lines)
+      ref_lines <- reduce(ref_lines, c)
     }
   }
-  if (is.null(out)) {
-    out <- map(ref, fun_line)
-    out <- as.character(reduce(out, c))
-  }
-  list("reference" = out)
-}
-
-reference_links <- function(x) {
-  # Manual fixes of special characters in funs variable
-  funcs <- x$funs
-  file_out <- path(x$file_out)
-  if (length(funcs) == 0) funcs <- x$alias
-  funcs <- gsub("&lt;", "<", funcs)
-  funcs <- gsub("&gt;", ">", funcs)
-  funcs <- paste0("[", funcs, "](", file_out, ")")
-  funcs <- paste0(funcs, collapse = " ")
-  desc <- x$title
-  list(
-    links = funcs,
-    description = desc
-  )
+  ref_lines <- reduce(ref_lines, c)
+  list("reference" = ref_lines)
 }
