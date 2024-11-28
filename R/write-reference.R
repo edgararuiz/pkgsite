@@ -54,7 +54,7 @@ write_reference_index <- function(
     folder = "reference",
     index_file = "index.qmd",
     index_template = NULL) {
-  if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
+  #if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
   try(dir_create(folder), silent = TRUE)
   ref <- path(folder, index_file)
   try(file_delete(ref), silent = TRUE)
@@ -71,9 +71,8 @@ write_reference_pages <- function(
     examples = TRUE,
     not_run_examples = FALSE,
     template = NULL) {
-  if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
   walk(
-    pkg$topics$file_in,
+    path_file(dir_ls(path(pkg, "man"))),
     \(x) {
       ref <- paste0(folder, "/", path_ext_remove(x), ".qmd")
       qmd <- rd_to_qmd(x, pkg, examples, not_run_examples, template)

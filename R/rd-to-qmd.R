@@ -8,7 +8,7 @@ rd_to_qmd <- function(
     examples = TRUE,
     not_run_examples = FALSE,
     template = NULL) {
-  if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
+  #if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
   pkg_site <- read_quarto(pkg)
   yaml_template <- NULL
   if (!is.null(pkg_site)) {

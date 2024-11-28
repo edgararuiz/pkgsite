@@ -5,10 +5,61 @@
 #' @inheritParams rd_to_qmd
 #' @export
 rd_to_list <- function(file_in, pkg = ".") {
-  if (is.character(pkg)) pkg <- as_pkgdown(pkg)
-  out <- tags_process(tags_get(file_in, pkg))
-  out$repo <- pkg$repo$url$home
-  out
+  out <- list()
+  rd_content <- tools::parse_Rd(fs::path(pkg, "man", file_in))
+  out <- map(rd_content, \(x) {
+    tag_name <- attr(x, "Rd_tag")
+    x_str <- as.character(x)[[1]]
+    source_prefix <- "% Please edit documentation in "
+    if(grepl(source_prefix, x_str)) {
+      x_str <- substr(x_str, nchar(source_prefix), nchar(x_str))
+      out <- list(source = trimws(x_str))
+    }
+    if(grepl("\\\\", tag_name)) {
+      tag_name <- substr(tag_name, 2, nchar(tag_name))
+      if(tag_name == "arguments") {
+        tag_text <- list(rd_args_process(x))
+      } else {
+        tag_text <- list(trimws(rd_extract_text(x)))
+      }
+      out <- set_names(tag_text, tag_name)
+    }
+    out
+  }) 
+  out <- keep(out, \(x) !is.null(x)) 
+  list_flatten(out) 
+}
+
+rd_args_process <- function(x) {
+  out <- map(x, \(x) {
+    name <- rd_extract_text(x[1])
+    val <- rd_extract_text(x[2])
+    if(name != "") {
+      out <- list(argument = name, description = val)
+    } else {
+      out <- NULL
+    }
+    out
+  }) 
+  keep(out, \(x) !is.null(x))
+}
+
+rd_extract_text <- function(x, collapse = TRUE) {
+  attributes(x) <- NULL
+  class(x) <- "Rd"
+  rd_text <- as.character(x)
+  if (collapse) {
+    rd_text <- paste0(as.character(x), collapse = "")
+  }
+  temp_rd <- tempfile(fileext = ".Rd")
+  writeLines(rd_text, temp_rd)
+  suppressWarnings(
+    rd_txt <- capture.output(tools::Rd2txt(temp_rd, fragment = TRUE))  
+  )
+  if (collapse) {
+    rd_txt <- paste0(rd_txt, collapse = " ")
+  }
+  rd_txt
 }
 
 tags_get <- function(file_in, pkg) {
