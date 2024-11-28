@@ -20,7 +20,7 @@ index_to_qmd <- function(
 
 reference_index_convert <- function(pkg, index = NULL) {
   
-  rd_names <- path_file(dir_ls(path(pkg, "man")))
+  rd_names <- path_file(dir_ls(path(pkg, "man"), glob = "*.Rd"))
   rd_list <- map(rd_names, rd_to_list)
   rd_list <- set_names(rd_list, rd_names)
   
