@@ -28,6 +28,13 @@ reference_index_convert <- function(pkg, index = NULL) {
       ""
     )
   }
+  
+  rd_names <- path_file(dir_ls(path(pkg, "man")))
+  rd_list <- map(rd_names, rd_to_list)
+  rd_list <- set_names(rd_list, rd_names)
+  
+  rd_list[[1]]$title
+  
   if (is.character(pkg)) pkg <- as_pkgdown(pkg)
   topics <- transpose(pkg$topics)
   ref <- map(topics, reference_links)
