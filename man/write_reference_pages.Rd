@@ -13,7 +13,7 @@ write_reference_pages(
 )
 }
 \arguments{
-\item{pkg}{The path to the package or a \code{pkgdown} package object}
+\item{pkg}{The path to the package}
 
 \item{folder}{The target folder to save the new Quarto files to}
 

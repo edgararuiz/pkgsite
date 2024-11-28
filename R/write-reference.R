@@ -1,6 +1,6 @@
 #' Writes the reference pages and index as Quarto files
 #'
-#' @param pkg The path to the package or a `pkgdown` package object
+#' @param pkg The path to the package 
 #' @param folder The target folder to save the new Quarto files to
 #' @param examples Flag that sets the examples code chuck to be evaluated when
 #' the Quarto document is rendered
@@ -54,7 +54,6 @@ write_reference_index <- function(
     folder = "reference",
     index_file = "index.qmd",
     index_template = NULL) {
-  #if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
   try(dir_create(folder), silent = TRUE)
   ref <- path(folder, index_file)
   try(file_delete(ref), silent = TRUE)
