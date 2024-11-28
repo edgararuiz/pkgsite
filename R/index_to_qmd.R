@@ -21,13 +21,15 @@ index_to_qmd <- function(
 reference_index_convert <- function(pkg, index = NULL) {
   
   rd_names <- path_file(dir_ls(path(pkg, "man"), glob = "*.Rd"))
-  rd_list <- map(rd_names, rd_to_list)
+  rd_list <- map(rd_names, rd_to_list, pkg)
   rd_list <- set_names(rd_list, rd_names)
   
   ref_lines <- imap(rd_list, \(x, y) {
     qmd_name <- path(path_ext_remove(y), ext = "qmd")
+    alias <- as.character(x[names(x) == "alias"])
+    alias_links <- paste0("[", alias, "()](", qmd_name,")")
     c(
-      paste0("[", x$alias, "()](", qmd_name,")"),
+      paste0(alias_links, collapse = " "),
       "", "", 
       paste0("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", x$title),
       ""

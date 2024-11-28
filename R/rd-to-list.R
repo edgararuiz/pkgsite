@@ -28,7 +28,10 @@ rd_tag_process <- function(x) {
       usage <- as.character(x)
       usage <- gsub("\n", "", usage)
       tag_text <- list(usage)
-    } else {
+    } else if (tag_name == "examples") {
+      tag_text <- map(x, as.character)
+      tag_text <- reduce(tag_text, c)
+    }else {
       tag_text <- list(trimws(rd_extract_text(x)))
     }
 
@@ -66,7 +69,7 @@ rd_extract_text <- function(x, collapse = TRUE) {
   if (collapse) {
     rd_txt <- paste0(rd_txt, collapse = " ")
   }
-  rd_txt <- gsub("‘", "`", rd_txt)
-  rd_txt <- gsub("’", "`", rd_txt)
+  rd_txt <- gsub("\\‘", "`", rd_txt)
+  rd_txt <- gsub("\\’", "`", rd_txt)
   rd_txt
 }
