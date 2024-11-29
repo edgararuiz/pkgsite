@@ -29,9 +29,16 @@ rd_tag_process <- function(x) {
       usage <- gsub("\n", "", usage)
       tag_text <- list(usage)
     } else if (tag_name == "examples") {
+      rd_tags <- map_chr(x, attr, "Rd_tag")
+      run <- "code_run"
+      if("\\donttest" %in% rd_tags | "\\dontrun" %in% rd_tags) {
+        run <- "code_dont_run"
+      }
       tag_text <- map(x, as.character)
       tag_text <- reduce(tag_text, c)
       tag_text <- list(paste0(tag_text, collapse = ""))
+      tag_text <- set_names(tag_text, run)
+      tag_text <- list(tag_text)
     }else {
       tag_text <- list(trimws(rd_extract_text(x)))
     }
