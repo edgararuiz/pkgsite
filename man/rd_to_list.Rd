@@ -4,12 +4,12 @@
 \alias{rd_to_list}
 \title{Converts a given 'Rd' file into a list object}
 \usage{
-rd_to_list(file_in, pkg = ".")
+rd_to_list(rd_file, pkg = ".")
 }
 \arguments{
-\item{file_in}{The name of the source Rd file}
+\item{rd_file}{The name of the source Rd file}
 
-\item{pkg}{The path to the package or a \code{pkgdown} package object}
+\item{pkg}{The path to the package}
 }
 \description{
 This function is meant to be used as a intermediate object

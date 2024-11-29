@@ -15,9 +15,9 @@ RoxygenNote: 7.3.2
 Imports: 
     cli,
     fs,
-    pkgdown,
     purrr,
     rlang,
+    tools,
     yaml
 Suggests: 
     testthat (>= 3.0.0)

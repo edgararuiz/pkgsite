@@ -7,7 +7,7 @@
 index_to_qmd(pkg = ".", template = NULL)
 }
 \arguments{
-\item{pkg}{The path to the package or a \code{pkgdown} package object}
+\item{pkg}{The path to the package}
 
 \item{template}{The path to a Quarto file that can be used as the template
 for all of the resulting reference files. If left NULL, \code{pkgsite} will use

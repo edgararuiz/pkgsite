@@ -19,56 +19,32 @@ index_to_qmd <- function(
 }
 
 reference_index_convert <- function(pkg, index = NULL) {
-  out <- NULL
-  fun_line <- function(x) {
+  rd_names <- path_file(dir_ls(path(pkg, "man"), glob = "*.Rd"))
+  qmd_names <- path(path_ext_remove(rd_names), ext = "qmd")
+  rd_list <- map(rd_names, rd_to_list, pkg)
+  rd_list <- set_names(rd_list, qmd_names)
+
+  ref_lines <- imap(rd_list, \(x, y) {
+    alias <- as.character(x[names(x) == "alias"])
+    alias_links <- paste0("[", alias, "()](", y, ")")
     c(
-      x$links,
+      paste0(alias_links, collapse = " "),
       "", "",
-      paste0("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", x$description),
+      paste0("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", x$title),
       ""
     )
-  }
-  if (is.character(pkg)) pkg <- as_pkgdown(pkg)
-  topics <- transpose(pkg$topics)
-  ref <- map(topics, reference_links)
+  })
   if (!is.null(index)) {
     contents <- index[["contents"]]
-    if (is.null(names(contents)[[1]])) {
-      ref <- map(contents, \(x) ref[path(x, ext = "Rd")])
-      ref <- list_flatten(ref)
-    } else {
-      out <- map(
-        contents$sections,
-        \(x){
-          ref <- ref[path(x$contents, ext = "Rd")]
-          ref <- map(ref, fun_line)
-          ref <- reduce(ref, c)
-          c("", "", paste0("## ", x$title), "", "", ref)
-        }
-      )
-      out <- list_flatten(out)
-      out <- as.character(reduce(out, c))
-    }
+    ref_lines <- map(contents, \(x) {
+      if (!is.null(x[["section"]])) {
+        refs <- map(x[["contents"]], \(y) ref_lines[names(ref_lines) == y])
+        out <- c(list(list(title = paste("##", x$section), "")), refs)
+      }
+    })
+    ref_lines <- list_flatten(ref_lines)
+    ref_lines <- reduce(ref_lines, c)
   }
-  if (is.null(out)) {
-    out <- map(ref, fun_line)
-    out <- as.character(reduce(out, c))
-  }
-  list("reference" = out)
-}
-
-reference_links <- function(x) {
-  # Manual fixes of special characters in funs variable
-  funcs <- x$funs
-  file_out <- path(x$file_out)
-  if (length(funcs) == 0) funcs <- x$alias
-  funcs <- gsub("&lt;", "<", funcs)
-  funcs <- gsub("&gt;", ">", funcs)
-  funcs <- paste0("[", funcs, "](", file_out, ")")
-  funcs <- paste0(funcs, collapse = " ")
-  desc <- x$title
-  list(
-    links = funcs,
-    description = desc
-  )
+  ref_lines <- reduce(ref_lines, c)
+  list("reference" = ref_lines)
 }

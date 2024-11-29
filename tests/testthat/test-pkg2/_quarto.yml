@@ -49,17 +49,16 @@ pkgsite:
       index:
         file: index.qmd
         contents:
-          sections:
-            - title: LLM
-              contents: 
-              - llm_classify
-              - llm_custom
-              - llm_extract
-              - llm_sentiment
-              - llm_summarize
-              - llm_translate
-              - llm_verify
-              - llm_use
-            - title: Data
-              contents:               
-              - reviews
+          - section: LLM
+            contents: 
+            - llm_classify.qmd
+            - llm_custom.qmd
+            - llm_extract.qmd
+            - llm_sentiment.qmd
+            - llm_summarize.qmd
+            - llm_translate.qmd
+            - llm_verify.qmd
+            - llm_use.qmd
+          - section: Data
+            contents:               
+            - reviews.qmd

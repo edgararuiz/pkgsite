@@ -5,7 +5,7 @@
 \title{Converts 'Rd' to Quarto files}
 \usage{
 rd_to_qmd(
-  file_in,
+  rd_file,
   pkg = ".",
   examples = TRUE,
   not_run_examples = FALSE,
@@ -13,9 +13,9 @@ rd_to_qmd(
 )
 }
 \arguments{
-\item{file_in}{The name of the source Rd file}
+\item{rd_file}{The name of the source Rd file}
 
-\item{pkg}{The path to the package or a \code{pkgdown} package object}
+\item{pkg}{The path to the package}
 
 \item{examples}{Flag that sets the examples code chuck to be evaluated when
 the Quarto document is rendered}

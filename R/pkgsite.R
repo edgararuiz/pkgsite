@@ -1,5 +1,5 @@
 #' @importFrom rlang env empty_env env_bind
-#' @import pkgdown
+#' @importFrom utils capture.output
 #' @import purrr
 #' @import cli
 #' @import fs

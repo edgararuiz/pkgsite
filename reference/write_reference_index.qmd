@@ -8,24 +8,24 @@ execute:
 ## write_reference_index
 
 ## Description
- Writes the index of the reference pages into a Quarto file 
+Writes the index of the reference pages into a Quarto file
 
 
 ## Usage
 ```r
- 
-write_reference_index( 
-  pkg = ".", 
-  folder = "reference", 
-  index_file = "index.qmd", 
-  index_template = NULL 
-) 
+
+write_reference_index(
+  pkg = ".",
+  folder = "reference",
+  index_file = "index.qmd",
+  index_template = NULL
+)
 ```
 
 ## Arguments
 |Arguments|Description|
 |---|---|
-| pkg | The path to the package or a `pkgdown` package object |
+| pkg | The path to the package |
 | folder | The target folder to save the new Quarto files to |
 | index_file | The name assigned to the resulting index Quarto file |
 | index_template | The path to a Quarto file that can be used as the template for the index Quarto file |

@@ -1,14 +1,13 @@
 #' Converts 'Rd' to Quarto files
-#' @param file_in The name of the source Rd file
+#' @param rd_file The name of the source Rd file
 #' @inheritParams write_reference
 #' @export
 rd_to_qmd <- function(
-    file_in,
+    rd_file,
     pkg = ".",
     examples = TRUE,
     not_run_examples = FALSE,
     template = NULL) {
-  if (is.character(pkg)) pkg <- pkgdown::as_pkgdown(pkg)
   pkg_site <- read_quarto(pkg)
   yaml_template <- NULL
   if (!is.null(pkg_site)) {
@@ -17,7 +16,7 @@ rd_to_qmd <- function(
   }
   pkg_template <- system.file("templates/_reference.qmd", package = "pkgsite")
   template <- template %||% yaml_template %||% pkg_template
-  parsed <- rd_to_list(file_in, pkg)
+  parsed <- rd_to_list(rd_file, pkg)
   con <- reference_convert(parsed, examples, not_run_examples)
   out <- template_parse(template, con)
   out <- discard(out, is.null)

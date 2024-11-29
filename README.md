@@ -104,13 +104,6 @@ pkgsite:
       index:
         file: index.qmd # name of the index file to use
         template: inst/templates/_index.qmd # template for index qmd file
-        contents: # the list of the pages to display
-          - write_reference
-          - write_reference_index
-          - write_reference_pages
-          - index_to_qmd
-          - rd_to_qmd
-          - rd_to_list        
 ```
 
 Via the YAML file, it is also possible to create custom grouping
@@ -127,18 +120,17 @@ pkgsite:
       index:
         file: index.qmd
         template: inst/templates/_index.qmd
-        contents:
-          sections: # add a 'sections' level
-            - title: Quarto file creation # h3 title to use
-              contents: # list of the pages in this section
-              - write_reference
-              - write_reference_index
-              - write_reference_pages
-            - title: Conversion functions
-              contents:
-              - index_to_qmd
-              - rd_to_qmd
-              - rd_to_list
+        contents: # add 'sections' levels
+          - section: Quarto file creation
+            contents: 
+            - write_reference.qmd
+            - write_reference_index.qmd
+            - write_reference_pages.qmd
+          - section: Conversion functions
+            contents:
+            - index_to_qmd.qmd
+            - rd_to_qmd.qmd
+            - rd_to_list.qmd
 ```
 
 The `mall` package has another example of how to configure the YAML
