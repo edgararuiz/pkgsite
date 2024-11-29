@@ -8,20 +8,20 @@ execute:
 ## rd_to_list
 
 ## Description
- This function is meant to be used as a intermediate object that could be used as an easy way to convert the information inside the 'Rd' into other formats or outputs 
+This function is meant to be used as a intermediate object that could be used as an easy way to convert the information inside the 'Rd' into other formats or outputs
 
 
 ## Usage
 ```r
- 
-rd_to_list(file_in, pkg = ".") 
+
+rd_to_list(rd_file, pkg = ".")
 ```
 
 ## Arguments
 |Arguments|Description|
 |---|---|
-| file_in | The name of the source Rd file |
-| pkg | The path to the package or a `pkgdown` package object |
+| rd_file | The name of the source Rd file |
+| pkg | The path to the package |
 
 
 

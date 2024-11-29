@@ -8,31 +8,31 @@ execute:
 ## write_reference
 
 ## Description
- Writes the reference pages and index as Quarto files 
+Writes the reference pages and index as Quarto files
 
 
 ## Usage
 ```r
- 
-write_reference( 
-  pkg = NULL, 
-  folder = NULL, 
-  examples = TRUE, 
-  not_run_examples = NULL, 
-  template = NULL, 
-  index_file = NULL, 
-  index_template = NULL 
-) 
+
+write_reference(
+  pkg = NULL,
+  folder = NULL,
+  examples = TRUE,
+  not_run_examples = NULL,
+  template = NULL,
+  index_file = NULL,
+  index_template = NULL
+)
 ```
 
 ## Arguments
 |Arguments|Description|
 |---|---|
-| pkg | The path to the package or a `pkgdown` package object |
+| pkg | The path to the package |
 | folder | The target folder to save the new Quarto files to |
 | examples | Flag that sets the examples code chuck to be evaluated when the Quarto document is rendered |
 | not_run_examples | Flag that sets the "do not run" examples code chuck to be evaluated when the Quarto document is rendered |
-| template | The path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, `pkgsite` will use its default template. |
+| template | The path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, 'pkgsite' will use its default template. |
 | index_file | The name assigned to the resulting index Quarto file |
 | index_template | The path to a Quarto file that can be used as the template for the index Quarto file |
 

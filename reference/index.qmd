@@ -3,43 +3,33 @@ title: Package index
 toc: false
 ---
 
-
-
-## Quarto file creation
-
-
-[write_reference()](write_reference.html)
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writes the reference pages and index as Quarto files
-
-[write_reference_index()](write_reference_index.html)
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writes the index of the reference pages into a Quarto file
-
-[write_reference_pages()](write_reference_pages.html)
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the 'Rd' file into Quarto, and writes the file to a specified folder
-
-
-
-## Conversion functions
-
-
-[index_to_qmd()](index_to_qmd.html)
+[index_to_qmd()](index_to_qmd.qmd)
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a Quarto file that lists the available reference pages
 
-[rd_to_qmd()](rd_to_qmd.html)
+[rd_to_list()](rd_to_list.qmd)
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts a given 'Rd' file into a list object
+
+[rd_to_qmd()](rd_to_qmd.qmd)
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts 'Rd' to Quarto files
 
-[rd_to_list()](rd_to_list.html)
+[write_reference()](write_reference.qmd)
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts a given 'Rd' file into a list object
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writes the reference pages and index as Quarto files
+
+[write_reference_index()](write_reference_index.qmd)
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writes the index of the reference pages into a Quarto file
+
+[write_reference_pages()](write_reference_pages.qmd)
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the 'Rd' file into Quarto, and writes the file to a specified folder
 

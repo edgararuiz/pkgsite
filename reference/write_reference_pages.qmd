@@ -8,29 +8,29 @@ execute:
 ## write_reference_pages
 
 ## Description
- Converts the 'Rd' file into Quarto, and writes the file to a specified folder 
+Converts the 'Rd' file into Quarto, and writes the file to a specified folder
 
 
 ## Usage
 ```r
- 
-write_reference_pages( 
-  pkg = ".", 
-  folder = "reference", 
-  examples = TRUE, 
-  not_run_examples = FALSE, 
-  template = NULL 
-) 
+
+write_reference_pages(
+  pkg = ".",
+  folder = "reference",
+  examples = TRUE,
+  not_run_examples = FALSE,
+  template = NULL
+)
 ```
 
 ## Arguments
 |Arguments|Description|
 |---|---|
-| pkg | The path to the package or a `pkgdown` package object |
+| pkg | The path to the package |
 | folder | The target folder to save the new Quarto files to |
 | examples | Flag that sets the examples code chuck to be evaluated when the Quarto document is rendered |
 | not_run_examples | Flag that sets the "do not run" examples code chuck to be evaluated when the Quarto document is rendered |
-| template | The path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, `pkgsite` will use its default template. |
+| template | The path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, 'pkgsite' will use its default template. |
 
 
 
