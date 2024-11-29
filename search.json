@@ -11,14 +11,14 @@
     "href": "reference/write_reference_index.html#usage",
     "title": "Writes the index of the reference pages into a Quarto file",
     "section": "Usage",
-    "text": "Usage\n \nwrite_reference_index( \n  pkg = \".\", \n  folder = \"reference\", \n  index_file = \"index.qmd\", \n  index_template = NULL \n)"
+    "text": "Usage\n\nwrite_reference_index(\n  pkg = \".\",\n  folder = \"reference\",\n  index_file = \"index.qmd\",\n  index_template = NULL\n)"
   },
   {
     "objectID": "reference/write_reference_index.html#arguments",
     "href": "reference/write_reference_index.html#arguments",
     "title": "Writes the index of the reference pages into a Quarto file",
     "section": "Arguments",
-    "text": "Arguments\n\n\n\n\n\n\n\nArguments\nDescription\n\n\n\n\npkg\nThe path to the package or a pkgdown package object\n\n\nfolder\nThe target folder to save the new Quarto files to\n\n\nindex_file\nThe name assigned to the resulting index Quarto file\n\n\nindex_template\nThe path to a Quarto file that can be used as the template for the index Quarto file"
+    "text": "Arguments\n\n\n\n\n\n\n\nArguments\nDescription\n\n\n\n\npkg\nThe path to the package\n\n\nfolder\nThe target folder to save the new Quarto files to\n\n\nindex_file\nThe name assigned to the resulting index Quarto file\n\n\nindex_template\nThe path to a Quarto file that can be used as the template for the index Quarto file"
   },
   {
     "objectID": "reference/rd_to_list.html#description",
@@ -32,14 +32,14 @@
     "href": "reference/rd_to_list.html#usage",
     "title": "Converts a given ‘Rd’ file into a list object",
     "section": "Usage",
-    "text": "Usage\n \nrd_to_list(file_in, pkg = \".\")"
+    "text": "Usage\n\nrd_to_list(rd_file, pkg = \".\")"
   },
   {
     "objectID": "reference/rd_to_list.html#arguments",
     "href": "reference/rd_to_list.html#arguments",
     "title": "Converts a given ‘Rd’ file into a list object",
     "section": "Arguments",
-    "text": "Arguments\n\n\n\nArguments\nDescription\n\n\n\n\nfile_in\nThe name of the source Rd file\n\n\npkg\nThe path to the package or a pkgdown package object"
+    "text": "Arguments\n\n\n\nArguments\nDescription\n\n\n\n\nrd_file\nThe name of the source Rd file\n\n\npkg\nThe path to the package"
   },
   {
     "objectID": "reference/rd_to_qmd.html#description",
@@ -53,14 +53,14 @@
     "href": "reference/rd_to_qmd.html#usage",
     "title": "Converts ‘Rd’ to Quarto files",
     "section": "Usage",
-    "text": "Usage\n \nrd_to_qmd( \n  file_in, \n  pkg = \".\", \n  examples = TRUE, \n  not_run_examples = FALSE, \n  template = NULL \n)"
+    "text": "Usage\n\nrd_to_qmd(\n  rd_file,\n  pkg = \".\",\n  examples = TRUE,\n  not_run_examples = FALSE,\n  template = NULL\n)"
   },
   {
     "objectID": "reference/rd_to_qmd.html#arguments",
     "href": "reference/rd_to_qmd.html#arguments",
     "title": "Converts ‘Rd’ to Quarto files",
     "section": "Arguments",
-    "text": "Arguments\n\n\n\n\n\n\n\nArguments\nDescription\n\n\n\n\nfile_in\nThe name of the source Rd file\n\n\npkg\nThe path to the package or a pkgdown package object\n\n\nexamples\nFlag that sets the examples code chuck to be evaluated when the Quarto document is rendered\n\n\nnot_run_examples\nFlag that sets the “do not run” examples code chuck to be evaluated when the Quarto document is rendered\n\n\ntemplate\nThe path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, pkgsite will use its default template."
+    "text": "Arguments\n\n\n\n\n\n\n\nArguments\nDescription\n\n\n\n\nrd_file\nThe name of the source Rd file\n\n\npkg\nThe path to the package\n\n\nexamples\nFlag that sets the examples code chuck to be evaluated when the Quarto document is rendered\n\n\nnot_run_examples\nFlag that sets the “do not run” examples code chuck to be evaluated when the Quarto document is rendered\n\n\ntemplate\nThe path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, pkgsite will use its default template."
   },
   {
     "objectID": "reference/index_to_qmd.html#description",
@@ -74,14 +74,14 @@
     "href": "reference/index_to_qmd.html#usage",
     "title": "Create a Quarto file that lists the available reference pages",
     "section": "Usage",
-    "text": "Usage\n \nindex_to_qmd(pkg = \".\", template = NULL)"
+    "text": "Usage\n\nindex_to_qmd(pkg = \".\", template = NULL)"
   },
   {
     "objectID": "reference/index_to_qmd.html#arguments",
     "href": "reference/index_to_qmd.html#arguments",
     "title": "Create a Quarto file that lists the available reference pages",
     "section": "Arguments",
-    "text": "Arguments\n\n\n\n\n\n\n\nArguments\nDescription\n\n\n\n\npkg\nThe path to the package or a pkgdown package object\n\n\ntemplate\nThe path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, pkgsite will use its default template."
+    "text": "Arguments\n\n\n\n\n\n\n\nArguments\nDescription\n\n\n\n\npkg\nThe path to the package\n\n\ntemplate\nThe path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, pkgsite will use its default template."
   },
   {
     "objectID": "LICENSE.html",
@@ -133,7 +133,7 @@
     "href": "index.html",
     "title": "pkgsite",
     "section": "",
-    "text": "The goal of pkgsite is to make it easier to create a package website using Quarto. It attempts to do for R what Quartodoc does for Python package documentation.\n\n\n\nIn the vast majority of cases pkgdown is enough to create top tier package website. pkgdown is a well developed mature package that covers all sorts of special needs. In fact, pkgsite uses pkgdown to perform several operations.\nSo apart of simply wanting a Quarto site for your R package, a couple of reasons to use pkgsite are:\n\nYou want to use the output “freeze” capabilities in Quarto - You would like the examples in the help pages to run, but, the ability to run such examples depend on specific technologies to be accessible to where the site is being published, which is usually GitHub. Examples of those technologies could be databases, Spark and Large Language Models. The idea would be to render the website locally, where you would have access to the needed technologies, and make commit the resulting “_freeze” folder to the repository. This will allow any re-building of your website by GitHub to have the necessary code output to create the HTML files.\nYou want to build a unified site - Your packages from your project may be available in multiple languages, and wish to make a unified website. The idea here is if you have output from Quartodoc from the Python side of your project, that needs to be available in the website along with the references from the R side of your project.\n\nAn example of having both reasons to use pkgsite, is the mall package. This project has a Python, and an R package. And the examples in both packages need an LLM in order to work, here is the resulting reference pages.\n\n\n\nYou can install the development version of pkgsite from GitHub with:\n# install.packages(\"devtools\")\ndevtools::install_github(\"edgararuiz/pkgsite\")\n\n\n\nIn it’s current state, pkgsite’s functions build on top of each other, in order to create the reference pages and the index page. The top tier function is write_reference().\nlibrary(pkgsite)\n\nwrite_reference()\n#&gt; reference/index.qmd\n#&gt; reference/index_to_qmd.qmd\n#&gt; reference/rd_to_list.qmd\n#&gt; reference/rd_to_qmd.qmd\n#&gt; reference/write_reference.qmd\n#&gt; reference/write_reference_index.qmd\n#&gt; reference/write_reference_pages.qmd\nThe function uses sensible defaults, so even by calling it without changing any arguments should work without errors. Internally, the function applies such sensible values if specific arguments are left NULL.\n\n\n\nJust as with quartodoc, pkgsite also supports configuration via the ’_quarto.yml’ file. You just need to add a ‘pkgsite’ section at the top level of the yaml file. Here is an example of the values that are available for use:\npkgsite: \n    dir: \".\" # location of the package\n    reference:\n      dir: reference # target folder for qmd files\n      template: inst/templates/_reference.qmd # reference template location\n      not_run_examples: true # Flag to run the 'Not Run' examples\n      index:\n        file: index.qmd # name of the index file to use\n        template: inst/templates/_index.qmd # template for index qmd file\n        contents: # the list of the pages to display\n          - write_reference\n          - write_reference_index\n          - write_reference_pages\n          - index_to_qmd\n          - rd_to_qmd\n          - rd_to_list        \nVia the YAML file, it is also possible to create custom grouping sections for your functions in the index file. Here is an example of how to accomplish what is setup for this package’s website:\npkgsite: \n    dir: \".\"\n    reference:\n      dir: reference\n      template: inst/templates/_reference.qmd\n      not_run_examples: true\n      index:\n        file: index.qmd\n        template: inst/templates/_index.qmd\n        contents:\n          sections: # add a 'sections' level\n            - title: Quarto file creation # h3 title to use\n              contents: # list of the pages in this section\n              - write_reference\n              - write_reference_index\n              - write_reference_pages\n            - title: Conversion functions\n              contents:\n              - index_to_qmd\n              - rd_to_qmd\n              - rd_to_list\nThe mall package has another example of how to configure the YAML file: mall/_quarto.yml"
+    "text": "The goal of pkgsite is to make it easier to create a package website using Quarto. It attempts to do for R what Quartodoc does for Python package documentation.\n\n\n\nIn the vast majority of cases pkgdown is enough to create top tier package website. pkgdown is a well developed mature package that covers all sorts of special needs. In fact, pkgsite uses pkgdown to perform several operations.\nSo apart of simply wanting a Quarto site for your R package, a couple of reasons to use pkgsite are:\n\nYou want to use the output “freeze” capabilities in Quarto - You would like the examples in the help pages to run, but, the ability to run such examples depend on specific technologies to be accessible to where the site is being published, which is usually GitHub. Examples of those technologies could be databases, Spark and Large Language Models. The idea would be to render the website locally, where you would have access to the needed technologies, and make commit the resulting “_freeze” folder to the repository. This will allow any re-building of your website by GitHub to have the necessary code output to create the HTML files.\nYou want to build a unified site - Your packages from your project may be available in multiple languages, and wish to make a unified website. The idea here is if you have output from Quartodoc from the Python side of your project, that needs to be available in the website along with the references from the R side of your project.\n\nAn example of having both reasons to use pkgsite, is the mall package. This project has a Python, and an R package. And the examples in both packages need an LLM in order to work, here is the resulting reference pages.\n\n\n\nYou can install the development version of pkgsite from GitHub with:\n# install.packages(\"devtools\")\ndevtools::install_github(\"edgararuiz/pkgsite\")\n\n\n\nIn it’s current state, pkgsite’s functions build on top of each other, in order to create the reference pages and the index page. The top tier function is write_reference().\nlibrary(pkgsite)\n\nwrite_reference()\n#&gt; reference/index.qmd\n#&gt; reference/index_to_qmd.qmd\n#&gt; reference/rd_to_list.qmd\n#&gt; reference/rd_to_qmd.qmd\n#&gt; reference/write_reference.qmd\n#&gt; reference/write_reference_index.qmd\n#&gt; reference/write_reference_pages.qmd\nThe function uses sensible defaults, so even by calling it without changing any arguments should work without errors. Internally, the function applies such sensible values if specific arguments are left NULL.\n\n\n\nJust as with quartodoc, pkgsite also supports configuration via the ’_quarto.yml’ file. You just need to add a ‘pkgsite’ section at the top level of the yaml file. Here is an example of the values that are available for use:\npkgsite: \n    dir: \".\" # location of the package\n    reference:\n      dir: reference # target folder for qmd files\n      template: inst/templates/_reference.qmd # reference template location\n      not_run_examples: true # Flag to run the 'Not Run' examples\n      index:\n        file: index.qmd # name of the index file to use\n        template: inst/templates/_index.qmd # template for index qmd file\nVia the YAML file, it is also possible to create custom grouping sections for your functions in the index file. Here is an example of how to accomplish what is setup for this package’s website:\npkgsite: \n    dir: \".\"\n    reference:\n      dir: reference\n      template: inst/templates/_reference.qmd\n      not_run_examples: true\n      index:\n        file: index.qmd\n        template: inst/templates/_index.qmd\n        contents: # add 'sections' levels\n          - section: Quarto file creation\n            contents: \n            - write_reference.qmd\n            - write_reference_index.qmd\n            - write_reference_pages.qmd\n          - section: Conversion functions\n            contents:\n            - index_to_qmd.qmd\n            - rd_to_qmd.qmd\n            - rd_to_list.qmd\nThe mall package has another example of how to configure the YAML file: mall/_quarto.yml"
   },
   {
     "objectID": "index.html#intro",
@@ -168,7 +168,7 @@
     "href": "index.html#configure-via-the-_quarto.yml-file",
     "title": "pkgsite",
     "section": "",
-    "text": "Just as with quartodoc, pkgsite also supports configuration via the ’_quarto.yml’ file. You just need to add a ‘pkgsite’ section at the top level of the yaml file. Here is an example of the values that are available for use:\npkgsite: \n    dir: \".\" # location of the package\n    reference:\n      dir: reference # target folder for qmd files\n      template: inst/templates/_reference.qmd # reference template location\n      not_run_examples: true # Flag to run the 'Not Run' examples\n      index:\n        file: index.qmd # name of the index file to use\n        template: inst/templates/_index.qmd # template for index qmd file\n        contents: # the list of the pages to display\n          - write_reference\n          - write_reference_index\n          - write_reference_pages\n          - index_to_qmd\n          - rd_to_qmd\n          - rd_to_list        \nVia the YAML file, it is also possible to create custom grouping sections for your functions in the index file. Here is an example of how to accomplish what is setup for this package’s website:\npkgsite: \n    dir: \".\"\n    reference:\n      dir: reference\n      template: inst/templates/_reference.qmd\n      not_run_examples: true\n      index:\n        file: index.qmd\n        template: inst/templates/_index.qmd\n        contents:\n          sections: # add a 'sections' level\n            - title: Quarto file creation # h3 title to use\n              contents: # list of the pages in this section\n              - write_reference\n              - write_reference_index\n              - write_reference_pages\n            - title: Conversion functions\n              contents:\n              - index_to_qmd\n              - rd_to_qmd\n              - rd_to_list\nThe mall package has another example of how to configure the YAML file: mall/_quarto.yml"
+    "text": "Just as with quartodoc, pkgsite also supports configuration via the ’_quarto.yml’ file. You just need to add a ‘pkgsite’ section at the top level of the yaml file. Here is an example of the values that are available for use:\npkgsite: \n    dir: \".\" # location of the package\n    reference:\n      dir: reference # target folder for qmd files\n      template: inst/templates/_reference.qmd # reference template location\n      not_run_examples: true # Flag to run the 'Not Run' examples\n      index:\n        file: index.qmd # name of the index file to use\n        template: inst/templates/_index.qmd # template for index qmd file\nVia the YAML file, it is also possible to create custom grouping sections for your functions in the index file. Here is an example of how to accomplish what is setup for this package’s website:\npkgsite: \n    dir: \".\"\n    reference:\n      dir: reference\n      template: inst/templates/_reference.qmd\n      not_run_examples: true\n      index:\n        file: index.qmd\n        template: inst/templates/_index.qmd\n        contents: # add 'sections' levels\n          - section: Quarto file creation\n            contents: \n            - write_reference.qmd\n            - write_reference_index.qmd\n            - write_reference_pages.qmd\n          - section: Conversion functions\n            contents:\n            - index_to_qmd.qmd\n            - rd_to_qmd.qmd\n            - rd_to_list.qmd\nThe mall package has another example of how to configure the YAML file: mall/_quarto.yml"
   },
   {
     "objectID": "reference/write_reference_pages.html#description",
@@ -182,14 +182,14 @@
     "href": "reference/write_reference_pages.html#usage",
     "title": "Converts the ‘Rd’ file into Quarto, and writes the file to a specified folder",
     "section": "Usage",
-    "text": "Usage\n \nwrite_reference_pages( \n  pkg = \".\", \n  folder = \"reference\", \n  examples = TRUE, \n  not_run_examples = FALSE, \n  template = NULL \n)"
+    "text": "Usage\n\nwrite_reference_pages(\n  pkg = \".\",\n  folder = \"reference\",\n  examples = TRUE,\n  not_run_examples = FALSE,\n  template = NULL\n)"
   },
   {
     "objectID": "reference/write_reference_pages.html#arguments",
     "href": "reference/write_reference_pages.html#arguments",
     "title": "Converts the ‘Rd’ file into Quarto, and writes the file to a specified folder",
     "section": "Arguments",
-    "text": "Arguments\n\n\n\n\n\n\n\nArguments\nDescription\n\n\n\n\npkg\nThe path to the package or a pkgdown package object\n\n\nfolder\nThe target folder to save the new Quarto files to\n\n\nexamples\nFlag that sets the examples code chuck to be evaluated when the Quarto document is rendered\n\n\nnot_run_examples\nFlag that sets the “do not run” examples code chuck to be evaluated when the Quarto document is rendered\n\n\ntemplate\nThe path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, pkgsite will use its default template."
+    "text": "Arguments\n\n\n\n\n\n\n\nArguments\nDescription\n\n\n\n\npkg\nThe path to the package\n\n\nfolder\nThe target folder to save the new Quarto files to\n\n\nexamples\nFlag that sets the examples code chuck to be evaluated when the Quarto document is rendered\n\n\nnot_run_examples\nFlag that sets the “do not run” examples code chuck to be evaluated when the Quarto document is rendered\n\n\ntemplate\nThe path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, pkgsite will use its default template."
   },
   {
     "objectID": "reference/index.html",
@@ -224,13 +224,13 @@
     "href": "reference/write_reference.html#usage",
     "title": "Writes the reference pages and index as Quarto files",
     "section": "Usage",
-    "text": "Usage\n \nwrite_reference( \n  pkg = NULL, \n  folder = NULL, \n  examples = TRUE, \n  not_run_examples = NULL, \n  template = NULL, \n  index_file = NULL, \n  index_template = NULL \n)"
+    "text": "Usage\n\nwrite_reference(\n  pkg = NULL,\n  folder = NULL,\n  examples = TRUE,\n  not_run_examples = NULL,\n  template = NULL,\n  index_file = NULL,\n  index_template = NULL\n)"
   },
   {
     "objectID": "reference/write_reference.html#arguments",
     "href": "reference/write_reference.html#arguments",
     "title": "Writes the reference pages and index as Quarto files",
     "section": "Arguments",
-    "text": "Arguments\n\n\n\n\n\n\n\nArguments\nDescription\n\n\n\n\npkg\nThe path to the package or a pkgdown package object\n\n\nfolder\nThe target folder to save the new Quarto files to\n\n\nexamples\nFlag that sets the examples code chuck to be evaluated when the Quarto document is rendered\n\n\nnot_run_examples\nFlag that sets the “do not run” examples code chuck to be evaluated when the Quarto document is rendered\n\n\ntemplate\nThe path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, pkgsite will use its default template.\n\n\nindex_file\nThe name assigned to the resulting index Quarto file\n\n\nindex_template\nThe path to a Quarto file that can be used as the template for the index Quarto file"
+    "text": "Arguments\n\n\n\n\n\n\n\nArguments\nDescription\n\n\n\n\npkg\nThe path to the package\n\n\nfolder\nThe target folder to save the new Quarto files to\n\n\nexamples\nFlag that sets the examples code chuck to be evaluated when the Quarto document is rendered\n\n\nnot_run_examples\nFlag that sets the “do not run” examples code chuck to be evaluated when the Quarto document is rendered\n\n\ntemplate\nThe path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, pkgsite will use its default template.\n\n\nindex_file\nThe name assigned to the resulting index Quarto file\n\n\nindex_template\nThe path to a Quarto file that can be used as the template for the index Quarto file"
   }
 ]
