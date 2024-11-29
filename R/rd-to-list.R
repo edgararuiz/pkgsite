@@ -31,6 +31,7 @@ rd_tag_process <- function(x) {
     } else if (tag_name == "examples") {
       tag_text <- map(x, as.character)
       tag_text <- reduce(tag_text, c)
+      tag_text <- list(paste0(tag_text, collapse = ""))
     }else {
       tag_text <- list(trimws(rd_extract_text(x)))
     }
