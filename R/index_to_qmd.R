@@ -24,7 +24,7 @@ reference_index_convert <- function(pkg, index = NULL) {
   rd_list <- map(rd_names, rd_to_list, pkg)
   rd_list <- set_names(rd_list, qmd_names)
 
-  all_refs <- imap(rd_list, \(x, y) {
+  ref_lines <- imap(rd_list, \(x, y) {
     alias <- as.character(x[names(x) == "alias"])
     alias_links <- paste0("[", alias, "()](", y, ")")
     c(
@@ -38,7 +38,7 @@ reference_index_convert <- function(pkg, index = NULL) {
     contents <- index[["contents"]]
     ref_lines <- map(contents, \(x) {
       if (!is.null(x[["section"]])) {
-        refs <- map(x[["contents"]], \(y) all_refs[names(all_refs) == y])
+        refs <- map(x[["contents"]], \(y) ref_lines[names(ref_lines) == y])
         out <- c(list(list(title = paste("##", x$section), "")), refs)
       }
     })
