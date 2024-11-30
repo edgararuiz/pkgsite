@@ -1,6 +1,6 @@
 #' Writes the reference pages and index as Quarto files
 #'
-#' @param pkg The path to the package 
+#' @param pkg The path to the package
 #' @param folder The target folder to save the new Quarto files to
 #' @param examples Flag that sets the examples code chuck to be evaluated when
 #' the Quarto document is rendered

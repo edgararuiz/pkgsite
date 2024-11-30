@@ -95,9 +95,9 @@ parse_line_tag <- function(line, con) {
           }
 
           if (!is.null(tag_content)) {
-            if(tag_name_label != "Section") {
-              tag_content <- c(paste0("## ", tag_name_label), tag_content)  
-            } 
+            if (tag_name_label != "Section") {
+              tag_content <- c(paste0("## ", tag_name_label), tag_content)
+            }
           }
         }
       }
