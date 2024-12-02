@@ -14,10 +14,10 @@ test_that("write-reference works", {
   )
   expect_snapshot(
     readLines(fs::path(temp_reference, "llm_use.qmd"))
-  )  
+  )
   expect_snapshot(
     readLines(fs::path(temp_reference, "llm_extract.qmd"))
-  )    
+  )
 })
 
 test_that("write-reference works with Quarto yaml", {

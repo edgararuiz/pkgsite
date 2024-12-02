@@ -95,7 +95,9 @@ parse_line_tag <- function(line, con) {
           }
 
           if (!is.null(tag_content)) {
-            tag_content <- c(paste0("## ", tag_name_label), tag_content)
+            if (tag_name_label != "Section") {
+              tag_content <- c(paste0("## ", tag_name_label), tag_content)
+            }
           }
         }
       }
@@ -141,9 +143,7 @@ reference_convert <- function(x,
     if (curr_name == "arguments") out <- reference_arguments(curr)
 
     if (curr_name == "section") {
-      out <- map(curr, ~ c(paste("##", .x$title), .x$contents))
-      out <- list_c(out)
-      out <- reduce(out, function(x, y) c(x, "", y), .init = NULL)
+      out <- c(out, paste("##", curr$title), curr$contents)
     }
 
     if (is.null(out)) {
