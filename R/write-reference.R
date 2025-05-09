@@ -22,12 +22,15 @@ write_reference <- function(
     template = NULL,
     index_file = NULL,
     index_template = NULL) {
-  pkg_site <- read_quarto(pkg)
+  pkg_site <- read_quarto(".")
   pkg <- pkg %||% pkg_site[["dir"]] %||% "."
   folder <- folder %||% pkg_site[["reference"]][["dir"]] %||% "reference"
+  examples <- examples %||% pkg_site[["run_examples"]] %||% TRUE
   not_run_examples <- not_run_examples %||%
     pkg_site[["reference"]][["not_run_examples"]] %||%
     FALSE
+  template <- template %||% pkg_site[["reference"]][["template"]] 
+  index_template <- index_template %||% pkg_site[["reference"]][["index"]][["template"]] 
   index_file <- index_file %||%
     pkg_site[["reference"]][["index"]][["file"]] %||%
     "index.qmd"
