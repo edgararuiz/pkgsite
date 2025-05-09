@@ -45,7 +45,7 @@ reference_index_convert <- function(project, pkg, index = NULL) {
         ref_names <- path_ext_remove(names(ref_lines))
         ref_lines[ref_names == y]
       })
-      out <- c(list(list(title = paste("##", x[["title"]]), "")), refs)
+      out <- c(list(list(title = paste("###", x[["title"]]), "")), refs)
     })
     ref_lines <- list_flatten(ref_lines)
     ref_lines <- reduce(ref_lines, c)
