@@ -7,6 +7,8 @@
 index_to_qmd(project = ".", pkg = NULL, template = NULL)
 }
 \arguments{
+\item{project}{The path to the root folder of the project.}
+
 \item{pkg}{The path inside the project folder. Use only if the R package
 itself is in a sub-folder within the project.}
 

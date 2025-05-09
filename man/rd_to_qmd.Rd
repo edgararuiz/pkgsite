@@ -6,7 +6,8 @@
 \usage{
 rd_to_qmd(
   rd_file,
-  pkg = ".",
+  project = ".",
+  pkg = NULL,
   examples = TRUE,
   not_run_examples = FALSE,
   template = NULL
@@ -14,6 +15,8 @@ rd_to_qmd(
 }
 \arguments{
 \item{rd_file}{The name of the source Rd file}
+
+\item{project}{The path to the root folder of the project.}
 
 \item{pkg}{The path inside the project folder. Use only if the R package
 itself is in a sub-folder within the project.}

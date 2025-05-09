@@ -85,7 +85,7 @@ write_reference_pages <- function(
     path_file(dir_ls(path(project, pkg, "man"), glob = "*.Rd")),
     \(x) {
       ref <- paste0(folder, "/", path_ext_remove(x), ".qmd")
-      qmd <- rd_to_qmd(x, pkg, examples, not_run_examples, template)
+      qmd <- rd_to_qmd(x, project, pkg, examples, not_run_examples, template)
       try(file_delete(ref), silent = TRUE)
       writeLines(qmd, ref)
       cli_inform(col_green(ref))
