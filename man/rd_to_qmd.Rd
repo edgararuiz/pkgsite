@@ -15,7 +15,8 @@ rd_to_qmd(
 \arguments{
 \item{rd_file}{The name of the source Rd file}
 
-\item{pkg}{The path to the package}
+\item{pkg}{The path inside the project folder. Use only if the R package
+itself is in a sub-folder within the project.}
 
 \item{examples}{Flag that sets the examples code chuck to be evaluated when
 the Quarto document is rendered}

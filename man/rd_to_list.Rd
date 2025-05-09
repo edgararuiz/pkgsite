@@ -4,12 +4,13 @@
 \alias{rd_to_list}
 \title{Converts a given 'Rd' file into a list object}
 \usage{
-rd_to_list(rd_file, pkg = ".")
+rd_to_list(rd_file, project = ".", pkg = NULL)
 }
 \arguments{
 \item{rd_file}{The name of the source Rd file}
 
-\item{pkg}{The path to the package}
+\item{pkg}{The path inside the project folder. Use only if the R package
+itself is in a sub-folder within the project.}
 }
 \description{
 This function is meant to be used as a intermediate object

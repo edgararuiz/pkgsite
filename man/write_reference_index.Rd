@@ -5,14 +5,18 @@
 \title{Writes the index of the reference pages into a Quarto file}
 \usage{
 write_reference_index(
-  pkg = ".",
+  project = ".",
+  pkg = NULL,
   folder = "reference",
   index_file = "index.qmd",
   index_template = NULL
 )
 }
 \arguments{
-\item{pkg}{The path to the package}
+\item{project}{The path to the root folder of the project.}
+
+\item{pkg}{The path inside the project folder. Use only if the R package
+itself is in a sub-folder within the project.}
 
 \item{folder}{The target folder to save the new Quarto files to}
 

@@ -5,7 +5,8 @@
 \title{Converts the 'Rd' file into Quarto, and writes the file to a specified folder}
 \usage{
 write_reference_pages(
-  pkg = ".",
+  project = ".",
+  pkg = NULL,
   folder = "reference",
   examples = TRUE,
   not_run_examples = FALSE,
@@ -13,7 +14,10 @@ write_reference_pages(
 )
 }
 \arguments{
-\item{pkg}{The path to the package}
+\item{project}{The path to the root folder of the project.}
+
+\item{pkg}{The path inside the project folder. Use only if the R package
+itself is in a sub-folder within the project.}
 
 \item{folder}{The target folder to save the new Quarto files to}
 

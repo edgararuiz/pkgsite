@@ -4,8 +4,8 @@
 #' into other formats or outputs
 #' @inheritParams rd_to_qmd
 #' @export
-rd_to_list <- function(rd_file, pkg = ".") {
-  rd_content <- tools::parse_Rd(fs::path(pkg, "man", rd_file))
+rd_to_list <- function(rd_file, project = ".", pkg = NULL) {
+  rd_content <- tools::parse_Rd(fs::path(project, pkg, "man", rd_file))
   out <- map(rd_content, rd_tag_process)
   out <- keep(out, \(x) !is.null(x))
   list_flatten(out)
