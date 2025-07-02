@@ -4,10 +4,13 @@
 \alias{index_to_qmd}
 \title{Create a Quarto file that lists the available reference pages}
 \usage{
-index_to_qmd(pkg = ".", template = NULL)
+index_to_qmd(project = ".", pkg = NULL, template = NULL)
 }
 \arguments{
-\item{pkg}{The path to the package}
+\item{project}{The path to the root folder of the project.}
+
+\item{pkg}{The path inside the project folder. Use only if the R package
+itself is in a sub-folder within the project.}
 
 \item{template}{The path to a Quarto file that can be used as the template
 for all of the resulting reference files. If left NULL, \code{pkgsite} will use

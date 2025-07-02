@@ -4,11 +4,12 @@
 #' @export
 rd_to_qmd <- function(
     rd_file,
-    pkg = ".",
+    project = ".", 
+    pkg = NULL,
     examples = TRUE,
     not_run_examples = FALSE,
     template = NULL) {
-  pkg_site <- read_quarto(pkg)
+  pkg_site <- read_quarto(project)
   yaml_template <- NULL
   if (!is.null(pkg_site)) {
     reference <- pkg_site[["reference"]]
@@ -16,7 +17,7 @@ rd_to_qmd <- function(
   }
   pkg_template <- system.file("templates/_reference.qmd", package = "pkgsite")
   template <- template %||% yaml_template %||% pkg_template
-  parsed <- rd_to_list(rd_file, pkg)
+  parsed <- rd_to_list(rd_file, project, pkg)
   con <- reference_convert(parsed, examples, not_run_examples)
   out <- template_parse(template, con)
   out <- discard(out, is.null)

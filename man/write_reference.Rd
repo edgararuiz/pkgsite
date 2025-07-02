@@ -5,6 +5,7 @@
 \title{Writes the reference pages and index as Quarto files}
 \usage{
 write_reference(
+  project = ".",
   pkg = NULL,
   folder = NULL,
   examples = TRUE,
@@ -15,7 +16,10 @@ write_reference(
 )
 }
 \arguments{
-\item{pkg}{The path to the package}
+\item{project}{The path to the root folder of the project.}
+
+\item{pkg}{The path inside the project folder. Use only if the R package
+itself is in a sub-folder within the project.}
 
 \item{folder}{The target folder to save the new Quarto files to}
 

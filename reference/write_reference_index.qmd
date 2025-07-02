@@ -15,7 +15,8 @@ Writes the index of the reference pages into a Quarto file
 ```r
 
 write_reference_index(
-  pkg = ".",
+  project = ".",
+  pkg = NULL,
   folder = "reference",
   index_file = "index.qmd",
   index_template = NULL
@@ -25,7 +26,8 @@ write_reference_index(
 ## Arguments
 |Arguments|Description|
 |---|---|
-| pkg | The path to the package |
+| project | The path to the root folder of the project. |
+| pkg | The path inside the project folder. Use only if the R package itself is in a sub-folder within the project. |
 | folder | The target folder to save the new Quarto files to |
 | index_file | The name assigned to the resulting index Quarto file |
 | index_template | The path to a Quarto file that can be used as the template for the index Quarto file |

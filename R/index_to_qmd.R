@@ -2,28 +2,28 @@
 #' @inheritParams rd_to_qmd
 #' @export
 index_to_qmd <- function(
-    pkg = ".",
+    project = ".",
+    pkg = NULL,
     template = NULL) {
-  pkg_site <- read_quarto(pkg)
+  pkg_site <- read_quarto(project)
   index <- NULL
   yaml_template <- NULL
-  if (!is.null(pkg_site)) {
-    index <- pkg_site[["reference"]][["index"]]
-    yaml_template <- index$template
-  }
+  index <- pkg_site[["reference"]][["index"]]
+  yaml_template <- index$template
   pkg_template <- system.file("templates/_index.qmd", package = "pkgsite")
   template <- template %||% yaml_template %||% pkg_template
-  out <- reference_index_convert(pkg, index)
+  out <- reference_index_convert(project, pkg, index)
   out <- template_parse(template, out)
   reduce(out, c)
 }
 
-reference_index_convert <- function(pkg, index = NULL) {
-  rd_names <- path_file(dir_ls(path(pkg, "man"), glob = "*.Rd"))
+reference_index_convert <- function(project, pkg = NULL, index = NULL) {
+  # This section creates reads the Rd files and extracts their name & description
+  pkg <- pkg %||% ""
+  rd_names <- path_file(dir_ls(path(project, pkg, "man"), glob = "*.Rd"))
   qmd_names <- path(path_ext_remove(rd_names), ext = "qmd")
-  rd_list <- map(rd_names, rd_to_list, pkg)
+  rd_list <- map(rd_names, rd_to_list, project, pkg)
   rd_list <- set_names(rd_list, qmd_names)
-
   ref_lines <- imap(rd_list, \(x, y) {
     alias <- as.character(x[names(x) == "alias"])
     alias_links <- paste0("[", alias, "()](", y, ")")
@@ -33,15 +33,24 @@ reference_index_convert <- function(pkg, index = NULL) {
       paste0("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", x$title),
       ""
     )
-  })
+  })  
+  # If there is a custom index in the '_quarto.yml' file, it will match up,
+  # to the order in the yaml spec, as well as to add the title for a given
+  # section, if one is provided
+  ref_names <- path_ext_remove(names(ref_lines))
   if (!is.null(index)) {
-    contents <- index[["contents"]]
-    ref_lines <- map(contents, \(x) {
-      if (!is.null(x[["section"]])) {
-        refs <- map(x[["contents"]], \(y) ref_lines[names(ref_lines) == y])
-        out <- c(list(list(title = paste("##", x$section), "")), refs)
+    ref_lines <- map(
+      index[["contents"]],
+      \(x) {
+        refs <- map(
+          x[["contents"]],
+          \(y) {
+            ref_lines[ref_names == path_ext_remove(y)]
+          }
+        )
+        c(list(list(title = paste("###", x[["section"]]), "")), refs)
       }
-    })
+    )
     ref_lines <- list_flatten(ref_lines)
     ref_lines <- reduce(ref_lines, c)
   }
