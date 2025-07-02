@@ -17,7 +17,7 @@ index_to_qmd <- function(
   reduce(out, c)
 }
 
-reference_index_convert <- function(project, pkg, index = NULL) {
+reference_index_convert <- function(project, pkg = NULL, index = NULL) {
   # This section creates reads the Rd files and extracts their name & description
   pkg <- pkg %||% ""
   rd_names <- path_file(dir_ls(path(project, pkg, "man"), glob = "*.Rd"))
@@ -37,18 +37,18 @@ reference_index_convert <- function(project, pkg, index = NULL) {
   # If there is a custom index in the '_quarto.yml' file, it will match up,
   # to the order in the yaml spec, as well as to add the title for a given
   # section, if one is provided
+  ref_names <- path_ext_remove(names(ref_lines))
   if (!is.null(index)) {
     ref_lines <- map(
       index[["contents"]],
       \(x) {
         refs <- map(
-          x,
+          x[["contents"]],
           \(y) {
-            ref_names <- path_ext_remove(names(ref_lines))
-            ref_lines[ref_names == y]
+            ref_lines[ref_names == path_ext_remove(y)]
           }
         )
-        out <- c(list(list(title = paste("###", x[["section"]]), "")), refs)
+        c(list(list(title = paste("###", x[["section"]]), "")), refs)
       }
     )
     ref_lines <- list_flatten(ref_lines)

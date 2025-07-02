@@ -42,22 +42,22 @@ format:
       dark: [cosmo, site/theme-dark.scss]
         
 pkgsite: 
-    dir: "."
-    reference:
-      dir: reference
-      template: inst/templates/_reference.qmd
-      not_run_examples: true
-      index:
-        file: index.qmd
-        template: inst/templates/_index.qmd
-        contents:
-          - section: Quarto file creation
-            contents: 
-            - write_reference.qmd
-            - write_reference_index.qmd
-            - write_reference_pages.qmd
-          - section: Conversion functions
-            contents:
-            - index_to_qmd.qmd
-            - rd_to_qmd.qmd
-            - rd_to_list.qmd
+  dir: "."
+  reference:
+    dir: reference
+    template: inst/templates/_reference.qmd
+    not_run_examples: true
+    index:
+      file: index.qmd
+      template: inst/templates/_index.qmd
+      contents:
+        - section: Quarto file creation
+          contents: 
+          - write_reference
+          - write_reference_index.qmd
+          - write_reference_pages.qmd
+        - section: Conversion functions
+          contents:
+          - index_to_qmd.qmd
+          - rd_to_qmd.qmd
+          - rd_to_list.qmd

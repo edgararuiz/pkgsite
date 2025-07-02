@@ -5,14 +5,14 @@
 #' @import fs
 #' @import yaml
 
-read_quarto <- function(pkg = ".", fail = TRUE) {
+read_quarto <- function(pkg = ".", fail = FALSE) {
   if (inherits(pkg, "pkgdown")) {
     folder <- pkg$src_path
   } else {
     folder <- pkg
   }
   quarto_file <- path(folder, "_quarto.yml")
-  if(!file_exists(quarto_file)) {
+  if(!file_exists(quarto_file) && fail) {
     cli_abort("'_quarto.yml' file not found")
   }
   

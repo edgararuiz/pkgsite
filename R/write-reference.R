@@ -81,6 +81,7 @@ write_reference_pages <- function(
     examples = TRUE,
     not_run_examples = FALSE,
     template = NULL) {
+  pkg <- pkg %||% ""
   walk(
     path_file(dir_ls(path(project, pkg, "man"), glob = "*.Rd")),
     \(x) {
