@@ -15,6 +15,7 @@ Writes the reference pages and index as Quarto files
 ```r
 
 write_reference(
+  project = ".",
   pkg = NULL,
   folder = NULL,
   examples = TRUE,
@@ -28,7 +29,8 @@ write_reference(
 ## Arguments
 |Arguments|Description|
 |---|---|
-| pkg | The path to the package |
+| project | The path to the root folder of the project. |
+| pkg | The path inside the project folder. Use only if the R package itself is in a sub-folder within the project. |
 | folder | The target folder to save the new Quarto files to |
 | examples | Flag that sets the examples code chuck to be evaluated when the Quarto document is rendered |
 | not_run_examples | Flag that sets the "do not run" examples code chuck to be evaluated when the Quarto document is rendered |

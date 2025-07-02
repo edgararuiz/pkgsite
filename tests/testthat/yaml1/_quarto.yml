@@ -1,0 +1,29 @@
+pkgsite: 
+    dir: "."
+    reference:
+      dir: reference
+      template: inst/templates/_reference.qmd
+      not_run_examples: true
+      index:
+        file: index.qmd
+        template: inst/templates/_index.qmd    
+        contents:
+          - text: "Introduction"
+            href: introduction.qmd
+          - section: "Basics"
+            href: basics-summary.qmd
+            contents:
+              - index.qmd
+              - basics-knitr.qmd
+              - basics-jupyter.qmd
+          - section: "Layout"
+            contents:
+              - layout.qmd
+              - layout-knitr.qmd
+              - layout-jupyter.qmd
+          - section: advanced.qmd
+            contents:
+              - raw-code.qmd
+              - custom-theme.qmd
+          - acknowlegment.qmd
+          

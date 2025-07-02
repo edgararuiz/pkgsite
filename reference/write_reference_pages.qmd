@@ -15,7 +15,8 @@ Converts the 'Rd' file into Quarto, and writes the file to a specified folder
 ```r
 
 write_reference_pages(
-  pkg = ".",
+  project = ".",
+  pkg = NULL,
   folder = "reference",
   examples = TRUE,
   not_run_examples = FALSE,
@@ -26,7 +27,8 @@ write_reference_pages(
 ## Arguments
 |Arguments|Description|
 |---|---|
-| pkg | The path to the package |
+| project | The path to the root folder of the project. |
+| pkg | The path inside the project folder. Use only if the R package itself is in a sub-folder within the project. |
 | folder | The target folder to save the new Quarto files to |
 | examples | Flag that sets the examples code chuck to be evaluated when the Quarto document is rendered |
 | not_run_examples | Flag that sets the "do not run" examples code chuck to be evaluated when the Quarto document is rendered |
