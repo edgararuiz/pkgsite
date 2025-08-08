@@ -60,6 +60,7 @@ An example of having both reasons to use `pkgsite`, is the
 an R package. And the examples in both packages need an LLM in order to work, 
 here is the resulting [reference pages](https://mlverse.github.io/mall/reference/).
 
+
 ## Installation
 
 You can install the development version of pkgsite from [GitHub](https://github.com/) with:

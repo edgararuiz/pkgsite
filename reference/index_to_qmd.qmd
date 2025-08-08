@@ -22,7 +22,7 @@ index_to_qmd(project = ".", pkg = NULL, template = NULL)
 |---|---|
 | project | The path to the root folder of the project. |
 | pkg | The path inside the project folder. Use only if the R package itself is in a sub-folder within the project. |
-| template | The path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, `pkgsite` will use its default template. |
+| template | The path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, 'pkgsite' will use its default template. |
 
 
 

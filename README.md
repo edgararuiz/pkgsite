@@ -72,13 +72,23 @@ function is `write_reference()`.
 library(pkgsite)
 
 write_reference()
-#> reference/index.qmd
-#> reference/index_to_qmd.qmd
-#> reference/rd_to_list.qmd
-#> reference/rd_to_qmd.qmd
-#> reference/write_reference.qmd
-#> reference/write_reference_index.qmd
-#> reference/write_reference_pages.qmd
+#> 
+#> ── pkgsite
+#> Creating index file:
+#>   'reference/index.qmd'
+#> 
+#> Converting .Rd to .qmd:
+#>   '././man/index_to_qmd.Rd' → 'reference/index_to_qmd.qmd'
+#> 
+#>   '././man/rd_to_list.Rd' → 'reference/rd_to_list.qmd'
+#> 
+#>   '././man/rd_to_qmd.Rd' → 'reference/rd_to_qmd.qmd'
+#> 
+#>   '././man/write_reference.Rd' → 'reference/write_reference.qmd'
+#> 
+#>   '././man/write_reference_index.Rd' → 'reference/write_reference_index.qmd'
+#> 
+#>   '././man/write_reference_pages.Rd' → 'reference/write_reference_pages.qmd'
 ```
 
 The function uses sensible defaults, so even by calling it without
