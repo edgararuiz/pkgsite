@@ -6,7 +6,12 @@
 #' @export
 rd_to_list <- function(rd_file, project = ".", pkg = NULL) {
   pkg <- pkg %||% ""
-  rd_content <- tools::parse_Rd(fs::path(project, pkg, "man", rd_file))
+  if(inherits(rd_file, "Rd")) {
+    rd_content <- rd_file
+  } else {
+    rd_content <- tools::parse_Rd(fs::path(project, pkg, "man", rd_file))  
+  }
+  
   out <- map(rd_content, rd_tag_process)
   out <- keep(out, \(x) !is.null(x))
   out <- list_flatten(out)
@@ -30,8 +35,13 @@ rd_tag_process <- function(x) {
     if (tag_name == "arguments") {
       tag_text <- list(rd_args_process(x))
     } else if (tag_name == "usage") {
-      usage <- as.character(x)
-      usage <- gsub("\n", "", usage)
+      usage <- map_chr(x, rd_extract_text)
+      if(usage[[1]] == "") {
+        usage <- usage[2:length(usage)]
+      }
+      usage[usage == ""] <- "xxxx"
+      usage <- paste(usage, collapse = "")
+      usage <- unlist(strsplit(usage, "xx"))
       tag_text <- list(usage)
     } else if (tag_name == "examples") {
       rd_tags <- map_chr(x, attr, "Rd_tag")
@@ -73,6 +83,10 @@ rd_args_process <- function(x) {
 }
 
 rd_extract_text <- function(x, collapse = TRUE) {
+  rd_tag <- attr(x, "Rd_tag") %||% ""
+  if(rd_tag == "\\dots") {
+    return(" ...")
+  }
   attributes(x) <- NULL
   class(x) <- "Rd"
   rd_text <- as.character(x)
