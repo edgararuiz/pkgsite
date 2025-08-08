@@ -26,6 +26,8 @@ website:
       contents: 
       - text: "Setup GitHub Pages"
         href: articles/github-actions.qmd
+      - text: "Customize Pages"
+        href: articles/customize.qmd        
       
 format:
   html:
