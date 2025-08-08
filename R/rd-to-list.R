@@ -36,7 +36,7 @@ rd_tag_process <- function(x) {
       tag_text <- list(rd_args_process(x))
     } else if (tag_name == "usage") {
       tag_text <- list(rd_extract_text2(x, FALSE, "tab"))
-    }  else if (tag_name == "alias") {
+    } else if (tag_name == "alias") {
       tag_text <- list(rd_extract_text(x))
     } else if (tag_name == "examples") {
       rd_tags <- map_chr(x, attr, "Rd_tag")
@@ -102,9 +102,12 @@ rd_extract_text <- function(x, collapse = TRUE) {
 }
 
 rd_extract_text2 <- function(x, collapse = TRUE, trim = "full") {
-  rd_txt <- capture.output(tools::Rd2txt(list(x), fragment = TRUE))
-  if (length(rd_txt) == 0) {
+  rd_txt <- try(capture.output(tools::Rd2txt(list(x), fragment = TRUE)), silent = TRUE)
+  if (inherits(rd_txt, "try-error")) {
     return(NULL)
+  }
+  if (length(rd_txt) == 0) {
+    return(as.character(x))
   }
   rd_txt <- gsub("\U2018", "`", rd_txt)
   rd_txt <- gsub("\U2019", "`", rd_txt)
