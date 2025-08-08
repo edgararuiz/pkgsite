@@ -17,14 +17,16 @@ execute:
 
 {{{{title.details}}}}
 
-{{{{title.section}}}}
-
 {{{{title.value}}}}
+
+{{{{title.section}}}}
 
 {{{{title.note}}}}
 
-{{{{title.examples}}}}
+{{{{title.author}}}}
+
+{{{{title.references}}}}
 
 {{{{title.seealso}}}}
 
-{{{{title.author}}}}
+{{{{title.examples}}}}
