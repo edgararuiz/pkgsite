@@ -36,6 +36,8 @@ rd_tag_process <- function(x) {
       tag_text <- list(rd_args_process(x))
     } else if (tag_name == "usage") {
       tag_text <- list(rd_extract_text2(x, FALSE, "tab"))
+    }  else if (tag_name == "alias") {
+      tag_text <- list(rd_extract_text(x))
     } else if (tag_name == "examples") {
       rd_tags <- map_chr(x, attr, "Rd_tag")
       run <- "code_run"
@@ -63,7 +65,7 @@ rd_tag_process <- function(x) {
 
 rd_args_process <- function(x) {
   out <- map(x, \(x) {
-    name <- as.character(x[1])
+    name <- rd_extract_text(x[1])
     val <- rd_extract_text(x[2])
     if (name != "") {
       out <- list(argument = name, description = val)
@@ -118,7 +120,7 @@ rd_extract_text2 <- function(x, collapse = TRUE, trim = "full") {
   if (rd_txt[[length(rd_txt)]] == "") rd_txt <- rd_txt[1:length(rd_txt) - 1]
   if (collapse) {
     rd_txt[rd_txt == ""] <- "xxxx"
-    rd_txt <- paste(rd_txt, collapse = "")
+    rd_txt <- paste(rd_txt, collapse = " ")
     rd_txt <- unlist(strsplit(rd_txt, "xx"))
   }
   rd_txt
