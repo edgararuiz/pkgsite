@@ -8,7 +8,9 @@ execute:
   
 website:
   title: pkgsite
+  favicon: "site/images/favicon/apple-touch-icon.png"
   navbar:
+    logo: "site/images/favicon/apple-touch-icon.png"
     left:
       - sidebar:articles
       - href: reference/index.qmd
