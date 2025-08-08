@@ -12,15 +12,15 @@ read_quarto <- function(pkg = ".", fail = FALSE) {
     folder <- pkg
   }
   quarto_file <- path(folder, "_quarto.yml")
-  if(!file_exists(quarto_file) && fail) {
+  if (!file_exists(quarto_file) && fail) {
     cli_abort("'_quarto.yml' file not found")
   }
-  
+
   suppressWarnings(
     quarto <- try(read_yaml(quarto_file), silent = TRUE)
   )
   if (inherits(quarto, "try-error")) {
-    if(fail) {
+    if (fail) {
       cli_abort("'_quarto.yml' file could not be read")
     }
     out <- NULL

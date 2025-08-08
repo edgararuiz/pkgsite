@@ -33,7 +33,7 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
       paste0("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", x$title),
       ""
     )
-  })  
+  })
   # If there is a custom index in the '_quarto.yml' file, it will match up,
   # to the order in the yaml spec, as well as to add the title for a given
   # section, if one is provided

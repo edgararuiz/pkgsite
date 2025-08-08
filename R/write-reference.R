@@ -86,19 +86,23 @@ write_reference_pages <- function(
   pkg <- pkg %||% ""
   man_folder <- path(project, pkg, "man")
   cli_inform("{.emph Converting .Rd to .qmd:}")
+  if (l10n_info()$`UTF-8` && !is_latex_output()) {
+    arrow <- "\u2192"
+  } else {
+    arrow <- "->"
+  }
   walk(
     path_file(dir_ls(man_folder, glob = "*.Rd")),
     \(x) {
       ref <- paste0(folder, "/", path_ext_remove(x), ".qmd")
       qmd <- rd_to_qmd(x, project, pkg, examples, not_run_examples, template)
-      try(file_delete(ref), silent = TRUE)
-      writeLines(qmd, ref)
-      if (l10n_info()$`UTF-8` && !is_latex_output()) {
-        arrow <- "\u2192"
+      if (is.null(qmd)) {
+        cli_bullets(c(" " = "{.file {path(man_folder, x)}} {arrow} {.emph Skipped - Internal}"))
       } else {
-        arrow <- "->"
+        try(file_delete(ref), silent = TRUE)
+        writeLines(qmd, ref)
+        cli_bullets(c(" " = "{.file {path(man_folder, x)}} {arrow} {.file {ref}}"))
       }
-      cli_bullets(c(" " = "{.file {path(man_folder, x)}} {arrow} {.file {ref}}"))
     }
   )
 }

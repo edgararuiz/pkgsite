@@ -9,7 +9,11 @@ rd_to_list <- function(rd_file, project = ".", pkg = NULL) {
   rd_content <- tools::parse_Rd(fs::path(project, pkg, "man", rd_file))
   out <- map(rd_content, rd_tag_process)
   out <- keep(out, \(x) !is.null(x))
-  list_flatten(out)
+  out <- list_flatten(out)
+  if (any(as.character(out["keyword"]) == "internal")) {
+    out <- NULL
+  }
+  out
 }
 
 rd_tag_process <- function(x) {
