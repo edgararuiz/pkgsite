@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+<img src="man/figures/logo.png" align="right" alt="" width="120" />
+
 # pkgsite
 
 <!-- badges: start -->
@@ -22,8 +24,7 @@ does for Python package documentation.
 In the vast majority of cases
 [`pkgdown`](https://pkgdown.r-lib.org/index.html) is enough to create
 top tier package website. `pkgdown` is a well developed mature package
-that covers all sorts of special needs. In fact, `pkgsite` uses
-`pkgdown` to perform several operations.
+that covers all sorts of special needs.
 
 So apart of simply wanting a Quarto site for your R package, a couple of
 reasons to use `pkgsite` are:
@@ -40,9 +41,9 @@ reasons to use `pkgsite` are:
   repository. This will allow any re-building of your website by GitHub
   to have the necessary code output to create the HTML files.
 
-- **You want to build a unified site** - Your packages from your project
+- **You want to build a unified site** - The packages in your project
   may be available in multiple languages, and wish to make a unified
-  website. The idea here is if you have output from Quartodoc from the
+  website. The idea here is if you have output from *Quartodoc* from the
   Python side of your project, that needs to be available in the website
   along with the references from the R side of your project.
 
@@ -72,13 +73,23 @@ function is `write_reference()`.
 library(pkgsite)
 
 write_reference()
-#> reference/index.qmd
-#> reference/index_to_qmd.qmd
-#> reference/rd_to_list.qmd
-#> reference/rd_to_qmd.qmd
-#> reference/write_reference.qmd
-#> reference/write_reference_index.qmd
-#> reference/write_reference_pages.qmd
+#> 
+#> ── pkgsite
+#> Creating index file:
+#>   'reference/index.qmd'
+#> 
+#> Converting .Rd to .qmd:
+#>   '././man/index_to_qmd.Rd' → 'reference/index_to_qmd.qmd'
+#> 
+#>   '././man/rd_to_list.Rd' → 'reference/rd_to_list.qmd'
+#> 
+#>   '././man/rd_to_qmd.Rd' → 'reference/rd_to_qmd.qmd'
+#> 
+#>   '././man/write_reference.Rd' → 'reference/write_reference.qmd'
+#> 
+#>   '././man/write_reference_index.Rd' → 'reference/write_reference_index.qmd'
+#> 
+#>   '././man/write_reference_pages.Rd' → 'reference/write_reference_pages.qmd'
 ```
 
 The function uses sensible defaults, so even by calling it without

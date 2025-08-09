@@ -13,7 +13,6 @@ This function is meant to be used as a intermediate object that could be used as
 
 ## Usage
 ```r
-
 rd_to_list(rd_file, project = ".", pkg = NULL)
 ```
 
@@ -23,6 +22,7 @@ rd_to_list(rd_file, project = ".", pkg = NULL)
 | rd_file | The name of the source Rd file |
 | project | The path to the root folder of the project. |
 | pkg | The path inside the project folder. Use only if the R package itself is in a sub-folder within the project. |
+
 
 
 

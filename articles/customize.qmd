@@ -1,0 +1,141 @@
+---
+title: Customize the pages
+---
+
+To allow customization of the index and reference pages, `pkgsite` uses a simple
+template mechanism that uses a Quarto document as the format. This enables us
+to do things such as re-sort sections, add code chunks, set page level options,
+branding, etc. 
+
+To place a section in the Quarto document, use four curly brackets with the name
+of the section. Prefix `title.` or `notitle.` to the section name to indicate
+if you want the section to have a title or not. 
+
+For example, to add the description with a title use: `{{{{title.description}}}}`.
+Another example is to use the alias as a header in the document, because the
+value is the header, avoiding using the "Alias" title is the way to go:
+`## {{{{notitle.alias}}}}`
+
+Internally, the package includes two templates that it uses as the default if one
+is not provided in the `_quarto.yml` or is passed in the function call.
+
+## Reference page
+
+In the `_quarto.yml` file, to specify the path to a custom template place it 
+here:
+
+```yaml
+pkgsite: 
+  reference:
+    template: "path to the template"
+```
+
+Here are the contents of the Quarto document used as the default:
+
+```r
+---
+title: "{{{{notitle.title}}}}"
+execute:
+  eval: true
+  freeze: true
+---
+
+## {{{{notitle.alias}}}}
+
+{{{{title.description}}}}
+
+{{{{title.format}}}}
+
+{{{{title.usage}}}}
+
+{{{{title.arguments}}}}
+
+{{{{title.details}}}}
+
+{{{{title.section}}}}
+
+{{{{title.value}}}}
+
+{{{{title.note}}}}
+
+{{{{title.examples}}}}
+
+{{{{title.seealso}}}}
+
+{{{{title.author}}}}
+
+```
+
+## Index page
+
+In the `_quarto.yml` file, to specify the path to a custom template place it 
+here:
+
+```yaml
+pkgsite: 
+  reference:
+    index:
+      template: "path to the template"
+```
+
+There is only one section available for placement in for the reference index
+page: `reference`. It places the entire list of functions in a pre-determined
+format. It will use the sections and order used in your `_quarto.yml`, or a 
+simple function listing if none is provided. 
+
+To specify the order and sections to display the functions in the pacage:
+
+```yaml
+pkgsite: 
+  reference:
+    index:
+      contents:
+        - section: My Section 1
+          contents: 
+          - my_function_1
+          - my_function_2
+          - my_function_3
+```
+
+Here are the contents of the Quarto document used as the default:
+
+```r
+---
+title: Package index
+toc: false
+---
+
+{{{{notitle.reference}}}}
+
+```
+
+## More examples/ideas
+
+- To add the link to the source code of a given function, use the `source` section
+to build the URL and label:
+    
+    ```r
+    ---
+    title: "{{{{notitle.title}}}}"
+    ---
+    
+    [{{{{notitle.source}}}}](https://github.com/my-group/my-pkg/blob/main/r/{{{{notitle.source}}}})
+    
+    ## {{{{notitle.alias}}}}
+    
+    ...
+    
+    ```
+    
+- Add the package's logo at the top of the page:
+    
+    ```r
+    ---
+    toc: false
+    ---
+    <img src="path-to-logo.png" style="float:right" />
+    
+    {{{{notitle.reference}}}}
+    ```
+    
+

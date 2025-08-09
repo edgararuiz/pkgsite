@@ -13,7 +13,6 @@ Writes the index of the reference pages into a Quarto file
 
 ## Usage
 ```r
-
 write_reference_index(
   project = ".",
   pkg = NULL,
@@ -31,6 +30,7 @@ write_reference_index(
 | folder | The target folder to save the new Quarto files to |
 | index_file | The name assigned to the resulting index Quarto file |
 | index_template | The path to a Quarto file that can be used as the template for the index Quarto file |
+
 
 
 

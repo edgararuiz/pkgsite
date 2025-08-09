@@ -6,10 +6,19 @@
 #' @export
 rd_to_list <- function(rd_file, project = ".", pkg = NULL) {
   pkg <- pkg %||% ""
-  rd_content <- tools::parse_Rd(fs::path(project, pkg, "man", rd_file))
+  if (inherits(rd_file, "Rd")) {
+    rd_content <- rd_file
+  } else {
+    rd_content <- tools::parse_Rd(fs::path(project, pkg, "man", rd_file))
+  }
+
   out <- map(rd_content, rd_tag_process)
   out <- keep(out, \(x) !is.null(x))
-  list_flatten(out)
+  out <- list_flatten(out)
+  if (any(as.character(out["keyword"]) == "internal")) {
+    out <- NULL
+  }
+  out
 }
 
 rd_tag_process <- function(x) {
@@ -26,9 +35,9 @@ rd_tag_process <- function(x) {
     if (tag_name == "arguments") {
       tag_text <- list(rd_args_process(x))
     } else if (tag_name == "usage") {
-      usage <- as.character(x)
-      usage <- gsub("\n", "", usage)
-      tag_text <- list(usage)
+      tag_text <- list(rd_extract_text2(x, FALSE, "tab"))
+    } else if (tag_name == "alias") {
+      tag_text <- list(rd_extract_text(x))
     } else if (tag_name == "examples") {
       rd_tags <- map_chr(x, attr, "Rd_tag")
       run <- "code_run"
@@ -42,11 +51,11 @@ rd_tag_process <- function(x) {
       tag_text <- list(tag_text)
     } else if (tag_name == "section") {
       tag_text <- list(list(
-        title = rd_extract_text(x[[1]]),
-        contents = rd_extract_text(x[[2]])
+        title = as.character(x[[1]]),
+        contents = rd_extract_text2(x)
       ))
     } else {
-      tag_text <- list(trimws(rd_extract_text(x)))
+      tag_text <- list(rd_extract_text2(x))
     }
 
     out <- set_names(tag_text, tag_name)
@@ -69,6 +78,10 @@ rd_args_process <- function(x) {
 }
 
 rd_extract_text <- function(x, collapse = TRUE) {
+  rd_tag <- attr(x, "Rd_tag") %||% ""
+  if (rd_tag == "\\dots") {
+    return(" ...")
+  }
   attributes(x) <- NULL
   class(x) <- "Rd"
   rd_text <- as.character(x)
@@ -85,5 +98,33 @@ rd_extract_text <- function(x, collapse = TRUE) {
   }
   rd_txt <- gsub("\U2018", "`", rd_txt)
   rd_txt <- gsub("\U2019", "`", rd_txt)
+  rd_txt
+}
+
+rd_extract_text2 <- function(x, collapse = TRUE, trim = "full") {
+  rd_txt <- try(capture.output(tools::Rd2txt(list(x), fragment = TRUE)), silent = TRUE)
+  if (inherits(rd_txt, "try-error")) {
+    return(NULL)
+  }
+  if (length(rd_txt) == 0) {
+    return(as.character(x))
+  }
+  rd_txt <- gsub("\U2018", "`", rd_txt)
+  rd_txt <- gsub("\U2019", "`", rd_txt)
+  if (trim == "tab") {
+    tabbed <- substr(rd_txt, 1, 5) == "     "
+    rd_txt[tabbed] <- substr(rd_txt[tabbed], 6, nchar(rd_txt[tabbed]))
+  }
+  if (trim == "full") {
+    rd_txt <- trimws(rd_txt)
+  }
+  rd_txt <- rd_txt[2:length(rd_txt)]
+  if (rd_txt[[1]] == "") rd_txt <- rd_txt[2:length(rd_txt)]
+  if (rd_txt[[length(rd_txt)]] == "") rd_txt <- rd_txt[1:length(rd_txt) - 1]
+  if (collapse) {
+    rd_txt[rd_txt == ""] <- "xxxx"
+    rd_txt <- paste(rd_txt, collapse = " ")
+    rd_txt <- unlist(strsplit(rd_txt, "xx"))
+  }
   rd_txt
 }
