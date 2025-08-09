@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -65,20 +65,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./site/images/favicon/apple-touch-icon.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-bc185b5c5bdbcb35c2eb49d8a876ef70.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0b632bb7ab76c5a448a4a43e43c0cdec.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-8c7d0f2d44f81c9de307ab0788cd439e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-0b632bb7ab76c5a448a4a43e43c0cdec.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fc33665a5fe520508506ad18723bb337.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-954379f3f0b1763d02bbea854a1c1c74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fc33665a5fe520508506ad18723bb337.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -280,6 +281,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./site/images/favicon/apple-touch-icon.png" alt="" class="navbar-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">pkgsite</span>
     </a>
@@ -298,6 +302,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="./articles/github-actions.html">
  <span class="dropdown-text">Setup GitHub Pages</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./articles/customize.html">
+ <span class="dropdown-text">Customize Pages</span></a>
   </li>  
     </ul>
   </li>
@@ -348,6 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<p><img src="man/figures/logo.png" align="right" alt="" width="120"></p>
 <section id="pkgsite" class="level1">
 <h1>pkgsite</h1>
 <!-- badges: start -->
@@ -358,11 +367,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="when-should-i-use-pkgsite" class="level2">
 <h2 class="anchored" data-anchor-id="when-should-i-use-pkgsite">When should I use <code>pkgsite</code>?</h2>
-<p>In the vast majority of cases <a href="https://pkgdown.r-lib.org/index.html"><code>pkgdown</code></a> is enough to create top tier package website. <code>pkgdown</code> is a well developed mature package that covers all sorts of special needs. In fact, <code>pkgsite</code> uses <code>pkgdown</code> to perform several operations.</p>
+<p>In the vast majority of cases <a href="https://pkgdown.r-lib.org/index.html"><code>pkgdown</code></a> is enough to create top tier package website. <code>pkgdown</code> is a well developed mature package that covers all sorts of special needs.</p>
 <p>So apart of simply wanting a Quarto site for your R package, a couple of reasons to use <code>pkgsite</code> are:</p>
 <ul>
 <li><p><strong>You want to use the output <a href="https://quarto.org/docs/projects/code-execution.html#freeze">“freeze”</a> capabilities in Quarto</strong> - You would like the examples in the help pages to run, but, the ability to run such examples depend on specific technologies to be accessible to where the site is being published, which is usually GitHub. Examples of those technologies could be databases, Spark and Large Language Models. The idea would be to render the website locally, where you would have access to the needed technologies, and make commit the resulting “_freeze” folder to the repository. This will allow any re-building of your website by GitHub to have the necessary code output to create the HTML files.</p></li>
-<li><p><strong>You want to build a unified site</strong> - Your packages from your project may be available in multiple languages, and wish to make a unified website. The idea here is if you have output from Quartodoc from the Python side of your project, that needs to be available in the website along with the references from the R side of your project.</p></li>
+<li><p><strong>You want to build a unified site</strong> - The packages in your project may be available in multiple languages, and wish to make a unified website. The idea here is if you have output from <em>Quartodoc</em> from the Python side of your project, that needs to be available in the website along with the references from the R side of your project.</p></li>
 </ul>
 <p>An example of having both reasons to use <code>pkgsite</code>, is the <a href="https://github.com/mlverse/mall"><code>mall</code></a> package. This project has a Python, and an R package. And the examples in both packages need an LLM in order to work, here is the resulting <a href="https://mlverse.github.io/mall/reference/">reference pages</a>.</p>
 </section>
@@ -378,13 +387,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pkgsite)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write_reference</span>()</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; reference/index.qmd</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; reference/index_to_qmd.qmd</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; reference/rd_to_list.qmd</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; reference/rd_to_qmd.qmd</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; reference/write_reference.qmd</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; reference/write_reference_index.qmd</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; reference/write_reference_pages.qmd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── pkgsite</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Creating index file:</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   'reference/index.qmd'</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Converting .Rd to .qmd:</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   '././man/index_to_qmd.Rd' → 'reference/index_to_qmd.qmd'</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   '././man/rd_to_list.Rd' → 'reference/rd_to_list.qmd'</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   '././man/rd_to_qmd.Rd' → 'reference/rd_to_qmd.qmd'</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   '././man/write_reference.Rd' → 'reference/write_reference.qmd'</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   '././man/write_reference_index.Rd' → 'reference/write_reference_index.qmd'</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   '././man/write_reference_pages.Rd' → 'reference/write_reference_pages.qmd'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The function uses sensible defaults, so even by calling it without changing any arguments should work without errors. Internally, the function applies such sensible values if specific arguments are left <code>NULL</code>.</p>
 </section>
 <section id="configure-via-the-_quarto.yml-file" class="level2">
