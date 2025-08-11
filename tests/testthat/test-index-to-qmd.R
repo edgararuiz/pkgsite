@@ -1,3 +1,5 @@
+skip_on_os("windows")
+
 test_that("Index parsing works", {
   yaml_file <- read_quarto(test_path("test-pkg2"))
   index <- yaml_file[["reference"]][["index"]]
