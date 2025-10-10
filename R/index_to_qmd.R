@@ -21,12 +21,21 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
   # This section creates reads the Rd files and extracts their name & description
   pkg <- pkg %||% ""
   rd_names <- path_file(dir_ls(path(project, pkg, "man"), glob = "*.Rd"))
-  qmd_names <- path(path_ext_remove(rd_names), ext = "qmd")
   rd_list <- map(rd_names, rd_to_list, project, pkg)
+  qmd_names <- path(path_ext_remove(rd_names), ext = "qmd")
   rd_list <- set_names(rd_list, qmd_names)
+  # For Rd's that return NULL because they are internal 
+  null_rds <- map_lgl(rd_list, is.null)
+  rd_list <- rd_list[!null_rds]
   ref_lines <- imap(rd_list, \(x, y) {
     alias <- as.character(x[names(x) == "alias"])
-    alias_links <- paste0("[", alias, "()](", y, ")")
+    paren <- "()"
+    if(all(alias == "")) {
+      # This is in case of non-aliased functions, such as infixes
+      alias <- as.character(x[names(x) == "name"])
+      paren <- ""
+    } 
+    alias_links <- paste0("[", alias, paren,"](", y, ")")
     c(
       paste0(alias_links, collapse = " "),
       "", "",
