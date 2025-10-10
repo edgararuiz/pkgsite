@@ -58,16 +58,11 @@
       [43] ""                                                                                       
       [44] "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Verify if a statement about the text is true or not"
       [45] ""                                                                                       
-      [46] "[()](m_backend_submit.qmd)"                                                             
+      [46] "[reviews()](reviews.qmd)"                                                               
       [47] ""                                                                                       
       [48] ""                                                                                       
-      [49] "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"                                                   
+      [49] "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mini reviews data set"                              
       [50] ""                                                                                       
-      [51] "[reviews()](reviews.qmd)"                                                               
-      [52] ""                                                                                       
-      [53] ""                                                                                       
-      [54] "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mini reviews data set"                              
-      [55] ""                                                                                       
 
 ---
 
