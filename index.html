@@ -407,6 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   '././man/write_reference_pages.Rd' → 'reference/write_reference_pages.qmd'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The function uses sensible defaults, so even by calling it without changing any arguments should work without errors. Internally, the function applies such sensible values if specific arguments are left <code>NULL</code>.</p>
+<p>For the index page, <code>pkgsite</code> by default will group based on the ‘family’ tag. Any documentation that does not have a ‘family’ tag will be listed first. This functionality can be overridden by configuring a custom grouping specified via the <code>_quarto.yml</code> file.</p>
 </section>
 <section id="configure-via-the-_quarto.yml-file" class="level2">
 <h2 class="anchored" data-anchor-id="configure-via-the-_quarto.yml-file">Configure via the ’_quarto.yml’ file</h2>
