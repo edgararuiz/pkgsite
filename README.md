@@ -97,6 +97,11 @@ changing any arguments should work without errors. Internally, the
 function applies such sensible values if specific arguments are left
 `NULL`.
 
+For the index page, `pkgsite` by default will group based on the
+‘family’ tag. Any documentation that does not have a ‘family’ tag will
+be listed first. This functionality can be overridden by configuring a
+custom grouping specified via the `_quarto.yml` file.
+
 ## Configure via the ’\_quarto.yml’ file
 
 Just as with
