@@ -33,6 +33,8 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
         fn_family <- unlist(strsplit(seealso, "\\:"))
         x$family <- fn_family[[1]]
         x
+      } else {
+        x
       }
     }
   )
