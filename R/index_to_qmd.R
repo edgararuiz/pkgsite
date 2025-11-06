@@ -37,7 +37,7 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
     }
   )
   # For Rd's that return NULL because they are internal
-  null_rds <- map_lgl(rd_list, is.null) 
+  null_rds <- map_lgl(rd_list, is.null)
   rd_list <- rd_list[!null_rds]
   ref_lines <- imap(rd_list, \(x, y) {
     alias <- as.character(x[names(x) == "alias"])
@@ -91,7 +91,13 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
         }
       }
       ref_list <- ref_list[order(names(ref_list))]
-      ref_lines <- imap(ref_list, \(x, y) c(paste("###", y), x))
+      ref_lines <- imap(ref_list, \(x, y) {
+        if (y == "<none>") {
+          x
+        } else {
+          c(paste("###", y), x)
+        }
+      })
     }
   }
   ref_lines <- reduce(ref_lines, c)
