@@ -37,7 +37,7 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
     }
   )
   # For Rd's that return NULL because they are internal
-  null_rds <- map_lgl(rd_list, is.null)
+  null_rds <- map_lgl(rd_list, is.null) 
   rd_list <- rd_list[!null_rds]
   ref_lines <- imap(rd_list, \(x, y) {
     alias <- as.character(x[names(x) == "alias"])
@@ -74,6 +74,25 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
     )
     ref_lines <- list_flatten(ref_lines)
     ref_lines <- reduce(ref_lines, c)
+  } else {
+    families <- as.character(map(rd_list, function(x) x$family))
+    families <- families[families != "NULL"]
+    tab_families <- table(families)
+    unique_fams <- names(tab_families[tab_families > 1])
+    if (!is.null(unique_fams)) {
+      ref_list <- list()
+      for (i in seq_along(rd_list)) {
+        rds <- rd_list[[i]]
+        rds_family <- rds[["family"]]
+        if (!is.null(rds_family) && rds_family %in% unique_fams) {
+          ref_list[[rds_family]] <- c(ref_list[[rds_family]], ref_lines[[i]])
+        } else {
+          ref_list[["<none>"]] <- c(ref_list[["<none>"]], ref_lines[[i]])
+        }
+      }
+      ref_list <- ref_list[order(names(ref_list))]
+      ref_lines <- imap(ref_list, \(x, y) c(paste("###", y), x))
+    }
   }
   ref_lines <- reduce(ref_lines, c)
   list("reference" = ref_lines)
