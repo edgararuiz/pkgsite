@@ -25,6 +25,17 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
   rd_list <- map(rd_names, rd_to_list, project, pkg)
   qmd_names <- path(path_ext_remove(rd_names), ext = "qmd")
   rd_list <- set_names(rd_list, qmd_names)
+  rd_list <- map(
+    rd_list,
+    function(x) {
+      seealso <- x[["seealso"]]
+      if (!is.null(seealso)) {
+        fn_family <- unlist(strsplit(seealso, "\\:"))
+        x$family <- fn_family[[1]]
+        x
+      }
+    }
+  )
   # For Rd's that return NULL because they are internal
   null_rds <- map_lgl(rd_list, is.null)
   rd_list <- rd_list[!null_rds]
