@@ -17,14 +17,15 @@
 #'
 #' @export
 write_reference <- function(
-    project = ".",
-    pkg = NULL,
-    folder = NULL,
-    examples = TRUE,
-    not_run_examples = NULL,
-    template = NULL,
-    index_file = NULL,
-    index_template = NULL) {
+  project = ".",
+  pkg = NULL,
+  folder = NULL,
+  examples = TRUE,
+  not_run_examples = NULL,
+  template = NULL,
+  index_file = NULL,
+  index_template = NULL
+) {
   pkg_site <- read_quarto(project)
   pkg <- pkg %||% pkg_site[["dir"]]
   folder <- folder %||% pkg_site[["reference"]][["dir"]] %||% "reference"
@@ -59,11 +60,12 @@ write_reference <- function(
 #' @inheritParams write_reference
 #' @export
 write_reference_index <- function(
-    project = ".",
-    pkg = NULL,
-    folder = "reference",
-    index_file = "index.qmd",
-    index_template = NULL) {
+  project = ".",
+  pkg = NULL,
+  folder = "reference",
+  index_file = "index.qmd",
+  index_template = NULL
+) {
   try(dir_create(folder), silent = TRUE)
   ref <- path(folder, index_file)
   try(file_delete(ref), silent = TRUE)
@@ -77,12 +79,13 @@ write_reference_index <- function(
 #' @inheritParams write_reference
 #' @export
 write_reference_pages <- function(
-    project = ".",
-    pkg = NULL,
-    folder = "reference",
-    examples = TRUE,
-    not_run_examples = FALSE,
-    template = NULL) {
+  project = ".",
+  pkg = NULL,
+  folder = "reference",
+  examples = TRUE,
+  not_run_examples = FALSE,
+  template = NULL
+) {
   pkg <- pkg %||% ""
   man_folder <- path(project, pkg, "man")
   cli_inform("{.emph Converting .Rd to .qmd:}")

@@ -47,10 +47,11 @@ llm_translate.data.frame <- function(.data,
 #' @rdname llm_translate
 #' @export
 llm_vec_translate <- function(
-    x,
-    language,
-    additional_prompt = "",
-    preview = FALSE) {
+  x,
+  language,
+  additional_prompt = "",
+  preview = FALSE
+) {
   m_vec_prompt(
     x = x,
     prompt_label = "translate",

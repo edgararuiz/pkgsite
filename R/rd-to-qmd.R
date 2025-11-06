@@ -3,12 +3,13 @@
 #' @inheritParams write_reference
 #' @export
 rd_to_qmd <- function(
-    rd_file,
-    project = ".",
-    pkg = NULL,
-    examples = TRUE,
-    not_run_examples = FALSE,
-    template = NULL) {
+  rd_file,
+  project = ".",
+  pkg = NULL,
+  examples = TRUE,
+  not_run_examples = FALSE,
+  template = NULL
+) {
   pkg_site <- read_quarto(project)
   yaml_template <- NULL
   if (!is.null(pkg_site)) {

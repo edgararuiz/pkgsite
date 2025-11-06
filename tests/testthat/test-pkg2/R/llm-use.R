@@ -43,12 +43,13 @@
 #'
 #' @export
 llm_use <- function(
-    backend = NULL,
-    model = NULL,
-    ...,
-    .silent = FALSE,
-    .cache = NULL,
-    .force = FALSE) {
+  backend = NULL,
+  model = NULL,
+  ...,
+  .silent = FALSE,
+  .cache = NULL,
+  .force = FALSE
+) {
   models <- list()
   supplied <- sum(!is.null(backend), !is.null(model))
   not_init <- inherits(m_defaults_get(), "list")

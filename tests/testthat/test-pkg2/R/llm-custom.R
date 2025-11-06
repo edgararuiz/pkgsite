@@ -31,11 +31,12 @@
 #' `llm_vec_custom` returns a vector that is the same length as `x`.
 #' @export
 llm_custom <- function(
-    .data,
-    col,
-    prompt = "",
-    pred_name = ".pred",
-    valid_resps = "") {
+  .data,
+  col,
+  prompt = "",
+  pred_name = ".pred",
+  valid_resps = ""
+) {
   UseMethod("llm_custom")
 }
 

@@ -2,9 +2,10 @@
 #' @inheritParams rd_to_qmd
 #' @export
 index_to_qmd <- function(
-    project = ".",
-    pkg = NULL,
-    template = NULL) {
+  project = ".",
+  pkg = NULL,
+  template = NULL
+) {
   pkg_site <- read_quarto(project)
   index <- NULL
   yaml_template <- NULL
@@ -24,18 +25,18 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
   rd_list <- map(rd_names, rd_to_list, project, pkg)
   qmd_names <- path(path_ext_remove(rd_names), ext = "qmd")
   rd_list <- set_names(rd_list, qmd_names)
-  # For Rd's that return NULL because they are internal 
+  # For Rd's that return NULL because they are internal
   null_rds <- map_lgl(rd_list, is.null)
   rd_list <- rd_list[!null_rds]
   ref_lines <- imap(rd_list, \(x, y) {
     alias <- as.character(x[names(x) == "alias"])
     paren <- "()"
-    if(all(alias == "")) {
+    if (all(alias == "")) {
       # This is in case of non-aliased functions, such as infixes
       alias <- as.character(x[names(x) == "name"])
       paren <- ""
-    } 
-    alias_links <- paste0("[", alias, paren,"](", y, ")")
+    }
+    alias_links <- paste0("[", alias, paren, "](", y, ")")
     c(
       paste0(alias_links, collapse = " "),
       "", "",
