@@ -3,6 +3,23 @@ title: Package index
 toc: false
 ---
 
+### Conversion functions
+
+[index_to_qmd()](index_to_qmd.qmd)
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a Quarto file that lists the available reference pages
+
+[rd_to_list()](rd_to_list.qmd)
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts a given 'Rd' file into a list object
+
+[rd_to_qmd()](rd_to_qmd.qmd)
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts 'Rd' to Quarto files
+
 ### Quarto file creation
 
 [write_reference()](write_reference.qmd)
@@ -19,21 +36,4 @@ toc: false
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the 'Rd' file into Quarto, and writes the file to a specified folder
-
-### Conversion functions
-
-[index_to_qmd()](index_to_qmd.qmd)
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a Quarto file that lists the available reference pages
-
-[rd_to_qmd()](rd_to_qmd.qmd)
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts 'Rd' to Quarto files
-
-[rd_to_list()](rd_to_list.qmd)
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts a given 'Rd' file into a list object
 

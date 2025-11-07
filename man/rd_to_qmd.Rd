@@ -39,10 +39,8 @@ Rd file format into a a Quarto file format.
 Converts 'Rd' to Quarto files
 }
 \seealso{
-Other Quarto file creation: 
+Other Conversion functions: 
 \code{\link{index_to_qmd}()},
-\code{\link{write_reference}()},
-\code{\link{write_reference_index}()},
-\code{\link{write_reference_pages}()}
+\code{\link{rd_to_list}()}
 }
-\concept{Quarto file creation}
+\concept{Conversion functions}

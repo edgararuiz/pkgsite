@@ -2,7 +2,7 @@
 #' @inheritParams rd_to_qmd
 #' @returns A character vector with the resulting contents creating document
 #' that links to the converted Quarto documents.
-#' @family Quarto file creation
+#' @family Conversion functions
 #' @export
 index_to_qmd <- function(
   project = ".",
@@ -64,7 +64,7 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
   # to the order in the yaml spec, as well as to add the title for a given
   # section, if one is provided
   ref_names <- path_ext_remove(names(ref_lines))
-  if (!is.null(index)) {
+  if (!is.null(index[["contents"]])) {
     ref_lines <- map(
       index[["contents"]],
       \(x) {
@@ -80,7 +80,7 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
     ref_lines <- list_flatten(ref_lines)
     ref_lines <- reduce(ref_lines, c)
   } else {
-    families <- as.character(map(rd_list, function(x) x$family))
+    families <- as.character(map(rd_list, function(x) x[["concept"]]))
     families <- families[families != "NULL"]
     tab_families <- table(families)
     unique_fams <- names(tab_families[tab_families > 1])
@@ -88,7 +88,7 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
       ref_list <- list()
       for (i in seq_along(rd_list)) {
         rds <- rd_list[[i]]
-        rds_family <- rds[["family"]]
+        rds_family <- rds[["concept"]]
         if (!is.null(rds_family) && rds_family %in% unique_fams) {
           ref_list[[rds_family]] <- c(ref_list[[rds_family]], ref_lines[[i]])
         } else {
@@ -100,7 +100,7 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
         if (y == "<none>") {
           x
         } else {
-          c(paste("###", y), x)
+          c(paste("###", y), "", x)
         }
       })
     }

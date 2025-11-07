@@ -47,8 +47,6 @@ Writes the reference pages and index as Quarto files
 }
 \seealso{
 Other Quarto file creation: 
-\code{\link{index_to_qmd}()},
-\code{\link{rd_to_qmd}()},
 \code{\link{write_reference_index}()},
 \code{\link{write_reference_pages}()}
 }

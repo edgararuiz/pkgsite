@@ -34,9 +34,13 @@ write_reference_pages(
 | template | The path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, `pkgsite` will use its default template. |
 
 
+## Value
+A set of Quarto files written to the specified path based on the number of Rd files in the package.
 
 
 
 
 
+## See Also
+Other Quarto file creation: `write_reference()`, `write_reference_index()`
 

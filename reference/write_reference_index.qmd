@@ -32,9 +32,13 @@ write_reference_index(
 | index_template | The path to a Quarto file that can be used as the template for the index Quarto file |
 
 
+## Value
+A Quarto file that links to the individual Quarto documentation files
 
 
 
 
 
+## See Also
+Other Quarto file creation: `write_reference()`, `write_reference_pages()`
 

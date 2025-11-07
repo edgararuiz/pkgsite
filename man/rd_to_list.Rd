@@ -22,4 +22,9 @@ This function is meant to be used as a intermediate object
 that could be used as an easy way to convert the information inside the 'Rd'
 into other formats or outputs.
 }
+\seealso{
+Other Conversion functions: 
+\code{\link{index_to_qmd}()},
+\code{\link{rd_to_qmd}()}
+}
 \concept{Conversion functions}

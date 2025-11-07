@@ -24,10 +24,8 @@ that links to the converted Quarto documents.
 Create a Quarto file that lists the available reference pages
 }
 \seealso{
-Other Quarto file creation: 
-\code{\link{rd_to_qmd}()},
-\code{\link{write_reference}()},
-\code{\link{write_reference_index}()},
-\code{\link{write_reference_pages}()}
+Other Conversion functions: 
+\code{\link{rd_to_list}()},
+\code{\link{rd_to_qmd}()}
 }
-\concept{Quarto file creation}
+\concept{Conversion functions}

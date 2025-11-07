@@ -24,9 +24,13 @@ index_to_qmd(project = ".", pkg = NULL, template = NULL)
 | template | The path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, `pkgsite` will use its default template. |
 
 
+## Value
+A character vector with the resulting contents creating document that links to the converted Quarto documents.
 
 
 
 
 
+## See Also
+Other Conversion functions: `rd_to_list()`, `rd_to_qmd()`
 

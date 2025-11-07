@@ -40,8 +40,6 @@ Converts the 'Rd' file into Quarto, and writes the file to a specified folder
 }
 \seealso{
 Other Quarto file creation: 
-\code{\link{index_to_qmd}()},
-\code{\link{rd_to_qmd}()},
 \code{\link{write_reference}()},
 \code{\link{write_reference_index}()}
 }

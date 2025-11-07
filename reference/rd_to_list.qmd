@@ -8,7 +8,7 @@ execute:
 ## rd_to_list
 
 ## Description
-This function is meant to be used as a intermediate object that could be used as an easy way to convert the information inside the 'Rd' into other formats or outputs
+This function is meant to be used as a intermediate object that could be used as an easy way to convert the information inside the 'Rd' into other formats or outputs.
 
 
 ## Usage
@@ -24,9 +24,13 @@ rd_to_list(rd_file, project = ".", pkg = NULL)
 | pkg | The path inside the project folder. Use only if the R package itself is in a sub-folder within the project. |
 
 
+## Value
+A list object that contains the contents of the Rd file
 
 
 
 
 
+## See Also
+Other Conversion functions: `index_to_qmd()`, `rd_to_qmd()`
 
