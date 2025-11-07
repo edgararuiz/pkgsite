@@ -58,7 +58,7 @@
     "href": "reference/rd_to_list.html#description",
     "title": "Converts a given ‘Rd’ file into a list object",
     "section": "Description",
-    "text": "Description\nThis function is meant to be used as a intermediate object that could be used as an easy way to convert the information inside the ‘Rd’ into other formats or outputs"
+    "text": "Description\nThis function is meant to be used as a intermediate object that could be used as an easy way to convert the information inside the ‘Rd’ into other formats or outputs."
   },
   {
     "objectID": "reference/rd_to_list.html#usage",
@@ -73,6 +73,20 @@
     "title": "Converts a given ‘Rd’ file into a list object",
     "section": "Arguments",
     "text": "Arguments\n\n\n\n\n\n\n\nArguments\nDescription\n\n\n\n\nrd_file\nThe name of the source Rd file\n\n\nproject\nThe path to the root folder of the project.\n\n\npkg\nThe path inside the project folder. Use only if the R package itself is in a sub-folder within the project."
+  },
+  {
+    "objectID": "reference/rd_to_list.html#value",
+    "href": "reference/rd_to_list.html#value",
+    "title": "Converts a given ‘Rd’ file into a list object",
+    "section": "Value",
+    "text": "Value\nA list object that contains the contents of the Rd file"
+  },
+  {
+    "objectID": "reference/rd_to_list.html#see-also",
+    "href": "reference/rd_to_list.html#see-also",
+    "title": "Converts a given ‘Rd’ file into a list object",
+    "section": "See Also",
+    "text": "See Also\nOther Conversion functions: index_to_qmd(), rd_to_qmd()"
   },
   {
     "objectID": "reference/index_to_qmd.html#description",
@@ -96,11 +110,25 @@
     "text": "Arguments\n\n\n\n\n\n\n\nArguments\nDescription\n\n\n\n\nproject\nThe path to the root folder of the project.\n\n\npkg\nThe path inside the project folder. Use only if the R package itself is in a sub-folder within the project.\n\n\ntemplate\nThe path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, pkgsite will use its default template."
   },
   {
+    "objectID": "reference/index_to_qmd.html#value",
+    "href": "reference/index_to_qmd.html#value",
+    "title": "Create a Quarto file that lists the available reference pages",
+    "section": "Value",
+    "text": "Value\nA character vector with the resulting contents creating document that links to the converted Quarto documents."
+  },
+  {
+    "objectID": "reference/index_to_qmd.html#see-also",
+    "href": "reference/index_to_qmd.html#see-also",
+    "title": "Create a Quarto file that lists the available reference pages",
+    "section": "See Also",
+    "text": "See Also\nOther Conversion functions: rd_to_list(), rd_to_qmd()"
+  },
+  {
     "objectID": "reference/index.html",
     "href": "reference/index.html",
     "title": "Package index",
     "section": "",
-    "text": "Quarto file creation\nwrite_reference()\n      Writes the reference pages and index as Quarto files\nwrite_reference_index()\n      Writes the index of the reference pages into a Quarto file\nwrite_reference_pages()\n      Converts the ‘Rd’ file into Quarto, and writes the file to a specified folder\n\n\nConversion functions\nindex_to_qmd()\n      Create a Quarto file that lists the available reference pages\nrd_to_qmd()\n      Converts ‘Rd’ to Quarto files\nrd_to_list()\n      Converts a given ‘Rd’ file into a list object"
+    "text": "Conversion functions\nindex_to_qmd()\n      Create a Quarto file that lists the available reference pages\nrd_to_list()\n      Converts a given ‘Rd’ file into a list object\nrd_to_qmd()\n      Converts ‘Rd’ to Quarto files\n\n\nQuarto file creation\nwrite_reference()\n      Writes the reference pages and index as Quarto files\nwrite_reference_index()\n      Writes the index of the reference pages into a Quarto file\nwrite_reference_pages()\n      Converts the ‘Rd’ file into Quarto, and writes the file to a specified folder"
   },
   {
     "objectID": "reference/write_reference_pages.html#description",
@@ -122,6 +150,20 @@
     "title": "Converts the ‘Rd’ file into Quarto, and writes the file to a specified folder",
     "section": "Arguments",
     "text": "Arguments\n\n\n\n\n\n\n\nArguments\nDescription\n\n\n\n\nproject\nThe path to the root folder of the project.\n\n\npkg\nThe path inside the project folder. Use only if the R package itself is in a sub-folder within the project.\n\n\nfolder\nThe target folder to save the new Quarto files to\n\n\nexamples\nFlag that sets the examples code chuck to be evaluated when the Quarto document is rendered\n\n\nnot_run_examples\nFlag that sets the “do not run” examples code chuck to be evaluated when the Quarto document is rendered\n\n\ntemplate\nThe path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, pkgsite will use its default template."
+  },
+  {
+    "objectID": "reference/write_reference_pages.html#value",
+    "href": "reference/write_reference_pages.html#value",
+    "title": "Converts the ‘Rd’ file into Quarto, and writes the file to a specified folder",
+    "section": "Value",
+    "text": "Value\nA set of Quarto files written to the specified path based on the number of Rd files in the package."
+  },
+  {
+    "objectID": "reference/write_reference_pages.html#see-also",
+    "href": "reference/write_reference_pages.html#see-also",
+    "title": "Converts the ‘Rd’ file into Quarto, and writes the file to a specified folder",
+    "section": "See Also",
+    "text": "See Also\nOther Quarto file creation: write_reference(), write_reference_index()"
   },
   {
     "objectID": "LICENSE.html",
@@ -187,6 +229,20 @@
     "text": "Arguments\n\n\n\n\n\n\n\nArguments\nDescription\n\n\n\n\nrd_file\nThe name of the source Rd file\n\n\nproject\nThe path to the root folder of the project.\n\n\npkg\nThe path inside the project folder. Use only if the R package itself is in a sub-folder within the project.\n\n\nexamples\nFlag that sets the examples code chuck to be evaluated when the Quarto document is rendered\n\n\nnot_run_examples\nFlag that sets the “do not run” examples code chuck to be evaluated when the Quarto document is rendered\n\n\ntemplate\nThe path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, pkgsite will use its default template."
   },
   {
+    "objectID": "reference/rd_to_qmd.html#value",
+    "href": "reference/rd_to_qmd.html#value",
+    "title": "Converts ‘Rd’ to Quarto files",
+    "section": "Value",
+    "text": "Value\nA character vector with the resulting contents of converting the Rd file format into a a Quarto file format."
+  },
+  {
+    "objectID": "reference/rd_to_qmd.html#see-also",
+    "href": "reference/rd_to_qmd.html#see-also",
+    "title": "Converts ‘Rd’ to Quarto files",
+    "section": "See Also",
+    "text": "See Also\nOther Conversion functions: index_to_qmd(), rd_to_list()"
+  },
+  {
     "objectID": "reference/write_reference_index.html#description",
     "href": "reference/write_reference_index.html#description",
     "title": "Writes the index of the reference pages into a Quarto file",
@@ -208,6 +264,20 @@
     "text": "Arguments\n\n\n\n\n\n\n\nArguments\nDescription\n\n\n\n\nproject\nThe path to the root folder of the project.\n\n\npkg\nThe path inside the project folder. Use only if the R package itself is in a sub-folder within the project.\n\n\nfolder\nThe target folder to save the new Quarto files to\n\n\nindex_file\nThe name assigned to the resulting index Quarto file\n\n\nindex_template\nThe path to a Quarto file that can be used as the template for the index Quarto file"
   },
   {
+    "objectID": "reference/write_reference_index.html#value",
+    "href": "reference/write_reference_index.html#value",
+    "title": "Writes the index of the reference pages into a Quarto file",
+    "section": "Value",
+    "text": "Value\nA Quarto file that links to the individual Quarto documentation files"
+  },
+  {
+    "objectID": "reference/write_reference_index.html#see-also",
+    "href": "reference/write_reference_index.html#see-also",
+    "title": "Writes the index of the reference pages into a Quarto file",
+    "section": "See Also",
+    "text": "See Also\nOther Quarto file creation: write_reference(), write_reference_pages()"
+  },
+  {
     "objectID": "reference/write_reference.html#description",
     "href": "reference/write_reference.html#description",
     "title": "Writes the reference pages and index as Quarto files",
@@ -227,6 +297,20 @@
     "title": "Writes the reference pages and index as Quarto files",
     "section": "Arguments",
     "text": "Arguments\n\n\n\n\n\n\n\nArguments\nDescription\n\n\n\n\nproject\nThe path to the root folder of the project.\n\n\npkg\nThe path inside the project folder. Use only if the R package itself is in a sub-folder within the project.\n\n\nfolder\nThe target folder to save the new Quarto files to\n\n\nexamples\nFlag that sets the examples code chuck to be evaluated when the Quarto document is rendered\n\n\nnot_run_examples\nFlag that sets the “do not run” examples code chuck to be evaluated when the Quarto document is rendered\n\n\ntemplate\nThe path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, pkgsite will use its default template.\n\n\nindex_file\nThe name assigned to the resulting index Quarto file\n\n\nindex_template\nThe path to a Quarto file that can be used as the template for the index Quarto file"
+  },
+  {
+    "objectID": "reference/write_reference.html#value",
+    "href": "reference/write_reference.html#value",
+    "title": "Writes the reference pages and index as Quarto files",
+    "section": "Value",
+    "text": "Value\nA set of Quarto files written to the specified path based on the number of Rd files in the package, plus an additional one that is the index."
+  },
+  {
+    "objectID": "reference/write_reference.html#see-also",
+    "href": "reference/write_reference.html#see-also",
+    "title": "Writes the reference pages and index as Quarto files",
+    "section": "See Also",
+    "text": "See Also\nOther Quarto file creation: write_reference_index(), write_reference_pages()"
   },
   {
     "objectID": "articles/github-actions.html",
