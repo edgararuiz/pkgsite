@@ -14,8 +14,12 @@ rd_to_list(rd_file, project = ".", pkg = NULL)
 \item{pkg}{The path inside the project folder. Use only if the R package
 itself is in a sub-folder within the project.}
 }
+\value{
+A list object that contains the contents of the Rd file
+}
 \description{
 This function is meant to be used as a intermediate object
 that could be used as an easy way to convert the information inside the 'Rd'
-into other formats or outputs
+into other formats or outputs.
 }
+\concept{Conversion functions}

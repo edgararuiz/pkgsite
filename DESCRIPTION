@@ -1,13 +1,12 @@
 Package: pkgsite
-Title: Convert the reference pages into Quarto files
+Title: Convert the Reference Pages into Quarto Files
 Version: 0.0.0.9004
 Authors@R: c(
   person("Edgar", "Ruiz", , "edgar@posit.co", role = c("aut", "cre")),
   person(given = "Posit Software, PBC", role = c("cph", "fnd"))
   )
-Description: The goal of `pkgsite` is to make it easier to create a package 
-  website using Quarto. It attempts to do for R what 'Quartodoc' does for Python 
-  package documentation. 
+Description: Makes it easier to create a Quarto website for your R package. 
+    It converts the Rd documents into Quarto documents individually. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

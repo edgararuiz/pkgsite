@@ -38,6 +38,18 @@ its default template.}
 \item{index_template}{The path to a Quarto file that can be used as the
 template for the index Quarto file}
 }
+\value{
+A set of Quarto files written to the specified path based on the
+number of Rd files in the package, plus an additional one that is the index.
+}
 \description{
 Writes the reference pages and index as Quarto files
 }
+\seealso{
+Other Quarto file creation: 
+\code{\link{index_to_qmd}()},
+\code{\link{rd_to_qmd}()},
+\code{\link{write_reference_index}()},
+\code{\link{write_reference_pages}()}
+}
+\concept{Quarto file creation}

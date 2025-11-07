@@ -25,6 +25,18 @@ itself is in a sub-folder within the project.}
 \item{index_template}{The path to a Quarto file that can be used as the
 template for the index Quarto file}
 }
+\value{
+A Quarto file that links to the individual Quarto documentation
+files
+}
 \description{
 Writes the index of the reference pages into a Quarto file
 }
+\seealso{
+Other Quarto file creation: 
+\code{\link{index_to_qmd}()},
+\code{\link{rd_to_qmd}()},
+\code{\link{write_reference}()},
+\code{\link{write_reference_pages}()}
+}
+\concept{Quarto file creation}

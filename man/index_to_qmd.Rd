@@ -16,6 +16,18 @@ itself is in a sub-folder within the project.}
 for all of the resulting reference files. If left NULL, \code{pkgsite} will use
 its default template.}
 }
+\value{
+A character vector with the resulting contents creating document
+that links to the converted Quarto documents.
+}
 \description{
 Create a Quarto file that lists the available reference pages
 }
+\seealso{
+Other Quarto file creation: 
+\code{\link{rd_to_qmd}()},
+\code{\link{write_reference}()},
+\code{\link{write_reference_index}()},
+\code{\link{write_reference_pages}()}
+}
+\concept{Quarto file creation}

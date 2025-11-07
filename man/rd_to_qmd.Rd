@@ -31,6 +31,18 @@ to be evaluated when the Quarto document is rendered}
 for all of the resulting reference files. If left NULL, \code{pkgsite} will use
 its default template.}
 }
+\value{
+A character vector with the resulting contents of converting the
+Rd file format into a a Quarto file format.
+}
 \description{
 Converts 'Rd' to Quarto files
 }
+\seealso{
+Other Quarto file creation: 
+\code{\link{index_to_qmd}()},
+\code{\link{write_reference}()},
+\code{\link{write_reference_index}()},
+\code{\link{write_reference_pages}()}
+}
+\concept{Quarto file creation}

@@ -54,14 +54,4 @@ pkgsite:
     index:
       file: index.qmd
       template: inst/templates/_index.qmd
-      contents:
-        - section: Quarto file creation
-          contents: 
-          - write_reference
-          - write_reference_index.qmd
-          - write_reference_pages.qmd
-        - section: Conversion functions
-          contents:
-          - index_to_qmd.qmd
-          - rd_to_qmd.qmd
-          - rd_to_list.qmd
+      

@@ -1,6 +1,9 @@
 #' Converts 'Rd' to Quarto files
 #' @param rd_file The name of the source Rd file
 #' @inheritParams write_reference
+#' @returns A character vector with the resulting contents of converting the
+#' Rd file format into a a Quarto file format.
+#' @family Quarto file creation
 #' @export
 rd_to_qmd <- function(
   rd_file,

@@ -14,6 +14,9 @@
 #' @param index_file The name assigned to the resulting index Quarto file
 #' @param index_template The path to a Quarto file that can be used as the
 #' template for the index Quarto file
+#' @returns A set of Quarto files written to the specified path based on the
+#' number of Rd files in the package, plus an additional one that is the index.
+#' @family Quarto file creation
 #'
 #' @export
 write_reference <- function(
@@ -58,6 +61,9 @@ write_reference <- function(
 
 #' Writes the index of the reference pages into a Quarto file
 #' @inheritParams write_reference
+#' @returns A Quarto file that links to the individual Quarto documentation
+#' files
+#' @family Quarto file creation
 #' @export
 write_reference_index <- function(
   project = ".",
@@ -77,6 +83,9 @@ write_reference_index <- function(
 
 #' Converts the 'Rd' file into Quarto, and writes the file to a specified folder
 #' @inheritParams write_reference
+#' @returns A set of Quarto files written to the specified path based on the
+#' number of Rd files in the package.
+#' @family Quarto file creation
 #' @export
 write_reference_pages <- function(
   project = ".",
