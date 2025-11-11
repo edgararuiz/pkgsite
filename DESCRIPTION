@@ -2,15 +2,18 @@ Package: pkgsite
 Title: Convert the Reference Pages into Quarto Files
 Version: 0.0.0.9004
 Authors@R: c(
-  person("Edgar", "Ruiz", , "edgar@posit.co", role = c("aut", "cre")),
-  person(given = "Posit Software, PBC", role = c("cph", "fnd"))
+    person("Edgar", "Ruiz", , "edgar@posit.co", role = c("aut", "cre")),
+    person("Posit Software, PBC", role = c("cph", "fnd"),
+           comment = c(ROR = "03wc8by49"))
   )
-Description: Makes it easier to create a Quarto website for your R package. 
-    It converts the Rd documents into Quarto documents individually. 
+Description: Makes it easier to create a Quarto website for your R
+    package.  It converts the Rd documents into Quarto documents
+    individually.
 License: MIT + file LICENSE
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
+URL: https://github.com/edgararuiz/pkgsite
+BugReports: https://github.com/edgararuiz/pkgsite/issues
+Depends: 
+    R (>= 4.1)
 Imports: 
     cli,
     fs,
@@ -21,5 +24,6 @@ Imports:
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://github.com/edgararuiz/pkgsite
-BugReports: https://github.com/edgararuiz/pkgsite/issues
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3

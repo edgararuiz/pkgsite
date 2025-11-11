@@ -52,7 +52,7 @@ parse_line_tag <- function(line, con) {
 
     parsed <- list_c(strsplit(start_half, end_tag))
 
-    pm <- map(parsed, ~ {
+    pm <- map(parsed, \(.x) {
       yes_title <- substr(.x, 1, 6) == "title."
       yes_notitle <- substr(.x, 1, 8) == "notitle."
       if (yes_title | yes_notitle) {
@@ -157,7 +157,10 @@ reference_convert <- function(x,
     if (is.null(out)) {
       out <- curr
       if (is.list(out)) out <- list_c(out)
-      if (length(out) > 1) out <- reduce(out, function(x, y) c(x, "", y), .init = NULL)
+      if (length(out) > 1) {
+        out <- out |> 
+          reduce(function(x, y) c(x, "", y), .init = NULL)
+      } 
     }
 
     out <- list(out)
@@ -170,7 +173,10 @@ reference_convert <- function(x,
 }
 
 reference_arguments <- function(x) {
-  lines <- map_chr(x, ~ paste0(.x[[1]], " | ", paste0(.x[[2]], collapse = "<br>")))
+  lines <- map_chr(
+    x, 
+    \(.x) paste0(.x[[1]], " | ", paste0(.x[[2]], collapse = "<br>"))
+    )
   rows <- paste0("| ", lines, " |")
   c("|Arguments|Description|", "|---|---|", rows)
 }
