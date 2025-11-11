@@ -13,9 +13,10 @@ rd_to_list <- function(rd_file, project = ".", pkg = NULL) {
   } else {
     rd_content <- tools::parse_Rd(fs::path(project, pkg, "man", rd_file))
   }
-  out <- map(rd_content, rd_tag_process)
-  out <- keep(out, \(x) !is.null(x))
-  out <- list_flatten(out)
+  out <- rd_content |>
+    map(rd_tag_process) |>
+    keep(\(x) !is.null(x)) |>
+    list_flatten()
   if (any(as.character(out["keyword"]) == "internal")) {
     out <- NULL
   }
@@ -45,11 +46,13 @@ rd_tag_process <- function(x) {
       if ("\\donttest" %in% rd_tags | "\\dontrun" %in% rd_tags) {
         run <- "code_dont_run"
       }
-      tag_text <- map(x, as.character)
-      tag_text <- reduce(tag_text, c)
-      tag_text <- list(paste0(tag_text, collapse = ""))
-      tag_text <- set_names(tag_text, run)
-      tag_text <- list(tag_text)
+      tag_text <- x |>
+        map(as.character) |>
+        reduce(c) |>
+        paste0(collapse = "") |>
+        list() |>
+        set_names(run) |>
+        list()
     } else if (tag_name == "section") {
       tag_text <- list(list(
         title = as.character(x[[1]]),
@@ -65,17 +68,20 @@ rd_tag_process <- function(x) {
 }
 
 rd_args_process <- function(x) {
-  out <- map(x, \(x) {
-    name <- rd_extract_text(x[1])
-    val <- rd_extract_text(x[2])
-    if (name != "") {
-      out <- list(argument = name, description = val)
-    } else {
-      out <- NULL
-    }
-    out
-  })
-  keep(out, \(x) !is.null(x))
+  x |>
+    map(
+      \(x) {
+        name <- rd_extract_text(x[1])
+        val <- rd_extract_text(x[2])
+        if (name != "") {
+          out <- list(argument = name, description = val)
+        } else {
+          out <- NULL
+        }
+        out
+      }
+    ) |>
+    discard(is.null)
 }
 
 rd_extract_text <- function(x, collapse = TRUE) {
@@ -103,7 +109,10 @@ rd_extract_text <- function(x, collapse = TRUE) {
 }
 
 rd_extract_text2 <- function(x, collapse = TRUE, trim = "full") {
-  rd_txt <- try(capture.output(tools::Rd2txt(list(x), fragment = TRUE)), silent = TRUE)
+  rd_txt <- try(
+    capture.output(tools::Rd2txt(list(x), fragment = TRUE)),
+    silent = TRUE
+    )
   if (inherits(rd_txt, "try-error")) {
     return(NULL)
   }
