@@ -26,53 +26,59 @@ rd_to_qmd <- function(
     return(NULL)
   }
   con <- reference_convert(parsed, examples, not_run_examples)
-  out <- template_parse(template, con)
-  out <- discard(out, is.null)
-  out <- list_flatten(out)
-  out <- list_c(out)
-  as.character(out)
+  template |>
+    template_parse(con) |>
+    discard(is.null) |>
+    list_flatten() |>
+    list_c() |>
+    as.character()
 }
 
 template_parse <- function(template, con) {
-  read_template <- readLines(template)
-  map(read_template, parse_line_tag, con)
+  template |>
+    readLines() |>
+    map(parse_line_tag, con)
 }
 
 parse_line_tag <- function(line, con) {
   start_tag <- "\\{\\{\\{\\{"
   end_tag <- "\\}\\}\\}\\}"
-
   tr <- c(
     "seealso" = "See Also",
     "author" = "Author(s)"
   )
-
   if (grepl(start_tag, line)) {
     start_half <- strsplit(line, start_tag)[[1]]
 
-    parsed <- list_c(strsplit(start_half, end_tag))
+    parsed <- start_half |>
+      strsplit(end_tag) |>
+      list_c()
 
-    pm <- map(parsed, ~ {
-      yes_title <- substr(.x, 1, 6) == "title."
-      yes_notitle <- substr(.x, 1, 8) == "notitle."
-      if (yes_title | yes_notitle) {
-        start_sub <- ifelse(yes_title, 7, 9)
-        tag <- substr(.x, start_sub, nchar(.x))
-        tag <- trimws(tag)
-        x <- con[[tag]]
-      } else {
-        x <- .x
-        tag <- NULL
-      }
-      list(
-        content = x,
-        title = yes_title,
-        no_title = yes_notitle,
-        no_lines = length(x),
-        tag = tag
-      )
-    })
-    pm <- transpose(pm)
+    pm <- parsed |>
+      map(
+        \(.x) {
+          yes_title <- substr(.x, 1, 6) == "title."
+          yes_notitle <- substr(.x, 1, 8) == "notitle."
+          if (yes_title | yes_notitle) {
+            start_sub <- ifelse(yes_title, 7, 9)
+            tag <- .x |>
+              substr(start_sub, nchar(.x)) |>
+              trimws()
+            x <- con[[tag]]
+          } else {
+            x <- .x
+            tag <- NULL
+          }
+          list(
+            content = x,
+            title = yes_title,
+            no_title = yes_notitle,
+            no_lines = length(x),
+            tag = tag
+          )
+        }
+      ) |>
+      transpose()
 
     if (all(map_lgl(pm$content, is.null))) {
       tag_content <- NULL
@@ -95,13 +101,10 @@ parse_line_tag <- function(line, con) {
             toupper(substr(tag_name, 1, 1)),
             substr(tag_name, 2, nchar(tag_name))
           )
-
           tag_match <- names(tr) == tag_name
-
           if (any(tag_match)) {
             tag_name_label <- tr[tag_match]
           }
-
           if (!is.null(tag_content)) {
             if (tag_name_label != "Section") {
               tag_content <- c(paste0("## ", tag_name_label), tag_content)
@@ -156,8 +159,13 @@ reference_convert <- function(x,
 
     if (is.null(out)) {
       out <- curr
-      if (is.list(out)) out <- list_c(out)
-      if (length(out) > 1) out <- reduce(out, function(x, y) c(x, "", y), .init = NULL)
+      if (is.list(out)) {
+        out <- list_c(out)
+      }
+      if (length(out) > 1) {
+        out <- out |>
+          reduce(function(x, y) c(x, "", y), .init = NULL)
+      }
     }
 
     out <- list(out)
@@ -170,7 +178,10 @@ reference_convert <- function(x,
 }
 
 reference_arguments <- function(x) {
-  lines <- map_chr(x, ~ paste0(.x[[1]], " | ", paste0(.x[[2]], collapse = "<br>")))
+  lines <- map_chr(
+    x,
+    \(.x) paste0(.x[[1]], " | ", paste0(.x[[2]], collapse = "<br>"))
+  )
   rows <- paste0("| ", lines, " |")
   c("|Arguments|Description|", "|---|---|", rows)
 }
