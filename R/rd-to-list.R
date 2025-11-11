@@ -112,7 +112,7 @@ rd_extract_text2 <- function(x, collapse = TRUE, trim = "full") {
   rd_txt <- try(
     capture.output(tools::Rd2txt(list(x), fragment = TRUE)),
     silent = TRUE
-    )
+  )
   if (inherits(rd_txt, "try-error")) {
     return(NULL)
   }

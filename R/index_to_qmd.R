@@ -10,37 +10,35 @@ index_to_qmd <- function(
   template = NULL
 ) {
   pkg_site <- read_quarto(project)
-  index <- NULL
-  yaml_template <- NULL
   index <- pkg_site[["reference"]][["index"]]
-  yaml_template <- index$template
   pkg_template <- system.file("templates/_index.qmd", package = "pkgsite")
-  template <- template %||% yaml_template %||% pkg_template
+  template <- template %||% index$template %||% pkg_template
   out <- reference_index_convert(project, pkg, index)
-  out <- template_parse(template, out)
-  reduce(out, c)
+  template |>
+    template_parse(out) |>
+    reduce(c)
 }
 
 reference_index_convert <- function(project, pkg = NULL, index = NULL) {
   # This section creates reads the Rd files and extracts their name & description
   pkg <- pkg %||% ""
   rd_names <- path_file(dir_ls(path(project, pkg, "man"), glob = "*.Rd"))
-  rd_list <- map(rd_names, rd_to_list, project, pkg)
   qmd_names <- path(path_ext_remove(rd_names), ext = "qmd")
-  rd_list <- set_names(rd_list, qmd_names)
-  rd_list <- map(
-    rd_list,
-    function(x) {
-      seealso <- x[["seealso"]]
-      if (!is.null(seealso)) {
-        fn_family <- unlist(strsplit(seealso, "\\:"))
-        x$family <- fn_family[[1]]
-        x
-      } else {
-        x
+  rd_list <- rd_names |>
+    map(rd_to_list, project, pkg) |>
+    set_names(qmd_names) |>
+    map(
+      \(x) {
+        seealso <- x[["seealso"]]
+        if (!is.null(seealso)) {
+          fn_family <- unlist(strsplit(seealso, "\\:"))
+          x$family <- fn_family[[1]]
+          x
+        } else {
+          x
+        }
       }
-    }
-  )
+    )
   # For Rd's that return NULL because they are internal
   null_rds <- map_lgl(rd_list, is.null)
   rd_list <- rd_list[!null_rds]
@@ -76,9 +74,9 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
         )
         c(list(list(title = paste("###", x[["section"]]), "")), refs)
       }
-    )
-    ref_lines <- list_flatten(ref_lines)
-    ref_lines <- reduce(ref_lines, c)
+    ) |>
+      list_flatten() |>
+      reduce(c)
   } else {
     families <- as.character(map(rd_list, function(x) x[["concept"]]))
     families <- families[families != "NULL"]
@@ -96,13 +94,14 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
         }
       }
       ref_list <- ref_list[order(names(ref_list))]
-      ref_lines <- imap(ref_list, \(x, y) {
-        if (y == "<none>") {
-          x
-        } else {
-          c(paste("###", y), "", x)
-        }
-      })
+      ref_lines <- ref_list |>
+        imap(\(x, y) {
+          if (y == "<none>") {
+            x
+          } else {
+            c(paste("###", y), "", x)
+          }
+        })
     }
   }
   ref_lines <- reduce(ref_lines, c)
