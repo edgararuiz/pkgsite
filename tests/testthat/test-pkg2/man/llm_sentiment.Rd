@@ -74,3 +74,8 @@ llm_vec_sentiment(c("I am happy", "I am sad"))
 llm_vec_sentiment(c("I am happy", "I am sad"), preview = TRUE)
 }
 }
+\seealso{
+Other LLM: 
+\code{\link{llm_classify}()}
+}
+\concept{LLM}

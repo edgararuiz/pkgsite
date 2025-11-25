@@ -78,3 +78,8 @@ llm_vec_classify(
 )
 }
 }
+\seealso{
+Other LLM: 
+\code{\link{llm_sentiment}()}
+}
+\concept{LLM}
