@@ -3,10 +3,10 @@
     Code
       dir(temp_reference)
     Output
-       [1] "index.qmd"         "llm_classify.qmd"  "llm_custom.qmd"   
-       [4] "llm_extract.qmd"   "llm_sentiment.qmd" "llm_summarize.qmd"
-       [7] "llm_translate.qmd" "llm_use.qmd"       "llm_verify.qmd"   
-      [10] "reviews.qmd"      
+       [1] "index.qmd"            "llm_classify.qmd"     "llm_custom.qmd"      
+       [4] "llm_extract.qmd"      "llm_sentiment.qmd"    "llm_summarize.qmd"   
+       [7] "llm_translate.qmd"    "llm_use.qmd"          "llm_verify.qmd"      
+      [10] "m_backend_submit.qmd" "reviews.qmd"         
 
 ---
 
@@ -58,11 +58,16 @@
       [43] ""                                                                                       
       [44] "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Verify if a statement about the text is true or not"
       [45] ""                                                                                       
-      [46] "[reviews()](reviews.qmd)"                                                               
+      [46] "[m_backend_prompt()](m_backend_submit.qmd) [m_backend_submit()](m_backend_submit.qmd)"  
       [47] ""                                                                                       
       [48] ""                                                                                       
-      [49] "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mini reviews data set"                              
+      [49] "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Functions to integrate different back-ends"         
       [50] ""                                                                                       
+      [51] "[reviews()](reviews.qmd)"                                                               
+      [52] ""                                                                                       
+      [53] ""                                                                                       
+      [54] "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mini reviews data set"                              
+      [55] ""                                                                                       
 
 ---
 
