@@ -22,7 +22,7 @@ website:
       - sidebar:articles
       - href: reference/index.qmd
         text: Reference  
-      - href: news.qmd
+      - href: changelog.qmd
         text: News
     right:
       - icon: github
