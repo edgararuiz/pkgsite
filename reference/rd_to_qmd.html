@@ -318,6 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#arguments" id="toc-arguments" class="nav-link" data-scroll-target="#arguments">Arguments</a></li>
   <li><a href="#value" id="toc-value" class="nav-link" data-scroll-target="#value">Value</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   </ul></nav>
 </div>
 <!-- main -->
@@ -392,6 +393,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A character vector with the resulting contents of converting the Rd file format into a Quarto file format.</p>
 </section><section id="see-also" class="level2"><h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <p>Other Conversion functions: <code><a href="https://edgararuiz.github.io/pkgsite/reference/index_to_qmd.html">index_to_qmd()</a></code>, <code><a href="https://edgararuiz.github.io/pkgsite/reference/rd_to_list.html">rd_to_list()</a></code></p>
+</section><section id="examples" class="level2"><h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold">
+<div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/edgararuiz/pkgsite">pkgsite</a></span><span class="op">)</span></span>
+<span><span class="va">example_pkg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"example"</span>, package <span class="op">=</span> <span class="st">"pkgsite"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://edgararuiz.github.io/pkgsite/reference/rd_to_qmd.html">rd_to_qmd</a></span><span class="op">(</span><span class="st">"rd_to_qmd.Rd"</span>, project <span class="op">=</span> <span class="va">example_pkg</span><span class="op">)</span></span></code></pre></div>
+<button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button>
+</div>
+<pre><code>#&gt;  [1] "---"                                                                                                                                                                       
+#&gt;  [2] "title: \"Converts 'Rd' to Quarto files\""                                                                                                                                  
+#&gt;  [3] "execute:"                                                                                                                                                                  
+#&gt;  [4] "  eval: true"                                                                                                                                                              
+#&gt;  [5] "  freeze: true"                                                                                                                                                            
+#&gt;  [6] "---"                                                                                                                                                                       
+#&gt;  [7] ""                                                                                                                                                                          
+#&gt;  [8] "## rd_to_qmd"                                                                                                                                                              
+#&gt;  [9] ""                                                                                                                                                                          
+#&gt; [10] "## Description"                                                                                                                                                            
+#&gt; [11] "Converts 'Rd' to Quarto files"                                                                                                                                             
+#&gt; [12] ""                                                                                                                                                                          
+#&gt; [13] ""                                                                                                                                                                          
+#&gt; [14] "## Usage"                                                                                                                                                                  
+#&gt; [15] "```r"                                                                                                                                                                      
+#&gt; [16] "rd_to_qmd("                                                                                                                                                                
+#&gt; [17] "  rd_file,"                                                                                                                                                                
+#&gt; [18] "  project = \".\","                                                                                                                                                        
+#&gt; [19] "  pkg = NULL,"                                                                                                                                                             
+#&gt; [20] "  examples = TRUE,"                                                                                                                                                        
+#&gt; [21] "  not_run_examples = FALSE,"                                                                                                                                               
+#&gt; [22] "  template = NULL"                                                                                                                                                         
+#&gt; [23] ")"                                                                                                                                                                         
+#&gt; [24] "```"                                                                                                                                                                       
+#&gt; [25] ""                                                                                                                                                                          
+#&gt; [26] "## Arguments"                                                                                                                                                              
+#&gt; [27] "|Arguments|Description|"                                                                                                                                                   
+#&gt; [28] "|---|---|"                                                                                                                                                                 
+#&gt; [29] "| rd_file | The name of the source Rd file |"                                                                                                                              
+#&gt; [30] "| project | The path to the root folder of the project. |"                                                                                                                 
+#&gt; [31] "| pkg | The path inside the project folder. Use only if the R package itself is in a sub-folder within the project. |"                                                     
+#&gt; [32] "| examples | Flag that sets the examples code chunk to be evaluated when the Quarto document is rendered |"                                                                
+#&gt; [33] "| not_run_examples | Flag that sets the \"do not run\" examples code chunk to be evaluated when the Quarto document is rendered |"                                         
+#&gt; [34] "| template | The path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, `pkgsite` will use its default template. |"
+#&gt; [35] ""                                                                                                                                                                          
+#&gt; [36] ""                                                                                                                                                                          
+#&gt; [37] "## Value"                                                                                                                                                                  
+#&gt; [38] "A character vector with the resulting contents of converting the Rd file format into a Quarto file format."                                                                
+#&gt; [39] ""                                                                                                                                                                          
+#&gt; [40] ""                                                                                                                                                                          
+#&gt; [41] ""                                                                                                                                                                          
+#&gt; [42] ""                                                                                                                                                                          
+#&gt; [43] ""                                                                                                                                                                          
+#&gt; [44] "## See Also"                                                                                                                                                               
+#&gt; [45] "Other Conversion functions: `index_to_qmd()`, `rd_to_list()`"                                                                                                              
+#&gt; [46] ""                                                                                                                                                                          
+#&gt; [47] "## Examples"                                                                                                                                                               
+#&gt; [48] "```r"                                                                                                                                                                      
+#&gt; [49] "\n\nlibrary(pkgsite)\nrd_to_qmd(\"rd_to_qmd.Rd\", project = \".\")\n\n"                                                                                                    
+#&gt; [50] "```"</code></pre>
+</div>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

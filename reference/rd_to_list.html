@@ -318,6 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#arguments" id="toc-arguments" class="nav-link" data-scroll-target="#arguments">Arguments</a></li>
   <li><a href="#value" id="toc-value" class="nav-link" data-scroll-target="#value">Value</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   </ul></nav>
 </div>
 <!-- main -->
@@ -373,6 +374,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A list object that contains the contents of the Rd file</p>
 </section><section id="see-also" class="level2"><h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <p>Other Conversion functions: <code><a href="https://edgararuiz.github.io/pkgsite/reference/index_to_qmd.html">index_to_qmd()</a></code>, <code><a href="https://edgararuiz.github.io/pkgsite/reference/rd_to_qmd.html">rd_to_qmd()</a></code></p>
+</section><section id="examples" class="level2"><h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold">
+<div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/edgararuiz/pkgsite">pkgsite</a></span><span class="op">)</span></span>
+<span><span class="va">example_pkg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"example"</span>, package <span class="op">=</span> <span class="st">"pkgsite"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://edgararuiz.github.io/pkgsite/reference/rd_to_list.html">rd_to_list</a></span><span class="op">(</span><span class="st">"rd_to_list.Rd"</span>, project <span class="op">=</span> <span class="va">example_pkg</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $source</span></span>
+<span><span class="co">#&gt; [1] "R/rd-to-list.R"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $name</span></span>
+<span><span class="co">#&gt; [1] "rd_to_list"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $alias</span></span>
+<span><span class="co">#&gt; [1] "rd_to_list"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $title</span></span>
+<span><span class="co">#&gt; [1] "Converts a given 'Rd' file into a list object"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $usage</span></span>
+<span><span class="co">#&gt; [1] "rd_to_list(rd_file, project = \".\", pkg = NULL)"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $arguments</span></span>
+<span><span class="co">#&gt; $arguments[[1]]</span></span>
+<span><span class="co">#&gt; $arguments[[1]]$argument</span></span>
+<span><span class="co">#&gt; [1] "rd_file"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $arguments[[1]]$description</span></span>
+<span><span class="co">#&gt; [1] "The name of the source Rd file"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $arguments[[2]]</span></span>
+<span><span class="co">#&gt; $arguments[[2]]$argument</span></span>
+<span><span class="co">#&gt; [1] "project"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $arguments[[2]]$description</span></span>
+<span><span class="co">#&gt; [1] "The path to the root folder of the project."</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $arguments[[3]]</span></span>
+<span><span class="co">#&gt; $arguments[[3]]$argument</span></span>
+<span><span class="co">#&gt; [1] "pkg"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $arguments[[3]]$description</span></span>
+<span><span class="co">#&gt; [1] "The path inside the project folder. Use only if the R package itself is in a sub-folder within the project."</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $value</span></span>
+<span><span class="co">#&gt; [1] "A list object that contains the contents of the Rd file"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $description</span></span>
+<span><span class="co">#&gt; [1] "This function is meant to be used as an intermediate object that could be used as an easy way to convert the information inside the 'Rd' into other formats or outputs."</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $examples</span></span>
+<span><span class="co">#&gt; $examples$code_dont_run</span></span>
+<span><span class="co">#&gt; [1] "\n\nlibrary(pkgsite)\nrd_to_list(\"rd_to_list.Rd\", project = \".\")\n\n"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $seealso</span></span>
+<span><span class="co">#&gt; [1] "Other Conversion functions: `index_to_qmd()`, `rd_to_qmd()`"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $concept</span></span>
+<span><span class="co">#&gt; [1] "Conversion functions"</span></span></code></pre></div>
+<button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button>
+</div>
+</div>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

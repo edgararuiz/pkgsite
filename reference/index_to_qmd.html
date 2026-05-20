@@ -318,6 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#arguments" id="toc-arguments" class="nav-link" data-scroll-target="#arguments">Arguments</a></li>
   <li><a href="#value" id="toc-value" class="nav-link" data-scroll-target="#value">Value</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   </ul></nav>
 </div>
 <!-- main -->
@@ -373,6 +374,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A character vector with the contents of a document that links to the converted Quarto documents.</p>
 </section><section id="see-also" class="level2"><h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <p>Other Conversion functions: <code><a href="https://edgararuiz.github.io/pkgsite/reference/rd_to_list.html">rd_to_list()</a></code>, <code><a href="https://edgararuiz.github.io/pkgsite/reference/rd_to_qmd.html">rd_to_qmd()</a></code></p>
+</section><section id="examples" class="level2"><h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold">
+<div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/edgararuiz/pkgsite">pkgsite</a></span><span class="op">)</span></span>
+<span><span class="va">example_pkg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"example"</span>, package <span class="op">=</span> <span class="st">"pkgsite"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://edgararuiz.github.io/pkgsite/reference/index_to_qmd.html">index_to_qmd</a></span><span class="op">(</span>project <span class="op">=</span> <span class="va">example_pkg</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] "---"                                                                                              </span></span>
+<span><span class="co">#&gt;  [2] "title: Package index"                                                                             </span></span>
+<span><span class="co">#&gt;  [3] "toc: false"                                                                                       </span></span>
+<span><span class="co">#&gt;  [4] "---"                                                                                              </span></span>
+<span><span class="co">#&gt;  [5] ""                                                                                                 </span></span>
+<span><span class="co">#&gt;  [6] "### Conversion functions"                                                                         </span></span>
+<span><span class="co">#&gt;  [7] ""                                                                                                 </span></span>
+<span><span class="co">#&gt;  [8] "[index_to_qmd()](index_to_qmd.qmd)"                                                               </span></span>
+<span><span class="co">#&gt;  [9] ""                                                                                                 </span></span>
+<span><span class="co">#&gt; [10] ""                                                                                                 </span></span>
+<span><span class="co">#&gt; [11] "&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Create a Quarto file that lists the available reference pages"</span></span>
+<span><span class="co">#&gt; [12] ""                                                                                                 </span></span>
+<span><span class="co">#&gt; [13] "[rd_to_list()](rd_to_list.qmd)"                                                                   </span></span>
+<span><span class="co">#&gt; [14] ""                                                                                                 </span></span>
+<span><span class="co">#&gt; [15] ""                                                                                                 </span></span>
+<span><span class="co">#&gt; [16] "&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Converts a given 'Rd' file into a list object"                </span></span>
+<span><span class="co">#&gt; [17] ""                                                                                                 </span></span>
+<span><span class="co">#&gt; [18] "[rd_to_qmd()](rd_to_qmd.qmd)"                                                                     </span></span>
+<span><span class="co">#&gt; [19] ""                                                                                                 </span></span>
+<span><span class="co">#&gt; [20] ""                                                                                                 </span></span>
+<span><span class="co">#&gt; [21] "&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Converts 'Rd' to Quarto files"                                </span></span>
+<span><span class="co">#&gt; [22] ""</span></span></code></pre></div>
+<button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button>
+</div>
+</div>
 
 
 </section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
