@@ -32,5 +32,5 @@ A list object that contains the contents of the Rd file
 
 
 ## See Also
-Other Conversion functions: 'index_to_qmd()', 'rd_to_qmd()'
+Other Conversion functions: `index_to_qmd()`, `rd_to_qmd()`
 
