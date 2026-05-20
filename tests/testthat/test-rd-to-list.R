@@ -17,7 +17,7 @@ test_that("Source reference is present", {
 
 test_that("Source reference is present", {
   rd <- rd_to_list("llm_use.Rd", test_path("test-pkg"))
-  expect_true(any(map_chr(rd$arguments, \(x) x$argument) == "..."))
+  expect_in("...", map_chr(rd$arguments, \(x) x$argument))
 })
 
 test_that("Extract returns NULL on error", {

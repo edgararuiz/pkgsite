@@ -56,7 +56,7 @@ parse_line_tag <- function(line, con) {
 
     pm <- parsed |>
       map(
-        \(.x) {
+        function(.x) {
           yes_title <- substr(.x, 1, 6) == "title."
           yes_notitle <- substr(.x, 1, 8) == "notitle."
           if (yes_title | yes_notitle) {
@@ -164,7 +164,7 @@ reference_convert <- function(x, examples = TRUE, not_run_examples = FALSE) {
       }
       if (length(out) > 1) {
         out <- out |>
-          reduce(function(x, y) c(x, "", y), .init = NULL)
+          reduce(\(x, y) c(x, "", y), .init = NULL)
       }
     }
 

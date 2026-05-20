@@ -84,7 +84,7 @@ rd_tag_process <- function(x) {
 rd_args_process <- function(x) {
   x |>
     map(
-      \(x) {
+      function(x) {
         name <- rd_extract_text(x[1])
         val <- rd_extract_text(x[2])
         if (name != "") {

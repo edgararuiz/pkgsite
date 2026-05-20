@@ -105,7 +105,7 @@ write_reference_pages <- function(
   }
   walk(
     path_file(dir_ls(man_folder, glob = "*.Rd")),
-    \(x) {
+    function(x) {
       ref <- paste0(folder, "/", path_ext_remove(x), ".qmd")
       qmd <- rd_to_qmd(x, project, pkg, examples, not_run_examples, template)
       if (is.null(qmd)) {
