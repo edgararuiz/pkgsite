@@ -11,3 +11,4 @@
 ^\.github$
 ^.*articles$
 ^codecov\.yml$
+^\.claude$
