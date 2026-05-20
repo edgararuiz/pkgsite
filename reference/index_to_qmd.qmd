@@ -34,3 +34,11 @@ A character vector with the contents of a document that links to the converted Q
 ## See Also
 Other Conversion functions: `rd_to_list()`, `rd_to_qmd()`
 
+## Examples
+```{r}
+
+library(pkgsite)
+example_pkg <- system.file("example", package = "pkgsite")
+index_to_qmd(project = example_pkg)
+
+```

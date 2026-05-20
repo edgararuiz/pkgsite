@@ -24,9 +24,10 @@ the converted Quarto documents.
 Create a Quarto file that lists the available reference pages
 }
 \examples{
+\dontrun{
 library(pkgsite)
-example_pkg <- system.file("example", package = "pkgsite")
-index_to_qmd(project = example_pkg)
+index_to_qmd(project = ".")
+}
 }
 \seealso{
 Other Conversion functions:

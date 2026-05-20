@@ -32,6 +32,13 @@ files
 \description{
 Writes the index of the reference pages into a Quarto file
 }
+\examples{
+\dontrun{
+library(pkgsite)
+example_pkg <- system.file("example", package = "pkgsite")
+write_reference_index(project = example_pkg, folder = tempdir())
+}
+}
 \seealso{
 Other Quarto file creation:
 \code{\link[=write_reference]{write_reference()}},

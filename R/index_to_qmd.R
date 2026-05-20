@@ -3,6 +3,10 @@
 #' @returns A character vector with the contents of a document that links to
 #' the converted Quarto documents.
 #' @family Conversion functions
+#' @examples
+#' library(pkgsite)
+#' example_pkg <- system.file("example", package = "pkgsite")
+#' index_to_qmd(project = example_pkg)
 #' @export
 index_to_qmd <- function(
   project = ".",

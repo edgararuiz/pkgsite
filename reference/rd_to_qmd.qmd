@@ -44,3 +44,11 @@ A character vector with the resulting contents of converting the Rd file format 
 ## See Also
 Other Conversion functions: `index_to_qmd()`, `rd_to_list()`
 
+## Examples
+```{r}
+
+library(pkgsite)
+example_pkg <- system.file("example", package = "pkgsite")
+rd_to_qmd("rd_to_qmd.Rd", project = example_pkg)
+
+```

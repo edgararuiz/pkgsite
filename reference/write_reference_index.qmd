@@ -42,3 +42,13 @@ A Quarto file that links to the individual Quarto documentation files
 ## See Also
 Other Quarto file creation: `write_reference()`, `write_reference_pages()`
 
+## Examples
+```{r}
+
+
+library(pkgsite)
+example_pkg <- system.file("example", package = "pkgsite")
+write_reference_index(project = example_pkg, folder = tempdir())
+
+
+```

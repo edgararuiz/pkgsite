@@ -17,7 +17,12 @@
 #' @returns A set of Quarto files written to the specified path based on the
 #' number of Rd files in the package, plus an additional one that is the index.
 #' @family Quarto file creation
-#'
+#' @examples
+#' \dontrun{
+#' library(pkgsite)
+#' example_pkg <- system.file("example", package = "pkgsite")
+#' write_reference(project = example_pkg, folder = tempdir())
+#' }
 #' @export
 write_reference <- function(
   project = ".",
@@ -64,6 +69,12 @@ write_reference <- function(
 #' @returns A Quarto file that links to the individual Quarto documentation
 #' files
 #' @family Quarto file creation
+#' @examples
+#' \dontrun{
+#' library(pkgsite)
+#' example_pkg <- system.file("example", package = "pkgsite")
+#' write_reference_index(project = example_pkg, folder = tempdir())
+#' }
 #' @export
 write_reference_index <- function(
   project = ".",
@@ -86,6 +97,12 @@ write_reference_index <- function(
 #' @returns A set of Quarto files written to the specified path based on the
 #' number of Rd files in the package.
 #' @family Quarto file creation
+#' @examples
+#' \dontrun{
+#' library(pkgsite)
+#' example_pkg <- system.file("example", package = "pkgsite")
+#' write_reference_pages(project = example_pkg, folder = tempdir())
+#' }
 #' @export
 write_reference_pages <- function(
   project = ".",

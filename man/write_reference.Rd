@@ -45,6 +45,13 @@ number of Rd files in the package, plus an additional one that is the index.
 \description{
 Writes the reference pages and index as Quarto files
 }
+\examples{
+\dontrun{
+library(pkgsite)
+example_pkg <- system.file("example", package = "pkgsite")
+write_reference(project = example_pkg, folder = tempdir())
+}
+}
 \seealso{
 Other Quarto file creation:
 \code{\link[=write_reference_index]{write_reference_index()}},

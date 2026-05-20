@@ -23,9 +23,10 @@ that could be used as an easy way to convert the information inside the 'Rd'
 into other formats or outputs.
 }
 \examples{
+\dontrun{
 library(pkgsite)
-example_pkg <- system.file("example", package = "pkgsite")
-rd_to_list("rd_to_list.Rd", project = example_pkg)
+rd_to_list("rd_to_list.Rd", project = ".")
+}
 }
 \seealso{
 Other Conversion functions:

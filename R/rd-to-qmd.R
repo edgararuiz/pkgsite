@@ -4,6 +4,10 @@
 #' @returns A character vector with the resulting contents of converting the
 #' Rd file format into a Quarto file format.
 #' @family Conversion functions
+#' @examples
+#' library(pkgsite)
+#' example_pkg <- system.file("example", package = "pkgsite")
+#' rd_to_qmd("rd_to_qmd.Rd", project = example_pkg)
 #' @export
 rd_to_qmd <- function(
   rd_file,

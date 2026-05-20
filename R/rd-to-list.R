@@ -5,6 +5,10 @@
 #' @inheritParams rd_to_qmd
 #' @returns A list object that contains the contents of the Rd file
 #' @family Conversion functions
+#' @examples
+#' library(pkgsite)
+#' example_pkg <- system.file("example", package = "pkgsite")
+#' rd_to_list("rd_to_list.Rd", project = example_pkg)
 #' @export
 rd_to_list <- function(rd_file, project = ".", pkg = NULL) {
   rd_to_list_internal(

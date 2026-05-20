@@ -38,6 +38,11 @@ Rd file format into a Quarto file format.
 \description{
 Converts 'Rd' to Quarto files
 }
+\examples{
+library(pkgsite)
+example_pkg <- system.file("example", package = "pkgsite")
+rd_to_qmd("rd_to_qmd.Rd", project = example_pkg)
+}
 \seealso{
 Other Conversion functions:
 \code{\link[=index_to_qmd]{index_to_qmd()}},

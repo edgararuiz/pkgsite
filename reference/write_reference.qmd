@@ -48,3 +48,13 @@ A set of Quarto files written to the specified path based on the number of Rd fi
 ## See Also
 Other Quarto file creation: `write_reference_index()`, `write_reference_pages()`
 
+## Examples
+```{r}
+
+
+library(pkgsite)
+example_pkg <- system.file("example", package = "pkgsite")
+write_reference(project = example_pkg, folder = tempdir())
+
+
+```
