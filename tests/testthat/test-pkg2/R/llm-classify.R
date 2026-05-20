@@ -54,20 +54,24 @@
 #' )
 #' }
 #' @export
-llm_classify <- function(.data,
-                         col,
-                         labels,
-                         pred_name = ".classify",
-                         additional_prompt = "") {
+llm_classify <- function(
+  .data,
+  col,
+  labels,
+  pred_name = ".classify",
+  additional_prompt = ""
+) {
   UseMethod("llm_classify")
 }
 
 #' @export
-llm_classify.data.frame <- function(.data,
-                                    col,
-                                    labels,
-                                    pred_name = ".classify",
-                                    additional_prompt = "") {
+llm_classify.data.frame <- function(
+  .data,
+  col,
+  labels,
+  pred_name = ".classify",
+  additional_prompt = ""
+) {
   mutate(
     .data = .data,
     !!pred_name := llm_vec_classify(
@@ -79,11 +83,13 @@ llm_classify.data.frame <- function(.data,
 }
 
 #' @export
-`llm_classify.tbl_Spark SQL` <- function(.data,
-                                         col,
-                                         labels,
-                                         pred_name = ".classify",
-                                         additional_prompt = "") {
+`llm_classify.tbl_Spark SQL` <- function(
+  .data,
+  col,
+  labels,
+  pred_name = ".classify",
+  additional_prompt = ""
+) {
   prep_labels <- paste0("'", labels, "'", collapse = ", ")
   mutate(
     .data = .data,
@@ -95,10 +101,12 @@ globalVariables(c("ai_classify", "array"))
 
 #' @rdname llm_classify
 #' @export
-llm_vec_classify <- function(x,
-                             labels,
-                             additional_prompt = "",
-                             preview = FALSE) {
+llm_vec_classify <- function(
+  x,
+  labels,
+  additional_prompt = "",
+  preview = FALSE
+) {
   m_vec_prompt(
     x = x,
     prompt_label = "classify",

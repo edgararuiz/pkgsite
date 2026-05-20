@@ -2,7 +2,7 @@
 #' @param rd_file The name of the source Rd file
 #' @inheritParams write_reference
 #' @returns A character vector with the resulting contents of converting the
-#' Rd file format into a a Quarto file format.
+#' Rd file format into a Quarto file format.
 #' @family Conversion functions
 #' @export
 rd_to_qmd <- function(
@@ -56,7 +56,7 @@ parse_line_tag <- function(line, con) {
 
     pm <- parsed |>
       map(
-        \(.x) {
+        function(.x) {
           yes_title <- substr(.x, 1, 6) == "title."
           yes_notitle <- substr(.x, 1, 8) == "notitle."
           if (yes_title | yes_notitle) {
@@ -119,9 +119,7 @@ parse_line_tag <- function(line, con) {
   }
 }
 
-reference_convert <- function(x,
-                              examples = TRUE,
-                              not_run_examples = FALSE) {
+reference_convert <- function(x, examples = TRUE, not_run_examples = FALSE) {
   res <- list()
   for (i in seq_along(x)) {
     curr <- x[[i]]
@@ -151,7 +149,9 @@ reference_convert <- function(x,
       out <- c("```r", curr, "```")
     }
 
-    if (curr_name == "arguments") out <- reference_arguments(curr)
+    if (curr_name == "arguments") {
+      out <- reference_arguments(curr)
+    }
 
     if (curr_name == "section") {
       out <- c(out, paste("##", curr$title), curr$contents)
@@ -164,7 +164,7 @@ reference_convert <- function(x,
       }
       if (length(out) > 1) {
         out <- out |>
-          reduce(function(x, y) c(x, "", y), .init = NULL)
+          reduce(\(x, y) c(x, "", y), .init = NULL)
       }
     }
 

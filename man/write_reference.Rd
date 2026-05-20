@@ -23,10 +23,10 @@ itself is in a sub-folder within the project.}
 
 \item{folder}{The target folder to save the new Quarto files to}
 
-\item{examples}{Flag that sets the examples code chuck to be evaluated when
+\item{examples}{Flag that sets the examples code chunk to be evaluated when
 the Quarto document is rendered}
 
-\item{not_run_examples}{Flag that sets the "do not run" examples code chuck
+\item{not_run_examples}{Flag that sets the "do not run" examples code chunk
 to be evaluated when the Quarto document is rendered}
 
 \item{template}{The path to a Quarto file that can be used as the template
@@ -46,8 +46,8 @@ number of Rd files in the package, plus an additional one that is the index.
 Writes the reference pages and index as Quarto files
 }
 \seealso{
-Other Quarto file creation: 
-\code{\link{write_reference_index}()},
-\code{\link{write_reference_pages}()}
+Other Quarto file creation:
+\code{\link[=write_reference_index]{write_reference_index()}},
+\code{\link[=write_reference_pages]{write_reference_pages()}}
 }
 \concept{Quarto file creation}

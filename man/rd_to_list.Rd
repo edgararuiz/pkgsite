@@ -18,13 +18,13 @@ itself is in a sub-folder within the project.}
 A list object that contains the contents of the Rd file
 }
 \description{
-This function is meant to be used as a intermediate object
+This function is meant to be used as an intermediate object
 that could be used as an easy way to convert the information inside the 'Rd'
 into other formats or outputs.
 }
 \seealso{
-Other Conversion functions: 
-\code{\link{index_to_qmd}()},
-\code{\link{rd_to_qmd}()}
+Other Conversion functions:
+\code{\link[=index_to_qmd]{index_to_qmd()}},
+\code{\link[=rd_to_qmd]{rd_to_qmd()}}
 }
 \concept{Conversion functions}

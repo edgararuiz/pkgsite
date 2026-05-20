@@ -29,13 +29,13 @@ rd_to_qmd(
 | rd_file | The name of the source Rd file |
 | project | The path to the root folder of the project. |
 | pkg | The path inside the project folder. Use only if the R package itself is in a sub-folder within the project. |
-| examples | Flag that sets the examples code chuck to be evaluated when the Quarto document is rendered |
-| not_run_examples | Flag that sets the "do not run" examples code chuck to be evaluated when the Quarto document is rendered |
+| examples | Flag that sets the examples code chunk to be evaluated when the Quarto document is rendered |
+| not_run_examples | Flag that sets the "do not run" examples code chunk to be evaluated when the Quarto document is rendered |
 | template | The path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, `pkgsite` will use its default template. |
 
 
 ## Value
-A character vector with the resulting contents of converting the Rd file format into a a Quarto file format.
+A character vector with the resulting contents of converting the Rd file format into a Quarto file format.
 
 
 

@@ -1,7 +1,7 @@
 #' Create a Quarto file that lists the available reference pages
 #' @inheritParams rd_to_qmd
-#' @returns A character vector with the resulting contents creating document
-#' that links to the converted Quarto documents.
+#' @returns A character vector with the contents of a document that links to
+#' the converted Quarto documents.
 #' @family Conversion functions
 #' @export
 index_to_qmd <- function(
@@ -28,7 +28,7 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
     map(rd_to_list_internal, project, pkg) |>
     set_names(qmd_names) |>
     map(
-      \(x) {
+      function(x) {
         seealso <- x[["seealso"]]
         if (!is.null(seealso)) {
           fn_family <- unlist(strsplit(seealso, "\\:"))
@@ -42,7 +42,7 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
   # For Rd's that return NULL because they are internal
   null_rds <- map_lgl(rd_list, is.null)
   rd_list <- rd_list[!null_rds]
-  ref_lines <- imap(rd_list, \(x, y) {
+  ref_lines <- imap(rd_list, function(x, y) {
     alias <- as.character(x[names(x) == "alias"])
     paren <- "()"
     if (all(alias == "")) {
@@ -53,7 +53,8 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
     alias_links <- paste0("[", alias, paren, "](", y, ")")
     c(
       paste0(alias_links, collapse = " "),
-      "", "",
+      "",
+      "",
       paste0("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", x$title),
       ""
     )
@@ -65,12 +66,10 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
   if (!is.null(index[["contents"]])) {
     ref_lines <- map(
       index[["contents"]],
-      \(x) {
+      function(x) {
         refs <- map(
           x[["contents"]],
-          \(y) {
-            ref_lines[ref_names == path_ext_remove(y)]
-          }
+          \(y) ref_lines[ref_names == path_ext_remove(y)]
         )
         c(list(list(title = paste("###", x[["section"]]), "")), refs)
       }
@@ -95,7 +94,7 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
       }
       ref_list <- ref_list[order(names(ref_list))]
       ref_lines <- ref_list |>
-        imap(\(x, y) {
+        imap(function(x, y) {
           if (y == "<none>") {
             x
           } else {

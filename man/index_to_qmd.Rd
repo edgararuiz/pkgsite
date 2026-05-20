@@ -17,15 +17,15 @@ for all of the resulting reference files. If left NULL, \code{pkgsite} will use
 its default template.}
 }
 \value{
-A character vector with the resulting contents creating document
-that links to the converted Quarto documents.
+A character vector with the contents of a document that links to
+the converted Quarto documents.
 }
 \description{
 Create a Quarto file that lists the available reference pages
 }
 \seealso{
-Other Conversion functions: 
-\code{\link{rd_to_list}()},
-\code{\link{rd_to_qmd}()}
+Other Conversion functions:
+\code{\link[=rd_to_list]{rd_to_list()}},
+\code{\link[=rd_to_qmd]{rd_to_qmd()}}
 }
 \concept{Conversion functions}

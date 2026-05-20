@@ -1,11 +1,13 @@
-m_vec_prompt <- function(x,
-                         prompt_label = "",
-                         additional_prompt = "",
-                         valid_resps = NULL,
-                         prompt = NULL,
-                         convert = NULL,
-                         preview = FALSE,
-                         ...) {
+m_vec_prompt <- function(
+  x,
+  prompt_label = "",
+  additional_prompt = "",
+  valid_resps = NULL,
+  prompt = NULL,
+  convert = NULL,
+  preview = FALSE,
+  ...
+) {
   # Initializes session LLM
   backend <- llm_use(.silent = TRUE, .force = FALSE)
   # If there is no 'prompt', then assumes that we're looking for a

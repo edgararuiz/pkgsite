@@ -1,6 +1,7 @@
 project:
   type: website
   output-dir: docs
+  post-render: _post-render.R
   
 execute: 
   freeze: true 
@@ -8,6 +9,7 @@ execute:
   
 website:
   title: pkgsite
+  site-url: https://edgararuiz.github.io/pkgsite
   favicon: "site/images/favicon/apple-touch-icon.png"
   navbar:
     logo: "site/images/favicon/apple-touch-icon.png"

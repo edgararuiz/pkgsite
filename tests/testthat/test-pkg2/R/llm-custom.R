@@ -41,11 +41,13 @@ llm_custom <- function(
 }
 
 #' @export
-llm_custom.data.frame <- function(.data,
-                                  col,
-                                  prompt = "",
-                                  pred_name = ".pred",
-                                  valid_resps = NULL) {
+llm_custom.data.frame <- function(
+  .data,
+  col,
+  prompt = "",
+  pred_name = ".pred",
+  valid_resps = NULL
+) {
   mutate(
     .data = .data,
     !!pred_name := llm_vec_custom(

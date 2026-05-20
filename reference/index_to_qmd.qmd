@@ -25,7 +25,7 @@ index_to_qmd(project = ".", pkg = NULL, template = NULL)
 
 
 ## Value
-A character vector with the resulting contents creating document that links to the converted Quarto documents.
+A character vector with the contents of a document that links to the converted Quarto documents.
 
 
 

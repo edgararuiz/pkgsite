@@ -20,20 +20,24 @@
 #' @returns `llm_translate` returns a `data.frame` or `tbl` object.
 #' `llm_vec_translate` returns a vector that is the same length as `x`.
 #' @export
-llm_translate <- function(.data,
-                          col,
-                          language,
-                          pred_name = ".translation",
-                          additional_prompt = "") {
+llm_translate <- function(
+  .data,
+  col,
+  language,
+  pred_name = ".translation",
+  additional_prompt = ""
+) {
   UseMethod("llm_translate")
 }
 
 #' @export
-llm_translate.data.frame <- function(.data,
-                                     col,
-                                     language,
-                                     pred_name = ".translation",
-                                     additional_prompt = "") {
+llm_translate.data.frame <- function(
+  .data,
+  col,
+  language,
+  pred_name = ".translation",
+  additional_prompt = ""
+) {
   mutate(
     .data = .data,
     !!pred_name := llm_vec_translate(
