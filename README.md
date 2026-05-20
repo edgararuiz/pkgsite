@@ -12,7 +12,7 @@
 coverage](https://codecov.io/gh/edgararuiz/pkgsite/branch/main/graph/badge.svg)](https://app.codecov.io/gh/edgararuiz/pkgsite?branch=main)
 <!-- badges: end -->
 
-## Intro
+## Overview
 
 The goal of `pkgsite` is to make it easier to create a package website
 using Quarto. It attempts to do for R what
@@ -29,14 +29,14 @@ that covers all sorts of special needs.
 So aside from simply wanting a Quarto site for your R package, a couple
 of reasons to use `pkgsite` are:
 
-- **You want to use the output
+- **You want to use Quarto’s
   [“freeze”](https://quarto.org/docs/projects/code-execution.html#freeze)
-  capabilities in Quarto** - You would like the examples in the help
-  pages to run, but the ability to run such examples depends on specific
-  technologies being accessible to where the site is being published,
-  which is usually GitHub. Examples of those technologies could be
-  databases, Spark, and Large Language Models. The idea would be to
-  render the website locally, where you would have access to the needed
+  capability** - You would like the examples in the help pages to run,
+  but the ability to run such examples depends on specific technologies
+  being accessible to where the site is being published, which is
+  usually GitHub. Examples of those technologies could be databases,
+  Spark, and Large Language Models. The idea would be to render the
+  website locally, where you would have access to the needed
   technologies, and commit the resulting “\_freeze” folder to the
   repository. This will allow any re-building of your website by GitHub
   to have the necessary code output to create the HTML files.
@@ -50,7 +50,7 @@ of reasons to use `pkgsite` are:
 An example of having both reasons to use `pkgsite` is the
 [`mall`](https://github.com/mlverse/mall) package. This project has both
 a Python and an R package, and the examples in both need an LLM to work.
-Here is the resulting [reference
+Here are the resulting [reference
 pages](https://mlverse.github.io/mall/reference/).
 
 ## Installation
@@ -65,9 +65,9 @@ pak::pak("edgararuiz/pkgsite")
 
 ## Usage
 
-In its current state, `pkgsite`’s functions build on top of each other
-in order to create the reference pages and the index page. The top-tier
-function is `write_reference()`.
+`pkgsite`’s functions build on top of each other in order to create the
+reference pages and the index page. The main entry point is
+`write_reference()`.
 
 ``` r
 library(pkgsite)
@@ -92,22 +92,17 @@ write_reference()
 #>   '././man/write_reference_pages.Rd' → 'reference/write_reference_pages.qmd'
 ```
 
-The function uses sensible defaults, so calling it without changing any
-arguments should work without errors. Internally, the function applies
-these defaults when specific arguments are left `NULL`.
-
-For the index page, `pkgsite` by default will group based on the
-‘family’ tag. Any documentation that does not have a ‘family’ tag will
-be listed first. This functionality can be overridden by configuring a
-custom grouping specified via the `_quarto.yml` file.
+The function uses sensible defaults, so calling it without any arguments
+works out of the box. Internally, the function applies these defaults
+when specific arguments are left `NULL`.
 
 ## Configure via the ’\_quarto.yml’ file
 
 Just as with
 [quartodoc](https://machow.github.io/quartodoc/get-started/overview.html#basic-use),
-`pkgsite` also supports configuration via the ’\_quarto.yml’ file. You
-just need to add a ‘pkgsite’ section at the top level of the YAML file.
-Here is an example of the available values:
+`pkgsite` supports configuration via the ’\_quarto.yml’ file. You just
+need to add a ‘pkgsite’ section at the top level of the YAML file. Here
+is an example of the available values:
 
 ``` yaml
 pkgsite: 
@@ -121,12 +116,27 @@ pkgsite:
         template: inst/templates/_index.qmd # template for index qmd file
 ```
 
+## Reference index page
+
+`pkgsite` determines the grouping of functions in the index using the
+following priority:
+
+1.  **Custom grouping in `_quarto.yml`** - Uses the sections and order
+    defined in the `contents` key (see below).
+2.  **roxygen2 `@family` tag** - If no custom grouping is set, `pkgsite`
+    groups functions based on the `@family` tag in roxygen2, which
+    writes a `\concept{}` entry into the Rd file. Functions sharing the
+    same label are grouped together under a section named after that
+    label, with groups sorted alphabetically.
+3.  **Alphabetical listing** - If no `@family` tag is present, functions
+    are listed alphabetically with no grouping.
+
 Via the YAML file, it is also possible to create custom grouping
 sections for your functions in the index file. Here is an example of the
 configuration used for this package’s website:
 
 ``` yaml
-pkgsite: 
+pkgsite:
     dir: "."
     reference:
       dir: reference
@@ -137,7 +147,7 @@ pkgsite:
         template: inst/templates/_index.qmd
         contents: # add 'sections' levels
           - section: Quarto file creation
-            contents: 
+            contents:
             - write_reference.qmd
             - write_reference_index.qmd
             - write_reference_pages.qmd
@@ -148,6 +158,5 @@ pkgsite:
             - rd_to_list.qmd
 ```
 
-The `mall` package has another example of how to configure the YAML
-file:
-[mall/\_quarto.yml](https://github.com/mlverse/mall/blob/main/_quarto.yml#L72-L94)
+The `mall` package has another example:
+[mall/\_quarto.yml](https://github.com/mlverse/mall/blob/main/_quarto.yml#L72-L94).
