@@ -160,3 +160,24 @@ pkgsite:
 
 The `mall` package has another example:
 [mall/\_quarto.yml](https://github.com/mlverse/mall/blob/main/_quarto.yml#L72-L94).
+
+## Customize the pages
+
+`pkgsite` includes a templating system that lets you control the layout
+of the index and reference pages. Each page is driven by a plain Quarto
+document, so you can re-order sections, add narrative or runnable code
+chunks, set page-level options, and apply your own branding. If the
+defaults work for you, you never have to think about it. When they
+don’t, full control is just a template file away. See the [Customize the
+pages](https://edgararuiz.github.io/pkgsite/articles/customize.html)
+article for details.
+
+## Publishing to GitHub Pages
+
+The [GitHub
+Pages](https://edgararuiz.github.io/pkgsite/articles/github-actions.html)
+article walks through setting up a GitHub Actions workflow that renders
+and publishes your site automatically on every push to `main`. It also
+covers how to use [`downlit`](https://downlit.r-lib.org/) to
+automatically turn function names in your rendered pages into links to
+their documentation, also known as auto-linking.

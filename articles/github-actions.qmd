@@ -1,20 +1,21 @@
 ---
-title: Setting up the GitHub Pages site
+title: GitHub Pages
 ---
 
-If the ultimate goal is to automate the rendering and publication of the site
-via GitHub Pages, then having a GitHub Actions workflow with the proper steps is
-essential.
+## Setting up
 
-Using the built-in way that Quarto publishes websites avoids the need to set
-up a more complex deployment scheme, such as using Makefiles or Docker.
+[GitHub Actions](https://docs.github.com/en/actions) (GHA) can automate the
+rendering and publication of your site to
+[GitHub Pages](https://pages.github.com/) on every push to `main`. Using
+[Quarto's built-in publish action](https://quarto.org/docs/publishing/github-pages.html#publish-action)
+keeps the workflow simple, with no Makefiles or Docker required.
 
-After creating the `gh-pages` branch in your package's repository, and
-setting it up as the target for GitHub Pages, you can create the workflow YAML
-file. Place the YAML file inside the `.github/workflows/` folder.
+Before creating the workflow, create a `gh-pages` branch in your repository
+and configure it as the GitHub Pages source in your repository settings. Then
+add the workflow YAML file inside the `.github/workflows/` folder.
 
-Here is an example YAML file that you can use. These are the current steps that
-this package and `mall` use for deployment:
+Here is an example workflow. These are the current steps that this package and
+`mall` use for deployment:
 
 ```yaml
 on:
@@ -63,3 +64,97 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+## Autolinking functions with `downlit`
+
+The [`downlit`](https://downlit.r-lib.org/) package scans rendered HTML files
+and automatically wraps function calls (such as `write_reference()`) in links
+that point to their documentation pages. This makes your site much easier to
+navigate.
+
+Setting up autolinking requires three things:
+
+- **A post-render script**: an R script that runs `downlit` on every HTML file
+  after Quarto builds the site.
+- **Entries in `_quarto.yml`**: to register the script with Quarto and provide
+  the public URL of your site.
+- **`downlit` installed in the workflow**: so the script can run on GitHub
+  Actions.
+
+### Post-render script
+
+Quarto supports
+[post-render scripts](https://quarto.org/docs/projects/scripts.html#pre-and-post-render)
+that run automatically after the site is built. Create a file named
+`_post-render.R` at the root of your project with the following contents,
+replacing `"mypkg"` with your package name and updating the URL to match your
+site:
+
+```r
+options(
+  # Tells downlit where to send links for your package's functions
+  downlit.local_packages = list(
+    mypkg = "https://myorg.github.io/mypkg"
+  ),
+  # Tells downlit to search your package when resolving bare function names
+  downlit.attached = "mypkg"
+)
+
+# Quarto passes the list of rendered files via this environment variable
+output_files_env <- Sys.getenv("QUARTO_PROJECT_OUTPUT_FILES", unset = "")
+
+if (nzchar(output_files_env)) {
+  # Incremental render: only process the files Quarto just built
+  html_files <- strsplit(output_files_env, "\n")[[1]]
+  html_files <- html_files[grepl("\\.html$", html_files)]
+} else {
+  # Full render or manual run: process every HTML file in the output directory
+  output_dir <- Sys.getenv("QUARTO_PROJECT_OUTPUT_DIR", unset = "docs")
+  html_files <- list.files(
+    output_dir,
+    pattern = "\\.html$",
+    recursive = TRUE,
+    full.names = TRUE
+  )
+}
+
+# Apply downlit to each file in-place, adding links to function documentation
+for (f in html_files) {
+  downlit::downlit_html_path(f, f)
+}
+```
+
+The script checks `QUARTO_PROJECT_OUTPUT_FILES` first so that incremental
+renders (where only some pages changed) still work efficiently; only the
+newly built HTML files are processed.
+
+### Registering the script and the site URL
+
+Tell Quarto to run the script by adding a `post-render` key to your
+`_quarto.yml`. While there, set `site-url` to the public address of your site,
+which `downlit` needs to build correct absolute links:
+
+```yaml
+project:
+  type: website
+  post-render: _post-render.R
+
+website:
+  site-url: https://myorg.github.io/mypkg
+```
+
+### Installing `downlit` in the workflow
+
+The GitHub Actions workflow shown above already includes the step that installs
+`downlit`:
+
+```yaml
+- name: Install R dependencies
+  uses: r-lib/actions/setup-r-dependencies@v2
+  with:
+    packages: any::downlit
+```
+
+With the post-render script in place and `downlit` installed, every function
+name in your rendered pages will be linked to its reference documentation
+automatically.
