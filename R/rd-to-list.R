@@ -68,6 +68,7 @@ rd_tag_process <- function(x) {
         map(as.character) |>
         reduce(c) |>
         paste0(collapse = "") |>
+        trimws() |>
         list() |>
         set_names(run) |>
         list()

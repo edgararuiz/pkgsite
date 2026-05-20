@@ -36,9 +36,7 @@ Other Conversion functions: `index_to_qmd()`, `rd_to_qmd()`
 
 ## Examples
 ```{r}
-
 library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
 rd_to_list("rd_to_list.Rd", project = example_pkg)
-
 ```
