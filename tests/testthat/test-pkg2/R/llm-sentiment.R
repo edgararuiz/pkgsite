@@ -10,6 +10,7 @@
 #' @returns `llm_sentiment` returns a `data.frame` or `tbl` object.
 #' `llm_vec_sentiment` returns a vector that is the same length as `x`.
 #'
+#' @family LLM
 #' @examples
 #' \donttest{
 #' library(mall)

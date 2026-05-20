@@ -25,7 +25,7 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
   rd_names <- path_file(dir_ls(path(project, pkg, "man"), glob = "*.Rd"))
   qmd_names <- path(path_ext_remove(rd_names), ext = "qmd")
   rd_list <- rd_names |>
-    map(rd_to_list, project, pkg) |>
+    map(rd_to_list_internal, project, pkg) |>
     set_names(qmd_names) |>
     map(
       \(x) {

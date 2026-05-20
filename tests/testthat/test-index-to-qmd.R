@@ -11,3 +11,12 @@ test_that("Index parsing works", {
     )
   )
 })
+
+test_that("Index parsing works", {
+  expect_snapshot(
+    index_to_qmd(
+      pkg = path_abs(test_path("test-pkg2")),
+      project = ""
+    )
+  )
+})

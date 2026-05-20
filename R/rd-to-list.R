@@ -7,6 +7,15 @@
 #' @family Conversion functions
 #' @export
 rd_to_list <- function(rd_file, project = ".", pkg = NULL) {
+  rd_to_list_internal(
+    rd_file = rd_file,
+    project = project,
+    pkg = pkg,
+    internal = FALSE
+  )
+}
+
+rd_to_list_internal <- function(rd_file, project = ".", pkg = NULL, internal = TRUE) {
   pkg <- pkg %||% ""
   if (inherits(rd_file, "Rd")) {
     rd_content <- rd_file
@@ -17,7 +26,7 @@ rd_to_list <- function(rd_file, project = ".", pkg = NULL) {
     map(rd_tag_process) |>
     keep(\(x) !is.null(x)) |>
     list_flatten()
-  if (any(as.character(out["keyword"]) == "internal")) {
+  if (any(as.character(out["keyword"]) == "internal") && !internal) {
     out <- NULL
   }
   out

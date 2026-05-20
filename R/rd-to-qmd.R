@@ -21,7 +21,7 @@ rd_to_qmd <- function(
   }
   pkg_template <- system.file("templates/_reference.qmd", package = "pkgsite")
   template <- template %||% yaml_template %||% pkg_template
-  parsed <- rd_to_list(rd_file, project, pkg)
+  parsed <- rd_to_list_internal(rd_file, project, pkg)
   if (is.null(parsed)) {
     return(NULL)
   }
