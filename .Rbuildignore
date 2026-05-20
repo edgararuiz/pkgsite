@@ -12,3 +12,4 @@
 ^.*articles$
 ^codecov\.yml$
 ^\.claude$
+^_post-render\.R$
