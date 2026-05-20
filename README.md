@@ -55,7 +55,7 @@ pages](https://mlverse.github.io/mall/reference/).
 
 ## Installation
 
-You can install the development version of pkgsite from
+You can install the development version of `pkgsite` from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -76,20 +76,20 @@ write_reference()
 #> 
 #> ── pkgsite
 #> Creating index file:
-#>   'reference/index.qmd'
+#>   `reference/index.qmd`
 #> 
 #> Converting .Rd to .qmd:
-#>   '././man/index_to_qmd.Rd' → 'reference/index_to_qmd.qmd'
+#>   `././man/index_to_qmd.Rd` → `reference/index_to_qmd.qmd`
 #> 
-#>   '././man/rd_to_list.Rd' → 'reference/rd_to_list.qmd'
+#>   `././man/rd_to_list.Rd` → `reference/rd_to_list.qmd`
 #> 
-#>   '././man/rd_to_qmd.Rd' → 'reference/rd_to_qmd.qmd'
+#>   `././man/rd_to_qmd.Rd` → `reference/rd_to_qmd.qmd`
 #> 
-#>   '././man/write_reference.Rd' → 'reference/write_reference.qmd'
+#>   `././man/write_reference.Rd` → `reference/write_reference.qmd`
 #> 
-#>   '././man/write_reference_index.Rd' → 'reference/write_reference_index.qmd'
+#>   `././man/write_reference_index.Rd` → `reference/write_reference_index.qmd`
 #> 
-#>   '././man/write_reference_pages.Rd' → 'reference/write_reference_pages.qmd'
+#>   `././man/write_reference_pages.Rd` → `reference/write_reference_pages.qmd`
 ```
 
 The function uses sensible defaults, so calling it without any arguments

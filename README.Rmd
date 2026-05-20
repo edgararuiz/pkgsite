@@ -64,7 +64,7 @@ Here are the resulting [reference pages](https://mlverse.github.io/mall/referenc
 
 ## Installation
 
-You can install the development version of pkgsite from [GitHub](https://github.com/) with:
+You can install the development version of `pkgsite` from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")

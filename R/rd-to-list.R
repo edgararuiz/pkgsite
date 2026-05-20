@@ -111,6 +111,8 @@ rd_extract_text <- function(x, collapse = TRUE) {
   }
   temp_rd <- tempfile(fileext = ".Rd")
   writeLines(rd_text, temp_rd)
+  old_opt <- options(useFancyQuotes = TRUE)
+  on.exit(options(old_opt))
   suppressWarnings(
     rd_txt <- capture.output(tools::Rd2txt(temp_rd, fragment = TRUE))
   )
@@ -123,6 +125,8 @@ rd_extract_text <- function(x, collapse = TRUE) {
 }
 
 rd_extract_text2 <- function(x, collapse = TRUE, trim = "full") {
+  old_opt <- options(useFancyQuotes = TRUE)
+  on.exit(options(old_opt))
   rd_txt <- try(
     capture.output(tools::Rd2txt(list(x), fragment = TRUE)),
     silent = TRUE

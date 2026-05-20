@@ -78,7 +78,7 @@ write_reference_index <- function(
   writeLines(index_to_qmd(project, pkg, index_template), ref)
   cli_h3("{.pkg pkgsite}")
   cli_inform("{.emph Creating index file:}")
-  cli_bullets(c(" " = "{.file {ref}}"))
+  cli_bullets(c(" " = "{.code {as.character(ref)}}"))
 }
 
 #' Converts the 'Rd' file into Quarto, and writes the file to a specified folder
@@ -110,13 +110,13 @@ write_reference_pages <- function(
       qmd <- rd_to_qmd(x, project, pkg, examples, not_run_examples, template)
       if (is.null(qmd)) {
         cli_bullets(c(
-          " " = "{.file {path(man_folder, x)}} {arrow} {.emph Skipped - Internal}"
+          " " = "{.code {as.character(path(man_folder, x))}} {arrow} {.emph Skipped - Internal}"
         ))
       } else {
         try(file_delete(ref), silent = TRUE)
         writeLines(qmd, ref)
         cli_bullets(c(
-          " " = "{.file {path(man_folder, x)}} {arrow} {.file {ref}}"
+          " " = "{.code {as.character(path(man_folder, x))}} {arrow} {.code {ref}}"
         ))
       }
     }
