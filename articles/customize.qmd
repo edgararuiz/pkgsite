@@ -4,12 +4,12 @@ title: Customize the pages
 
 To allow customization of the index and reference pages, `pkgsite` uses a simple
 template mechanism that uses a Quarto document as the format. This enables us
-to do things such as re-sort sections, add code chunks, set page level options,
-branding, etc. 
+to do things such as re-sort sections, add code chunks, set page-level options,
+add branding, etc.
 
-To place a section in the Quarto document, use four curly brackets with the name
+To place a section in the Quarto document, use four curly braces with the name
 of the section. Prefix `title.` or `notitle.` to the section name to indicate
-if you want the section to have a title or not. 
+if you want the section to have a title or not.
 
 For example, to add the description with a title use: `{{{{title.description}}}}`.
 Another example is to use the alias as a header in the document, because the
@@ -78,12 +78,11 @@ pkgsite:
       template: "path to the template"
 ```
 
-There is only one section available for placement in for the reference index
-page: `reference`. It places the entire list of functions in a pre-determined
+There is only one section available for the reference index page: `reference`. It places the entire list of functions in a pre-determined
 format. It will use the sections and order used in your `_quarto.yml`, or a 
 simple function listing if none is provided. 
 
-To specify the order and sections to display the functions in the pacage:
+To specify the order and sections to display the functions in the package:
 
 ```yaml
 pkgsite: 

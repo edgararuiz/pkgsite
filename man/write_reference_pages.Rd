@@ -21,10 +21,10 @@ itself is in a sub-folder within the project.}
 
 \item{folder}{The target folder to save the new Quarto files to}
 
-\item{examples}{Flag that sets the examples code chuck to be evaluated when
+\item{examples}{Flag that sets the examples code chunk to be evaluated when
 the Quarto document is rendered}
 
-\item{not_run_examples}{Flag that sets the "do not run" examples code chuck
+\item{not_run_examples}{Flag that sets the "do not run" examples code chunk
 to be evaluated when the Quarto document is rendered}
 
 \item{template}{The path to a Quarto file that can be used as the template

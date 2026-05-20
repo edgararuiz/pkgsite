@@ -1,5 +1,5 @@
 #' Converts a given 'Rd' file into a list object
-#' @description This function is meant to be used as a intermediate object
+#' @description This function is meant to be used as an intermediate object
 #' that could be used as an easy way to convert the information inside the 'Rd'
 #' into other formats or outputs.
 #' @inheritParams rd_to_qmd

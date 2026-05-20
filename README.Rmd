@@ -32,34 +32,34 @@ for Python package documentation.
 ## When should I use `pkgsite`?
 
 In the vast majority of cases [`pkgdown`](https://pkgdown.r-lib.org/index.html)
-is enough to create top tier package website. `pkgdown` is a well developed
-mature package that covers all sorts of special needs. 
+is enough to create a top-tier package website. `pkgdown` is a well-developed,
+mature package that covers all sorts of special needs.
 
-So apart of simply wanting a Quarto site for your R package, a couple of reasons 
+So aside from simply wanting a Quarto site for your R package, a couple of reasons
 to use `pkgsite` are:
 
-- **You want to use the output 
-["freeze"](https://quarto.org/docs/projects/code-execution.html#freeze) 
-capabilities in Quarto** - You would like  the examples in the help pages to
-run, but, the ability to run such examples depend on specific technologies
-to be accessible to where the site is being 
+- **You want to use the output
+["freeze"](https://quarto.org/docs/projects/code-execution.html#freeze)
+capabilities in Quarto** - You would like the examples in the help pages to
+run, but the ability to run such examples depends on specific technologies
+being accessible to where the site is being
 published, which is usually GitHub. Examples of those technologies could be
-databases, Spark and Large Language Models. The idea would be to render the
+databases, Spark, and Large Language Models. The idea would be to render the
 website locally, where you would have access to the needed technologies, and
-make commit the resulting "_freeze" folder to the repository. This will allow
+commit the resulting "_freeze" folder to the repository. This will allow
 any re-building of your website by GitHub to have the necessary code output to
 create the HTML files.
 
 - **You want to build a unified site** - The packages in your project may be
-available in multiple languages, and wish to make a unified website. The idea
-here is if you have output from *Quartodoc* from the Python side of your project,
+available in multiple languages, and you wish to make a unified website. The idea
+here is if you have output from *Quartodoc* from the Python side of your project
 that needs to be available in the website along with the references from the
-R side of your project. 
+R side of your project.
 
-An example of having both reasons to use `pkgsite`, is the 
-[`mall`](https://github.com/mlverse/mall) package. This project has a Python, and
-an R package. And the examples in both packages need an LLM in order to work, 
-here is the resulting [reference pages](https://mlverse.github.io/mall/reference/).
+An example of having both reasons to use `pkgsite` is the
+[`mall`](https://github.com/mlverse/mall) package. This project has both a Python
+and an R package, and the examples in both need an LLM to work.
+Here is the resulting [reference pages](https://mlverse.github.io/mall/reference/).
 
 
 ## Installation
@@ -73,9 +73,9 @@ pak::pak("edgararuiz/pkgsite")
 
 ## Usage
 
-In it's current state, `pkgsite`'s functions build on top of each other, in 
-order to create the reference pages and the index page. The top tier function
-is `write_reference()`. 
+In its current state, `pkgsite`'s functions build on top of each other in
+order to create the reference pages and the index page. The top-tier function
+is `write_reference()`.
 
 ```{r}
 library(pkgsite)
@@ -84,9 +84,9 @@ write_reference()
 ```
 
 
-The function uses sensible defaults, so even by calling it without changing any 
-arguments should work without errors. Internally, the function applies such
-sensible values if specific arguments are left `NULL`.
+The function uses sensible defaults, so calling it without changing any
+arguments should work without errors. Internally, the function applies these
+defaults when specific arguments are left `NULL`.
 
 For the index page, `pkgsite` by default will group based on the 'family' tag. 
 Any documentation that does not have a 'family' tag will be listed first. This
@@ -97,8 +97,8 @@ the `_quarto.yml` file.
 
 Just as with [quartodoc](https://machow.github.io/quartodoc/get-started/overview.html#basic-use),
 `pkgsite` also supports configuration via the '_quarto.yml' file. You just need
-to add a 'pkgsite' section at the top level of the yaml file. Here is an example
-of the values that are available for use:
+to add a 'pkgsite' section at the top level of the YAML file. Here is an example
+of the available values:
 
 ```yaml
 pkgsite: 
@@ -113,8 +113,8 @@ pkgsite:
 ```
 
 Via the YAML file, it is also possible to create custom grouping sections for
-your functions in the index file. Here is an example of how to accomplish what
-is setup for this package's website:
+your functions in the index file. Here is an example of the configuration used
+for this package's website:
 
 ```yaml
 pkgsite: 

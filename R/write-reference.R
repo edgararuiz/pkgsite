@@ -4,9 +4,9 @@
 #' @param pkg The path inside the project folder. Use only if the R package
 #' itself is in a sub-folder within the project.
 #' @param folder The target folder to save the new Quarto files to
-#' @param examples Flag that sets the examples code chuck to be evaluated when
+#' @param examples Flag that sets the examples code chunk to be evaluated when
 #' the Quarto document is rendered
-#' @param not_run_examples Flag that sets the "do not run" examples code chuck
+#' @param not_run_examples Flag that sets the "do not run" examples code chunk
 #' to be evaluated when the Quarto document is rendered
 #' @param template The path to a Quarto file that can be used as the template
 #' for all of the resulting reference files. If left NULL, `pkgsite` will use

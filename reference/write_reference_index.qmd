@@ -40,5 +40,5 @@ A Quarto file that links to the individual Quarto documentation files
 
 
 ## See Also
-Other Quarto file creation: `write_reference()`, `write_reference_pages()`
+Other Quarto file creation: 'write_reference()', 'write_reference_pages()'
 

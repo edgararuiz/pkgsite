@@ -21,10 +21,10 @@ rd_to_qmd(
 \item{pkg}{The path inside the project folder. Use only if the R package
 itself is in a sub-folder within the project.}
 
-\item{examples}{Flag that sets the examples code chuck to be evaluated when
+\item{examples}{Flag that sets the examples code chunk to be evaluated when
 the Quarto document is rendered}
 
-\item{not_run_examples}{Flag that sets the "do not run" examples code chuck
+\item{not_run_examples}{Flag that sets the "do not run" examples code chunk
 to be evaluated when the Quarto document is rendered}
 
 \item{template}{The path to a Quarto file that can be used as the template
@@ -33,7 +33,7 @@ its default template.}
 }
 \value{
 A character vector with the resulting contents of converting the
-Rd file format into a a Quarto file format.
+Rd file format into a Quarto file format.
 }
 \description{
 Converts 'Rd' to Quarto files

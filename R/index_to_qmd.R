@@ -1,7 +1,7 @@
 #' Create a Quarto file that lists the available reference pages
 #' @inheritParams rd_to_qmd
-#' @returns A character vector with the resulting contents creating document
-#' that links to the converted Quarto documents.
+#' @returns A character vector with the contents of a document that links to
+#' the converted Quarto documents.
 #' @family Conversion functions
 #' @export
 index_to_qmd <- function(
