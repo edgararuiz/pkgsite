@@ -59,8 +59,8 @@ You can install the development version of pkgsite from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("edgararuiz/pkgsite")
+# install.packages("pak")
+pak::pak("edgararuiz/pkgsite")
 ```
 
 ## Usage
@@ -151,4 +151,4 @@ pkgsite:
 
 The `mall` package has another example of how to configure the YAML
 file:
-[mall/\_quarto.yml](https://github.com/mlverse/mall/blob/main/_quarto.yml#L67-L90)
+[mall/\_quarto.yml](https://github.com/mlverse/mall/blob/main/_quarto.yml#L72-L94)
