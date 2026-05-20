@@ -119,9 +119,7 @@ parse_line_tag <- function(line, con) {
   }
 }
 
-reference_convert <- function(x,
-                              examples = TRUE,
-                              not_run_examples = FALSE) {
+reference_convert <- function(x, examples = TRUE, not_run_examples = FALSE) {
   res <- list()
   for (i in seq_along(x)) {
     curr <- x[[i]]
@@ -151,7 +149,9 @@ reference_convert <- function(x,
       out <- c("```r", curr, "```")
     }
 
-    if (curr_name == "arguments") out <- reference_arguments(curr)
+    if (curr_name == "arguments") {
+      out <- reference_arguments(curr)
+    }
 
     if (curr_name == "section") {
       out <- c(out, paste("##", curr$title), curr$contents)

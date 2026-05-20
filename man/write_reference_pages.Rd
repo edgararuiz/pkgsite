@@ -39,8 +39,8 @@ number of Rd files in the package.
 Converts the 'Rd' file into Quarto, and writes the file to a specified folder
 }
 \seealso{
-Other Quarto file creation: 
-\code{\link{write_reference}()},
-\code{\link{write_reference_index}()}
+Other Quarto file creation:
+\code{\link[=write_reference]{write_reference()}},
+\code{\link[=write_reference_index]{write_reference_index()}}
 }
 \concept{Quarto file creation}

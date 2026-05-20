@@ -33,8 +33,8 @@ files
 Writes the index of the reference pages into a Quarto file
 }
 \seealso{
-Other Quarto file creation: 
-\code{\link{write_reference}()},
-\code{\link{write_reference_pages}()}
+Other Quarto file creation:
+\code{\link[=write_reference]{write_reference()}},
+\code{\link[=write_reference_pages]{write_reference_pages()}}
 }
 \concept{Quarto file creation}

@@ -15,7 +15,12 @@ rd_to_list <- function(rd_file, project = ".", pkg = NULL) {
   )
 }
 
-rd_to_list_internal <- function(rd_file, project = ".", pkg = NULL, internal = TRUE) {
+rd_to_list_internal <- function(
+  rd_file,
+  project = ".",
+  pkg = NULL,
+  internal = TRUE
+) {
   pkg <- pkg %||% ""
   if (inherits(rd_file, "Rd")) {
     rd_content <- rd_file
@@ -138,8 +143,12 @@ rd_extract_text2 <- function(x, collapse = TRUE, trim = "full") {
     rd_txt <- trimws(rd_txt)
   }
   rd_txt <- rd_txt[2:length(rd_txt)]
-  if (rd_txt[[1]] == "") rd_txt <- rd_txt[2:length(rd_txt)]
-  if (rd_txt[[length(rd_txt)]] == "") rd_txt <- rd_txt[1:length(rd_txt) - 1]
+  if (rd_txt[[1]] == "") {
+    rd_txt <- rd_txt[2:length(rd_txt)]
+  }
+  if (rd_txt[[length(rd_txt)]] == "") {
+    rd_txt <- rd_txt[1:length(rd_txt) - 1]
+  }
   if (collapse) {
     rd_txt[rd_txt == ""] <- "xxxx"
     rd_txt <- paste(rd_txt, collapse = " ")

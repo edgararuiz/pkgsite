@@ -49,10 +49,12 @@ m_backend_submit.mall_ollama <- function(backend, x, prompt, preview = FALSE) {
 }
 
 #' @export
-m_backend_submit.mall_simulate_llm <- function(backend,
-                                               x,
-                                               prompt,
-                                               preview = FALSE) {
+m_backend_submit.mall_simulate_llm <- function(
+  backend,
+  x,
+  prompt,
+  preview = FALSE
+) {
   .args <- as.list(environment())
   args <- m_defaults_args(backend)
   if (args$model == "pipe") {

@@ -39,8 +39,8 @@ Rd file format into a a Quarto file format.
 Converts 'Rd' to Quarto files
 }
 \seealso{
-Other Conversion functions: 
-\code{\link{index_to_qmd}()},
-\code{\link{rd_to_list}()}
+Other Conversion functions:
+\code{\link[=index_to_qmd]{index_to_qmd()}},
+\code{\link[=rd_to_list]{rd_to_list()}}
 }
 \concept{Conversion functions}

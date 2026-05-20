@@ -53,7 +53,8 @@ reference_index_convert <- function(project, pkg = NULL, index = NULL) {
     alias_links <- paste0("[", alias, paren, "](", y, ")")
     c(
       paste0(alias_links, collapse = " "),
-      "", "",
+      "",
+      "",
       paste0("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", x$title),
       ""
     )

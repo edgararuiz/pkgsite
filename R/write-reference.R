@@ -109,11 +109,15 @@ write_reference_pages <- function(
       ref <- paste0(folder, "/", path_ext_remove(x), ".qmd")
       qmd <- rd_to_qmd(x, project, pkg, examples, not_run_examples, template)
       if (is.null(qmd)) {
-        cli_bullets(c(" " = "{.file {path(man_folder, x)}} {arrow} {.emph Skipped - Internal}"))
+        cli_bullets(c(
+          " " = "{.file {path(man_folder, x)}} {arrow} {.emph Skipped - Internal}"
+        ))
       } else {
         try(file_delete(ref), silent = TRUE)
         writeLines(qmd, ref)
-        cli_bullets(c(" " = "{.file {path(man_folder, x)}} {arrow} {.file {ref}}"))
+        cli_bullets(c(
+          " " = "{.file {path(man_folder, x)}} {arrow} {.file {ref}}"
+        ))
       }
     }
   )

@@ -46,8 +46,8 @@ number of Rd files in the package, plus an additional one that is the index.
 Writes the reference pages and index as Quarto files
 }
 \seealso{
-Other Quarto file creation: 
-\code{\link{write_reference_index}()},
-\code{\link{write_reference_pages}()}
+Other Quarto file creation:
+\code{\link[=write_reference_index]{write_reference_index()}},
+\code{\link[=write_reference_pages]{write_reference_pages()}}
 }
 \concept{Quarto file creation}
