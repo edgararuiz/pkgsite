@@ -4,21 +4,13 @@ title: Building a full package website with Quarto
 
 ## Overview
 
-For the vast majority of R packages,
-[pkgdown](https://pkgdown.r-lib.org/index.html) is the right tool. It is
-mature, well-supported, and requires almost no configuration to produce a
-polished package site.
+`pkgsite` is primarily designed to convert your package's reference into `.qmd`
+files. However, with a few manual steps it is possible to use it as the
+foundation for a complete package website. For the vast majority of R packages,
+[pkgdown](https://pkgdown.r-lib.org/index.html) remains the recommended choice,
+but if you have a specific reason to use Quarto, this article walks through how
+to set things up.
 
-That said, there are situations where a Quarto site is a better fit. The two
-most common ones are wanting Quarto's
-[`freeze`](https://quarto.org/docs/projects/code-execution.html#freeze)
-capability (which lets you run examples locally and commit the output so
-GitHub never needs to re-execute them) and wanting to unify R and Python
-documentation in a single site. If either of those describes your situation,
-`pkgsite` gives you a practical path forward.
-
-The `pkgsite` repository itself is built this way, so everything discussed
-below can be seen in the actual source files.
 
 ## What you need
 
@@ -188,3 +180,13 @@ Quarto executes any unfrozen `.qmd` files, writes HTML to `docs/`, and runs
 the post-render script if one is configured. Commit the result, including
 `_freeze/` and `docs/`, and your site is ready. For how to automate this with
 GitHub Actions, see the [GitHub Pages article](github-actions.qmd).
+
+## Long-form articles
+
+One additional option that a Quarto site opens up is publishing long-form
+documentation as regular `.qmd` files in an `articles/` folder, rather than as
+package vignettes. That is the approach taken in the `pkgsite` project. Quarto
+offers more flexibility in both design and publication than the vignette format,
+and it imposes fewer constraints on how the content is structured or rendered.
+Articles added to `articles/` can be wired into the site navbar or sidebar
+through `_quarto.yml` like any other page.
