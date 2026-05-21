@@ -1,3 +1,3 @@
-# pkgsite 
+# pkgsite 0.1.0
 
-- Initial version
+* Initial CRAN release.
