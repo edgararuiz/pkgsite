@@ -22,6 +22,8 @@ website:
       - sidebar:articles
       - href: reference/index.qmd
         text: Reference  
+      - href: changelog.qmd
+        text: News
     right:
       - icon: github
         href: https://github.com/edgararuiz/pkgsite
@@ -33,10 +35,12 @@ website:
       background: light
       collapse-level: 2
       contents: 
+      - text: "Building a full website"
+        href: articles/quarto-website.qmd
       - text: "Setup GitHub Pages"
         href: articles/github-actions.qmd
       - text: "Customize Pages"
-        href: articles/customize.qmd        
+        href: articles/customize.qmd
       
 format:
   html:
