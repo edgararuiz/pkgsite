@@ -1,0 +1,178 @@
+---
+title: Building a full package website with Quarto
+---
+
+## Overview
+
+For the vast majority of R packages,
+[pkgdown](https://pkgdown.r-lib.org/index.html) is the right tool. It is
+mature, well-supported, and requires almost no configuration to produce a
+polished package site.
+
+If you have a specific reason to use a Quarto site — perhaps you want Quarto's
+`freeze` capability to capture examples that depend on local resources (a
+database, Spark, an LLM), or you want to unify R and Python documentation in a
+single site — then `pkgsite` gives you a practical path forward. The
+`pkgsite` repository itself is a working example of this approach, and the
+sections below walk through each of its moving parts.
+
+## The minimum viable pieces
+
+A `pkgsite`-powered Quarto website needs four things:
+
+1. A `_quarto.yml` file that describes the site and wires up `pkgsite`.
+2. An `index.qmd` that wraps your `README.md`.
+3. A `changelog.qmd` that wraps your `NEWS.md`.
+4. A `_post-render.R` script that runs `downlit` so every function name in
+   the rendered HTML becomes a hyperlink.
+
+The reference pages are generated separately by `write_reference()` and then
+included in the site through the navbar.
+
+## `_quarto.yml`
+
+The `_quarto.yml` file in the `pkgsite` repository is a good starting point.
+The key sections are:
+
+```yaml
+project:
+  type: website
+  output-dir: docs
+  post-render: _post-render.R
+
+execute:
+  freeze: true
+  eval: true
+
+website:
+  title: mypkg
+  site-url: https://myorg.github.io/mypkg
+  navbar:
+    left:
+      - sidebar:articles
+      - href: reference/index.qmd
+        text: Reference
+      - href: changelog.qmd
+        text: News
+    right:
+      - icon: github
+        href: https://github.com/myorg/mypkg
+
+pkgsite:
+  dir: "."
+  reference:
+    dir: reference
+    index:
+      file: index.qmd
+```
+
+A few things worth noting:
+
+- `output-dir: docs` matches the default GitHub Pages convention of serving
+  from the `docs/` folder of the `main` branch.
+- `post-render: _post-render.R` hooks in the `downlit` pass after every
+  render (see below).
+- `freeze: true` is what makes `pkgsite` especially useful for examples that
+  depend on local infrastructure. Render once locally, commit `_freeze/`, and
+  GitHub only needs to assemble HTML — not re-execute any R code.
+- The `pkgsite:` block tells the package where to find your source and where
+  to write the reference pages.
+
+## `index.qmd` and `changelog.qmd` — wrapping Markdown files
+
+The `.qmd` wrappers for `README.md` and `NEWS.md` are intentionally thin. Each
+one uses Quarto's `include` shortcode to embed the source Markdown verbatim at
+render time:
+
+```markdown
+---
+toc: true
+---
+
+{{</* include README.md */>}}
+```
+
+```markdown
+---
+toc: true
+---
+
+{{</* include NEWS.md */>}}
+```
+
+The key benefit is avoiding duplicate content. `README.md` and `NEWS.md` remain
+the single source of truth — you edit them, and the website picks up the changes
+automatically on the next render. The `.qmd` wrappers themselves stay static;
+you only touch them when making a layout change (adding a front-matter option,
+inserting a custom section), never for content changes.
+
+Because `NEWS.md` uses standard Markdown headings for each version, Quarto
+automatically builds a table of contents from them, which makes it easy for
+users to jump to a specific release.
+
+One naming note: the changelog wrapper is called `changelog.qmd` rather than
+`news.qmd`. If the wrapper were named `news.qmd`, Quarto and R's documentation
+tooling would both try to write an `news.html` output file, causing a collision
+where one process deletes the file before the other can finish with it. Using a
+different name sidesteps the conflict entirely.
+
+## `_post-render.R` — adding function links with `downlit`
+
+After Quarto builds the HTML files, [`downlit`](https://downlit.r-lib.org/)
+scans each one and turns bare function names into hyperlinks pointing at their
+documentation pages. The script is registered in `_quarto.yml` via the
+`post-render` key (already shown in the example above) and runs automatically
+on every render.
+
+The full script, setup instructions, and the corresponding GitHub Actions
+workflow are covered in the [GitHub Pages article](github-actions.qmd).
+
+## Generating the reference pages
+
+Call `write_reference()` once to create (or update) all the `.qmd` files under
+`reference/`:
+
+```r
+pkgsite::write_reference()
+```
+
+This reads your package's `NAMESPACE` and roxygen2 documentation and writes one
+`.qmd` per exported topic, plus a `reference/index.qmd` that lists them all. You
+only need to re-run this when you add or remove exported functions; the existing
+files stay frozen in `_freeze/` otherwise.
+
+::: {.callout-important}
+## When to clear the freeze cache
+
+Quarto only re-executes a `.qmd` file when its source text changes. This means
+two common situations will produce stale output even after a normal `quarto render`:
+
+- **A function's example output changed** — for example, you fixed a bug and
+  the printed result is now different, but the `.qmd` source is identical.
+- **You changed a `_quarto.yml` setting** that affects execution, such as
+  `eval` or `freeze`.
+
+In both cases the fix is to delete the frozen output for the reference pages
+and re-render locally:
+
+```bash
+rm -rf _freeze/reference
+quarto render
+```
+
+If `pkgsite:` is configured with a custom `reference.dir`, replace `reference`
+with that path. After re-rendering, commit the updated `_freeze/` folder so
+GitHub picks up the new output.
+:::
+
+## Putting it all together
+
+With the files above in place, a full local render is:
+
+```bash
+quarto render
+```
+
+Quarto executes any unfrozen `.qmd` files, writes HTML to `docs/`, and then
+calls `_post-render.R` to add `downlit` links. For how to commit the results
+and automate publishing, see the [GitHub Pages article](github-actions.qmd).
