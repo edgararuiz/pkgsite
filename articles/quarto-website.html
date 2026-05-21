@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.37">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>GitHub Pages – pkgsite</title>
+<title>Building a full package website with Quarto – pkgsite</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -317,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../articles/github-actions.html">Setup GitHub Pages</a></li></ol></nav><a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../articles/quarto-website.html">Building a full website</a></li></ol></nav><a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
@@ -326,13 +326,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../articles/quarto-website.html" class="sidebar-item-text sidebar-link">
+  <a href="../articles/quarto-website.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Building a full website</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../articles/github-actions.html" class="sidebar-item-text sidebar-link active">
+  <a href="../articles/github-actions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Setup GitHub Pages</span></a>
   </div>
 </li>
@@ -350,20 +350,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99"><h2 id="toc-title">On this page</h2>
    
   <ul>
-<li><a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up">Setting up</a></li>
+<li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#what-you-need" id="toc-what-you-need" class="nav-link" data-scroll-target="#what-you-need">What you need</a></li>
+  <li><a href="#homepage-and-news" id="toc-homepage-and-news" class="nav-link" data-scroll-target="#homepage-and-news">Homepage and news</a></li>
   <li>
-<a href="#autolinking-functions-with-downlit" id="toc-autolinking-functions-with-downlit" class="nav-link" data-scroll-target="#autolinking-functions-with-downlit">Autolinking functions with <code>downlit</code></a>
+<a href="#reference-pages" id="toc-reference-pages" class="nav-link" data-scroll-target="#reference-pages">Reference pages</a>
   <ul class="collapse">
-<li><a href="#post-render-script" id="toc-post-render-script" class="nav-link" data-scroll-target="#post-render-script">Post-render script</a></li>
-  <li><a href="#registering-the-script-and-the-site-url" id="toc-registering-the-script-and-the-site-url" class="nav-link" data-scroll-target="#registering-the-script-and-the-site-url">Registering the script and the site URL</a></li>
-  <li><a href="#installing-downlit-in-the-workflow" id="toc-installing-downlit-in-the-workflow" class="nav-link" data-scroll-target="#installing-downlit-in-the-workflow">Installing <code>downlit</code> in the workflow</a></li>
+<li><a href="#when-to-clear-the-freeze-cache" id="toc-when-to-clear-the-freeze-cache" class="nav-link" data-scroll-target="#when-to-clear-the-freeze-cache">When to clear the freeze cache</a></li>
   </ul>
 </li>
+  <li><a href="#auto-linking-functions-optional" id="toc-auto-linking-functions-optional" class="nav-link" data-scroll-target="#auto-linking-functions-optional">Auto-linking functions (optional)</a></li>
+  <li><a href="#quarto-project-setup" id="toc-quarto-project-setup" class="nav-link" data-scroll-target="#quarto-project-setup">Quarto project setup</a></li>
+  <li><a href="#rendering-and-publishing" id="toc-rendering-and-publishing" class="nav-link" data-scroll-target="#rendering-and-publishing">Rendering and publishing</a></li>
+  <li><a href="#long-form-articles" id="toc-long-form-articles" class="nav-link" data-scroll-target="#long-form-articles">Long-form articles</a></li>
   </ul></nav>
 </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">GitHub Pages</h1>
+<h1 class="title">Building a full package website with Quarto</h1>
 </div>
 
 
@@ -377,132 +381,132 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><section id="setting-up" class="level2"><h2 class="anchored" data-anchor-id="setting-up">Setting up</h2>
-<p><a href="https://docs.github.com/en/actions">GitHub Actions</a> (GHA) can automate the rendering and publication of your site to <a href="https://pages.github.com/">GitHub Pages</a> on every push to <code>main</code>. Using <a href="https://quarto.org/docs/publishing/github-pages.html#publish-action">Quarto’s built-in publish action</a> keeps the workflow simple, with no Makefiles or Docker required.</p>
-<p>Before creating the workflow, create a <code>gh-pages</code> branch in your repository and configure it as the GitHub Pages source in your repository settings. Then add the workflow YAML file inside the <code>.github/workflows/</code> folder.</p>
-<p>Here is an example workflow. These are the current steps that this package and <code>mall</code> use for deployment:</p>
+</header><section id="overview" class="level2"><h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p><code>pkgsite</code> is primarily designed to convert your package’s reference into <code>.qmd</code> files. However, with a few manual steps it is possible to use it as the foundation for a complete package website. For the vast majority of R packages, <a href="https://pkgdown.r-lib.org/index.html">pkgdown</a> remains the recommended choice, but if you have a specific reason to use Quarto, this article walks through how to set things up.</p>
+</section><section id="what-you-need" class="level2"><h2 class="anchored" data-anchor-id="what-you-need">What you need</h2>
+<p>A minimal <code>pkgsite</code>-powered Quarto website consists of:</p>
+<ol type="1">
+<li>A homepage (<code>index.qmd</code>) that wraps your <code>README.md</code>.</li>
+<li>A news page (<code>changelog.qmd</code>) that wraps your <code>NEWS.md</code>.</li>
+<li>Reference pages generated by <code><a href="https://edgararuiz.github.io/pkgsite/reference/write_reference.html">write_reference()</a></code>.</li>
+<li>Auto-linking via <code>downlit</code> (optional).</li>
+<li>A <code>_quarto.yml</code> that ties everything together.</li>
+</ol>
+<p>The sections below walk through each one.</p>
+</section><section id="homepage-and-news" class="level2"><h2 class="anchored" data-anchor-id="homepage-and-news">Homepage and news</h2>
+<p>Most R packages already maintain a <code>README.md</code> and a <code>NEWS.md</code>. Rather than duplicating that content into new Quarto files, <code>pkgsite</code> takes the approach of wrapping them with thin <code>.qmd</code> files that use Quarto’s <code>include</code> shortcode:</p>
 <div class="code-copy-outer-scaffold">
-<div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> main</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Render and Publish</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">permissions</span><span class="kw">:</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> write</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pages</span><span class="kw">:</span><span class="at"> write</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">build-deploy</span><span class="kw">:</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Check out repository</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Quarto</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> quarto-dev/quarto-actions/setup@v2</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up R</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-r@v2</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">r-version</span><span class="kw">:</span><span class="at"> release</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">use-public-rspm</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install R dependencies</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-r-dependencies@v2</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">packages</span><span class="kw">:</span><span class="at"> any::downlit</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install pkgsite</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> R CMD INSTALL .</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Render site</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> quarto render</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish to GitHub Pages</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> quarto-dev/quarto-actions/publish@v2</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">target</span><span class="kw">:</span><span class="at"> gh-pages</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">render</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">env</span><span class="kw">:</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">GITHUB_TOKEN</span><span class="kw">:</span><span class="at"> ${{ secrets.GITHUB_TOKEN }}</span></span></code></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>{{&lt; include README.md &gt;}}</span></code></pre></div>
 <button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button>
 </div>
-</section><section id="autolinking-functions-with-downlit" class="level2"><h2 class="anchored" data-anchor-id="autolinking-functions-with-downlit">Autolinking functions with <code>downlit</code>
-</h2>
-<p>The <a href="https://downlit.r-lib.org/"><code>downlit</code></a> package scans rendered HTML files and automatically wraps function calls (such as <code><a href="https://edgararuiz.github.io/pkgsite/reference/write_reference.html">write_reference()</a></code>) in links that point to their documentation pages. This makes your site much easier to navigate.</p>
-<p>Setting up autolinking requires three things:</p>
+<div class="code-copy-outer-scaffold">
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>{{&lt; include NEWS.md &gt;}}</span></code></pre></div>
+<button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button>
+</div>
+<p>The <code>include</code> shortcode embeds the Markdown verbatim at render time, so <code>README.md</code> and <code>NEWS.md</code> remain the single source of truth. The <code>.qmd</code> wrappers themselves stay static: you only touch them when making a layout change, such as adding a front-matter option or inserting a custom section, not when updating content.</p>
+<p>Because <code>NEWS.md</code> uses standard Markdown headings for each version, Quarto automatically builds a table of contents from them, making it easy for users to jump to a specific release.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The news wrapper is called <code>changelog.qmd</code> rather than <code>news.qmd</code>. If it were named <code>news.qmd</code>, Quarto and R’s documentation tooling would both try to produce a <code>news.html</code> output file. One process deletes it before the other can finish, causing a silent collision. A different name sidesteps the issue entirely.</p>
+</div>
+</div>
+</section><section id="reference-pages" class="level2"><h2 class="anchored" data-anchor-id="reference-pages">Reference pages</h2>
+<p>The reference pages are generated from your package’s roxygen2 documentation by calling <code><a href="https://edgararuiz.github.io/pkgsite/reference/write_reference.html">write_reference()</a></code>:</p>
+<div class="code-copy-outer-scaffold">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">pkgsite</span><span class="fu">::</span><span class="fu"><a href="https://edgararuiz.github.io/pkgsite/reference/write_reference.html">write_reference</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button>
+</div>
+<p>This reads the <code>.Rd</code> files in your package’s <code>man/</code> directory and writes one <code>.qmd</code> file per exported topic into the <code>reference/</code> directory, along with a <code>reference/index.qmd</code> that lists them all. You only need to re-run this when you add, remove, or rename exported functions. Between those changes, the existing files stay in <code>_freeze/</code> and Quarto assembles them without re-executing anything.</p>
+<section id="when-to-clear-the-freeze-cache" class="level3"><h3 class="anchored" data-anchor-id="when-to-clear-the-freeze-cache">When to clear the freeze cache</h3>
+<p>Quarto only re-executes a <code>.qmd</code> file when its source text changes. Two common situations will silently produce stale output even after a normal <code>quarto render</code>:</p>
 <ul>
 <li>
-<strong>A post-render script</strong>: an R script that runs <code>downlit</code> on every HTML file after Quarto builds the site.</li>
+<strong>A function’s example output changed.</strong> You fixed a bug and the printed result is now different, but the <code>.qmd</code> source is identical, so Quarto considers it up to date.</li>
 <li>
-<strong>Entries in <code>_quarto.yml</code></strong>: to register the script with Quarto and provide the public URL of your site.</li>
-<li>
-<strong><code>downlit</code> installed in the workflow</strong>: so the script can run on GitHub Actions.</li>
+<strong>You changed a <code>_quarto.yml</code> setting</strong> that affects execution, such as <code>eval</code> or <code>freeze</code>.</li>
 </ul>
-<section id="post-render-script" class="level3"><h3 class="anchored" data-anchor-id="post-render-script">Post-render script</h3>
-<p>Quarto supports <a href="https://quarto.org/docs/projects/scripts.html#pre-and-post-render">post-render scripts</a> that run automatically after the site is built. Create a file named <code>_post-render.R</code> at the root of your project with the following contents, replacing <code>"mypkg"</code> with your package name and updating the URL to match your site:</p>
+<p>In both cases, delete the frozen output and re-render locally:</p>
 <div class="code-copy-outer-scaffold">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span></span>
-<span>  <span class="co"># Tells downlit where to send links for your package's functions</span></span>
-<span>  downlit.local_packages <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
-<span>    mypkg <span class="op">=</span> <span class="st">"https://myorg.github.io/mypkg"</span></span>
-<span>  <span class="op">)</span>,</span>
-<span>  <span class="co"># Tells downlit to search your package when resolving bare function names</span></span>
-<span>  downlit.attached <span class="op">=</span> <span class="st">"mypkg"</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Quarto passes the list of rendered files via this environment variable</span></span>
-<span><span class="va">output_files_env</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"QUARTO_PROJECT_OUTPUT_FILES"</span>, unset <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nzchar</a></span><span class="op">(</span><span class="va">output_files_env</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="co"># Incremental render: only process the files Quarto just built</span></span>
-<span>  <span class="va">html_files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">output_files_env</span>, <span class="st">"\n"</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span>  <span class="va">html_files</span> <span class="op">&lt;-</span> <span class="va">html_files</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"\\.html$"</span>, <span class="va">html_files</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>  <span class="co"># Full render or manual run: process every HTML file in the output directory</span></span>
-<span>  <span class="va">output_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"QUARTO_PROJECT_OUTPUT_DIR"</span>, unset <span class="op">=</span> <span class="st">"docs"</span><span class="op">)</span></span>
-<span>  <span class="va">html_files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span></span>
-<span>    <span class="va">output_dir</span>,</span>
-<span>    pattern <span class="op">=</span> <span class="st">"\\.html$"</span>,</span>
-<span>    recursive <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>    full.names <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="co"># Apply downlit to each file in-place, adding links to function documentation</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">f</span> <span class="kw">in</span> <span class="va">html_files</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu">downlit</span><span class="fu">::</span><span class="fu"><a href="https://downlit.r-lib.org/reference/downlit_html_path.html">downlit_html_path</a></span><span class="op">(</span><span class="va">f</span>, <span class="va">f</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> _freeze/reference</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code></pre></div>
 <button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button>
 </div>
-<p>The script checks <code>QUARTO_PROJECT_OUTPUT_FILES</code> first so that incremental renders (where only some pages changed) still work efficiently; only the newly built HTML files are processed.</p>
-</section><section id="registering-the-script-and-the-site-url" class="level3"><h3 class="anchored" data-anchor-id="registering-the-script-and-the-site-url">Registering the script and the site URL</h3>
-<p>Tell Quarto to run the script by adding a <code>post-render</code> key to your <code>_quarto.yml</code>. While there, set <code>site-url</code> to the public address of your site, which <code>downlit</code> needs to build correct absolute links:</p>
+<p>If <code>reference.dir</code> is set to a custom path in <code>_quarto.yml</code>, replace <code>reference</code> with that path. Commit the updated <code>_freeze/</code> folder afterwards so GitHub picks up the new output.</p>
+</section></section><section id="auto-linking-functions-optional" class="level2"><h2 class="anchored" data-anchor-id="auto-linking-functions-optional">Auto-linking functions (optional)</h2>
+<p><a href="https://downlit.r-lib.org/"><code>downlit</code></a> scans rendered HTML files and turns bare function names into hyperlinks that point at their documentation pages. It runs as a post-render script after every <code>quarto render</code> and requires no changes to your <code>.qmd</code> source files. The site works perfectly without it, but the links make it considerably easier to navigate.</p>
+<p>The full script, setup instructions, and the corresponding GitHub Actions workflow are covered in the <a href="../articles/github-actions.html">GitHub Pages article</a>.</p>
+</section><section id="quarto-project-setup" class="level2"><h2 class="anchored" data-anchor-id="quarto-project-setup">Quarto project setup</h2>
+<p>All configuration lives in a single <code>_quarto.yml</code> file at the root of your project. This file does double duty: it tells Quarto how to build the site, and it tells <code>pkgsite</code> where to find your package source and where to write the reference pages. Now that the individual pieces above are familiar, here is how they all come together in the <code>_quarto.yml</code> from this repository:</p>
 <div class="code-copy-outer-scaffold">
-<div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">post-render</span><span class="kw">:</span><span class="at"> _post-render.R</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">site-url</span><span class="kw">:</span><span class="at"> https://myorg.github.io/mypkg</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> docs</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">post-render</span><span class="kw">:</span><span class="at"> _post-render.R</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">eval</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> mypkg</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">site-url</span><span class="kw">:</span><span class="at"> https://myorg.github.io/mypkg</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">navbar</span><span class="kw">:</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">left</span><span class="kw">:</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> sidebar:articles</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> reference/index.qmd</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Reference</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> changelog.qmd</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> News</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">right</span><span class="kw">:</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">icon</span><span class="kw">:</span><span class="at"> github</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">href</span><span class="kw">:</span><span class="at"> https://github.com/myorg/mypkg</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="fu">pkgsite</span><span class="kw">:</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dir</span><span class="kw">:</span><span class="at"> </span><span class="st">"."</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">reference</span><span class="kw">:</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">dir</span><span class="kw">:</span><span class="at"> reference</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">index</span><span class="kw">:</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">file</span><span class="kw">:</span><span class="at"> index.qmd</span></span></code></pre></div>
 <button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button>
 </div>
-</section><section id="installing-downlit-in-the-workflow" class="level3"><h3 class="anchored" data-anchor-id="installing-downlit-in-the-workflow">Installing <code>downlit</code> in the workflow</h3>
-<p>The GitHub Actions workflow shown above already includes the step that installs <code>downlit</code>:</p>
+<p>A few things worth calling out:</p>
+<ul>
+<li>
+<code>output-dir: docs</code> matches the GitHub Pages convention of serving from the <code>docs/</code> folder on <code>main</code>, which keeps deployment simple.</li>
+<li>
+<code>freeze: true</code> under <code>execute</code> is the core of the whole approach. Quarto stores each file’s output in a <code>_freeze/</code> folder and only re-executes a file when its source changes. You render locally (where you have access to your database, LLM, or other local resources), commit <code>_freeze/</code>, and GitHub can rebuild the site without re-running a single line of R.</li>
+<li>The <code>pkgsite:</code> block is where you configure <code>pkgsite</code> specifically. <code>dir</code> is the path to the package root (usually <code>"."</code>) and <code>reference.dir</code> is where <code><a href="https://edgararuiz.github.io/pkgsite/reference/write_reference.html">write_reference()</a></code> will write the generated <code>.qmd</code> files.</li>
+<li>
+<code>post-render: _post-render.R</code> wires up the optional function auto-linking covered in the previous section.</li>
+</ul></section><section id="rendering-and-publishing" class="level2"><h2 class="anchored" data-anchor-id="rendering-and-publishing">Rendering and publishing</h2>
+<p>With all of the above in place, a full local render is:</p>
 <div class="code-copy-outer-scaffold">
-<div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install R dependencies</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> r-lib/actions/setup-r-dependencies@v2</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">packages</span><span class="kw">:</span><span class="at"> any::downlit</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code></pre></div>
 <button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button>
 </div>
-<p>With the post-render script in place and <code>downlit</code> installed, every function name in your rendered pages will be linked to its reference documentation automatically.</p>
+<p>Quarto executes any unfrozen <code>.qmd</code> files, writes HTML to <code>docs/</code>, and runs the post-render script if one is configured. Commit the result, including <code>_freeze/</code> and <code>docs/</code>, and your site is ready. For how to automate this with GitHub Actions, see the <a href="../articles/github-actions.html">GitHub Pages article</a>.</p>
+</section><section id="long-form-articles" class="level2"><h2 class="anchored" data-anchor-id="long-form-articles">Long-form articles</h2>
+<p>One additional option that a Quarto site opens up is publishing long-form documentation as regular <code>.qmd</code> files in an <code>articles/</code> folder, rather than as package vignettes. That is the approach taken in the <code>pkgsite</code> project. Quarto offers more flexibility in both design and publication than the vignette format, and it imposes fewer constraints on how the content is structured or rendered. Articles added to <code>articles/</code> can be wired into the site navbar or sidebar through <code>_quarto.yml</code> like any other page.</p>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
