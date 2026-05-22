@@ -15,4 +15,4 @@
 ^_post-render\.R$
 ^_freeze$
 ^changelog\.qmd$
-^NEWS\.md$
+^cran-comments\.md$

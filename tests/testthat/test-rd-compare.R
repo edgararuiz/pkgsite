@@ -17,7 +17,9 @@ test_that("rd_compare_titles handles custom sections and Author(s)", {
 
 test_that("rd_compare_pkg_titles prints results and returns invisible", {
   example_pkg <- system.file("example", package = "pkgsite")
-  expect_invisible(suppressMessages(rd_compare_pkg_titles(project = example_pkg)))
+  expect_invisible(suppressMessages(rd_compare_pkg_titles(
+    project = example_pkg
+  )))
   expect_snapshot(rd_compare_pkg_titles(project = example_pkg))
 })
 
