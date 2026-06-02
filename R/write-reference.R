@@ -36,7 +36,7 @@ write_reference <- function(
 ) {
   pkg_site <- read_quarto(project)
   pkg <- pkg %||% pkg_site[["dir"]]
-  folder <- folder %||% pkg_site[["reference"]][["dir"]] %||% "reference"
+  folder <- reference_folder(folder, project)
   examples <- examples %||% pkg_site[["run_examples"]] %||% TRUE
   not_run_examples <- not_run_examples %||%
     pkg_site[["reference"]][["not_run_examples"]] %||%
@@ -79,10 +79,11 @@ write_reference <- function(
 write_reference_index <- function(
   project = ".",
   pkg = NULL,
-  folder = "reference",
+  folder = NULL,
   index_file = "index.qmd",
   index_template = NULL
 ) {
+  folder <- reference_folder(folder, project)
   try(dir_create(folder), silent = TRUE)
   ref <- path(folder, index_file)
   try(file_delete(ref), silent = TRUE)
@@ -107,11 +108,12 @@ write_reference_index <- function(
 write_reference_pages <- function(
   project = ".",
   pkg = NULL,
-  folder = "reference",
+  folder = NULL,
   examples = TRUE,
   not_run_examples = FALSE,
   template = NULL
 ) {
+  folder <- reference_folder(folder, project)
   pkg <- pkg %||% ""
   man_folder <- path(project, pkg, "man")
   cli_inform("{.emph Converting .Rd to .qmd:}")
@@ -138,6 +140,10 @@ write_reference_pages <- function(
       }
     }
   )
+}
+
+reference_folder <- function(folder, project) {
+  folder %||% read_quarto(project)[["reference"]][["dir"]] %||% "reference"
 }
 
 # Copied from `r-lib/cli`

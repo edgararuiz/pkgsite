@@ -7,7 +7,7 @@
 write_reference_index(
   project = ".",
   pkg = NULL,
-  folder = "reference",
+  folder = NULL,
   index_file = "index.qmd",
   index_template = NULL
 )

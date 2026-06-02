@@ -7,7 +7,7 @@
 write_reference_pages(
   project = ".",
   pkg = NULL,
-  folder = "reference",
+  folder = NULL,
   examples = TRUE,
   not_run_examples = FALSE,
   template = NULL
