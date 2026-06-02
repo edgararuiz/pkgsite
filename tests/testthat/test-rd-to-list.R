@@ -11,12 +11,12 @@ test_that("Internal functions return NULL", {
 })
 
 test_that("Source reference is present", {
-  rd <- rd_to_list("llm_classify.Rd", test_path("test-pkg"))
+  rd <- rd_to_list(test_path("test-pkg", "man", "llm_classify.Rd"))
   expect_equal(rd$source, "R/llm-classify.R")
 })
 
 test_that("Source reference is present", {
-  rd <- rd_to_list("llm_use.Rd", test_path("test-pkg"))
+  rd <- rd_to_list(test_path("test-pkg", "man", "llm_use.Rd"))
   expect_in("...", map_chr(rd$arguments, \(x) x$argument))
 })
 

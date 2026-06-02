@@ -1,6 +1,6 @@
 test_that("rd_compare_titles matches for a simple Rd file", {
   example_pkg <- system.file("example", package = "pkgsite")
-  result <- rd_compare_titles("rd_to_list.Rd", project = example_pkg)
+  result <- rd_compare_titles(file.path(example_pkg, "man", "rd_to_list.Rd"))
   expect_setequal(result$html, result$list)
   expect_length(result$in_html_not_list, 0)
   expect_length(result$in_list_not_html, 0)

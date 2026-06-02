@@ -19,7 +19,7 @@ devtools::test_active_file('R/{name}.R')
 devtools::test_active_file('R/{name}.R', desc = 'blah')
 
 # To redocument the package
-devtools::document()
+air format .; devtools::document(); pkgsite::write_reference()
 
 # To check pkgdown documentation
 pkgdown::check_pkgdown()

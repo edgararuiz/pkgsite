@@ -14,7 +14,7 @@ Converts 'Rd' to Quarto files
 ## Usage
 ```r
 rd_to_qmd(
-  rd_file,
+  path,
   project = ".",
   pkg = NULL,
   examples = TRUE,
@@ -26,7 +26,7 @@ rd_to_qmd(
 ## Arguments
 |Arguments|Description|
 |---|---|
-| rd_file | The name of the source Rd file |
+| path | The path to the source Rd file |
 | project | The path to the root folder of the project. |
 | pkg | The path inside the project folder. Use only if the R package itself is in a sub-folder within the project. |
 | examples | Flag that sets the examples code chunk to be evaluated when the Quarto document is rendered |
@@ -48,5 +48,5 @@ Other Conversion functions: `index_to_qmd()`, `rd_to_list()`
 ```{r}
 library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
-rd_to_qmd("rd_to_qmd.Rd", project = example_pkg)
+rd_to_qmd(file.path(example_pkg, "man", "rd_to_qmd.Rd"), project = example_pkg)
 ```

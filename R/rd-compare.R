@@ -1,13 +1,7 @@
-rd_compare_titles <- function(rd_file, project = ".", pkg = NULL) {
-  rd_input <- if (inherits(rd_file, "Rd")) {
-    rd_file
-  } else {
-    fs::path(project, pkg %||% "", "man", rd_file)
-  }
-
+rd_compare_titles <- function(path, project = ".", pkg = NULL) {
   tmp_html <- tempfile(fileext = ".html")
   on.exit(unlink(tmp_html))
-  suppressWarnings(tools::Rd2HTML(rd_input, out = tmp_html))
+  suppressWarnings(tools::Rd2HTML(path, out = tmp_html))
   html_text <- paste(readLines(tmp_html), collapse = "\n")
 
   h3 <- regmatches(
@@ -16,7 +10,7 @@ rd_compare_titles <- function(rd_file, project = ".", pkg = NULL) {
   )[[1]]
   html_names <- rd_normalize_header(h3)
 
-  rd_list <- rd_to_list_internal(rd_file, project, pkg)
+  rd_list <- rd_to_list_internal(path)
 
   section_idx <- which(names(rd_list) == "section")
   section_names <- if (length(section_idx) > 0) {
@@ -43,17 +37,16 @@ rd_compare_titles <- function(rd_file, project = ".", pkg = NULL) {
 
 rd_compare_pkg_titles <- function(project = ".", pkg = NULL) {
   pkg <- pkg %||% ""
-  rd_names <- fs::path_file(fs::dir_ls(
-    fs::path(project, pkg, "man"),
-    glob = "*.Rd"
-  ))
-  purrr::walk(rd_names, function(x) {
-    result <- rd_compare_titles(x, project, pkg)
+  man_folder <- fs::path(project, pkg, "man")
+  rd_paths <- fs::dir_ls(man_folder, glob = "*.Rd")
+  purrr::walk(rd_paths, function(x) {
+    result <- rd_compare_titles(x)
     missing <- result$in_html_not_list
+    name <- fs::path_file(x)
     if (length(missing) == 0) {
-      cli::cli_inform(c("v" = "{x}"))
+      cli::cli_inform(c("v" = "{name}"))
     } else {
-      cli::cli_inform(c("x" = "{x}: missing {.val {missing}}"))
+      cli::cli_inform(c("x" = "{name}: missing {.val {missing}}"))
     }
   })
   invisible()

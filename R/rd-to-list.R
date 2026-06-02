@@ -8,28 +8,20 @@
 #' @examples
 #' library(pkgsite)
 #' example_pkg <- system.file("example", package = "pkgsite")
-#' rd_to_list("rd_to_list.Rd", project = example_pkg)
+#' rd_to_list(file.path(example_pkg, "man", "rd_to_list.Rd"))
 #' @export
-rd_to_list <- function(rd_file, project = ".", pkg = NULL) {
+rd_to_list <- function(path, project = ".", pkg = NULL) {
   rd_to_list_internal(
-    rd_file = rd_file,
-    project = project,
-    pkg = pkg,
+    path = path,
     internal = FALSE
   )
 }
 
-rd_to_list_internal <- function(
-  rd_file,
-  project = ".",
-  pkg = NULL,
-  internal = TRUE
-) {
-  pkg <- pkg %||% ""
-  if (inherits(rd_file, "Rd")) {
-    rd_content <- rd_file
+rd_to_list_internal <- function(path, internal = TRUE) {
+  if (inherits(path, "Rd")) {
+    rd_content <- path
   } else {
-    rd_content <- tools::parse_Rd(fs::path(project, pkg, "man", rd_file))
+    rd_content <- tools::parse_Rd(path)
   }
   out <- rd_content |>
     map(rd_tag_process) |>

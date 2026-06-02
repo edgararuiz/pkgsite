@@ -26,10 +26,12 @@ index_to_qmd <- function(
 reference_index_convert <- function(project, pkg = NULL, index = NULL) {
   # This section creates reads the Rd files and extracts their name & description
   pkg <- pkg %||% ""
-  rd_names <- path_file(dir_ls(path(project, pkg, "man"), glob = "*.Rd"))
+  man_folder <- path(project, pkg, "man")
+  rd_paths <- dir_ls(man_folder, glob = "*.Rd")
+  rd_names <- path_file(rd_paths)
   qmd_names <- path(path_ext_remove(rd_names), ext = "qmd")
-  rd_list <- rd_names |>
-    map(rd_to_list_internal, project, pkg) |>
+  rd_list <- rd_paths |>
+    map(rd_to_list_internal) |>
     set_names(qmd_names) |>
     map(
       function(x) {

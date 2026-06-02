@@ -5,7 +5,7 @@
 \title{Converts 'Rd' to Quarto files}
 \usage{
 rd_to_qmd(
-  rd_file,
+  path,
   project = ".",
   pkg = NULL,
   examples = TRUE,
@@ -14,7 +14,7 @@ rd_to_qmd(
 )
 }
 \arguments{
-\item{rd_file}{The name of the source Rd file}
+\item{path}{The path to the source Rd file}
 
 \item{project}{The path to the root folder of the project.}
 
@@ -41,7 +41,7 @@ Converts 'Rd' to Quarto files
 \examples{
 library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
-rd_to_qmd("rd_to_qmd.Rd", project = example_pkg)
+rd_to_qmd(file.path(example_pkg, "man", "rd_to_qmd.Rd"), project = example_pkg)
 }
 \seealso{
 Other Conversion functions:
