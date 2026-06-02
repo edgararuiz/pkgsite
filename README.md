@@ -90,8 +90,9 @@ write_reference()
 ```
 
 The function uses sensible defaults, so calling it without any arguments
-works out of the box. Internally, the function applies these defaults
-when specific arguments are left `NULL`.
+works out of the box. The target `folder` is resolved in order from: the
+explicit argument, the `dir` key under `pkgsite > reference` in
+`_quarto.yml`, and finally `"reference"` as a fallback.
 
 ## Configure via the ’\_quarto.yml’ file
 
