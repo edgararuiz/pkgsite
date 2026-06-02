@@ -5,18 +5,15 @@
 \title{Writes the index of the reference pages into a Quarto file}
 \usage{
 write_reference_index(
-  project = ".",
-  pkg = NULL,
+  pkg = ".",
   folder = NULL,
   index_file = "index.qmd",
-  index_template = NULL
+  index_template = NULL,
+  quarto_file_path = NULL
 )
 }
 \arguments{
-\item{project}{The path to the root folder of the project.}
-
-\item{pkg}{The path inside the project folder. Use only if the R package
-itself is in a sub-folder within the project.}
+\item{pkg}{Path to the root of the R package. Defaults to \code{"."}.}
 
 \item{folder}{The target folder to save the new Quarto files to}
 
@@ -24,6 +21,11 @@ itself is in a sub-folder within the project.}
 
 \item{index_template}{The path to a Quarto file that can be used as the
 template for the index Quarto file}
+
+\item{quarto_file_path}{Path to the folder containing \verb{_quarto.yml}. Use
+when the Quarto project root differs from the package root (e.g. the
+package lives in a sub-folder of a larger Quarto project). Must be a
+directory path. Defaults to \code{NULL}, in which case \code{pkg} is used.}
 }
 \value{
 A Quarto file that links to the individual Quarto documentation
@@ -36,7 +38,7 @@ Writes the index of the reference pages into a Quarto file
 \donttest{
 library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
-write_reference_index(project = example_pkg, folder = tempdir())
+write_reference_index(pkg = example_pkg, folder = tempdir())
 }
 }
 \seealso{

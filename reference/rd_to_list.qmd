@@ -20,8 +20,7 @@ rd_to_list(path, project = ".", pkg = NULL)
 |Arguments|Description|
 |---|---|
 | path | The path to the source Rd file |
-| project | The path to the root folder of the project. |
-| pkg | The path inside the project folder. Use only if the R package itself is in a sub-folder within the project. |
+| pkg | Path to the root of the R package. Defaults to `"."`. |
 
 
 ## Value

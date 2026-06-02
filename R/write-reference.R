@@ -1,8 +1,6 @@
 #' Writes the reference pages and index as Quarto files
 #'
-#' @param project The path to the root folder of the project.
-#' @param pkg The path inside the project folder. Use only if the R package
-#' itself is in a sub-folder within the project.
+#' @param pkg Path to the root of the R package. Defaults to `"."`.
 #' @param folder The target folder to save the new Quarto files to
 #' @param examples Flag that sets the examples code chunk to be evaluated when
 #' the Quarto document is rendered
@@ -14,6 +12,10 @@
 #' @param index_file The name assigned to the resulting index Quarto file
 #' @param index_template The path to a Quarto file that can be used as the
 #' template for the index Quarto file
+#' @param quarto_file_path Path to the folder containing `_quarto.yml`. Use
+#' when the Quarto project root differs from the package root (e.g. the
+#' package lives in a sub-folder of a larger Quarto project). Must be a
+#' directory path. Defaults to `NULL`, in which case `pkg` is used.
 #' @returns A set of Quarto files written to the specified path based on the
 #' number of Rd files in the package, plus an additional one that is the index.
 #' @family Quarto file creation
@@ -21,46 +23,50 @@
 #' \donttest{
 #' library(pkgsite)
 #' example_pkg <- system.file("example", package = "pkgsite")
-#' write_reference(project = example_pkg, folder = tempdir())
+#' write_reference(pkg = example_pkg, folder = tempdir())
 #' }
 #' @export
 write_reference <- function(
-  project = ".",
-  pkg = NULL,
+  pkg = ".",
   folder = NULL,
   examples = TRUE,
   not_run_examples = NULL,
   template = NULL,
   index_file = NULL,
-  index_template = NULL
+  index_template = NULL,
+  quarto_file_path = NULL
 ) {
-  pkg_site <- read_quarto(project)
-  pkg <- pkg %||% pkg_site[["dir"]]
-  folder <- reference_folder(folder, project)
+  check_quarto_file_path(quarto_file_path)
+  quarto_root <- quarto_file_path %||% pkg
+  pkg_site <- read_quarto(quarto_root)
+  folder <- reference_folder(folder, quarto_root)
   examples <- examples %||% pkg_site[["run_examples"]] %||% TRUE
   not_run_examples <- not_run_examples %||%
     pkg_site[["reference"]][["not_run_examples"]] %||%
     FALSE
-  template <- template %||% pkg_site[["reference"]][["template"]]
+  ref_tmpl <- pkg_site[["reference"]][["template"]]
+  template <- template %||%
+    (if (!is.null(ref_tmpl)) path(quarto_root, ref_tmpl) else NULL)
+  idx_tmpl <- pkg_site[["reference"]][["index"]][["template"]]
   index_template <- index_template %||%
-    pkg_site[["reference"]][["index"]][["template"]]
+    (if (!is.null(idx_tmpl)) path(quarto_root, idx_tmpl) else NULL)
   index_file <- index_file %||%
     pkg_site[["reference"]][["index"]][["file"]] %||%
     "index.qmd"
   write_reference_index(
-    project = project,
     pkg = pkg,
     folder = folder,
     index_file = index_file,
-    index_template = index_template
+    index_template = index_template,
+    quarto_file_path = quarto_file_path
   )
   write_reference_pages(
-    project = project,
     pkg = pkg,
     folder = folder,
     examples = examples,
     not_run_examples = not_run_examples,
-    template = template
+    template = template,
+    quarto_file_path = quarto_file_path
   )
 }
 
@@ -73,21 +79,22 @@ write_reference <- function(
 #' \donttest{
 #' library(pkgsite)
 #' example_pkg <- system.file("example", package = "pkgsite")
-#' write_reference_index(project = example_pkg, folder = tempdir())
+#' write_reference_index(pkg = example_pkg, folder = tempdir())
 #' }
 #' @export
 write_reference_index <- function(
-  project = ".",
-  pkg = NULL,
+  pkg = ".",
   folder = NULL,
   index_file = "index.qmd",
-  index_template = NULL
+  index_template = NULL,
+  quarto_file_path = NULL
 ) {
-  folder <- reference_folder(folder, project)
+  check_quarto_file_path(quarto_file_path)
+  folder <- reference_folder(folder, quarto_file_path %||% pkg)
   try(dir_create(folder), silent = TRUE)
   ref <- path(folder, index_file)
   try(file_delete(ref), silent = TRUE)
-  writeLines(index_to_qmd(project, pkg, index_template), ref)
+  writeLines(index_to_qmd(pkg, index_template, quarto_file_path), ref)
   cli_h3("{.pkg pkgsite}")
   cli_inform("{.emph Creating index file:}")
   cli_bullets(c(" " = "{.code {as.character(ref)}}"))
@@ -102,20 +109,20 @@ write_reference_index <- function(
 #' \donttest{
 #' library(pkgsite)
 #' example_pkg <- system.file("example", package = "pkgsite")
-#' write_reference_pages(project = example_pkg, folder = tempdir())
+#' write_reference_pages(pkg = example_pkg, folder = tempdir())
 #' }
 #' @export
 write_reference_pages <- function(
-  project = ".",
-  pkg = NULL,
+  pkg = ".",
   folder = NULL,
   examples = TRUE,
   not_run_examples = FALSE,
-  template = NULL
+  template = NULL,
+  quarto_file_path = NULL
 ) {
-  folder <- reference_folder(folder, project)
-  pkg <- pkg %||% ""
-  man_folder <- path(project, pkg, "man")
+  check_quarto_file_path(quarto_file_path)
+  folder <- reference_folder(folder, quarto_file_path %||% pkg)
+  man_folder <- path(pkg, "man")
   cli_inform("{.emph Converting .Rd to .qmd:}")
   if (l10n_info()$`UTF-8` && !is_latex_output()) {
     arrow <- "\u2192"
@@ -128,11 +135,11 @@ write_reference_pages <- function(
       ref <- paste0(folder, "/", path_ext_remove(x), ".qmd")
       qmd <- rd_to_qmd(
         path(man_folder, x),
-        project,
-        pkg,
-        examples,
-        not_run_examples,
-        template
+        pkg = pkg,
+        examples = examples,
+        not_run_examples = not_run_examples,
+        template = template,
+        quarto_file_path = quarto_file_path
       )
       if (is.null(qmd)) {
         cli_bullets(c(
@@ -149,8 +156,16 @@ write_reference_pages <- function(
   )
 }
 
-reference_folder <- function(folder, project) {
-  folder %||% read_quarto(project)[["reference"]][["dir"]] %||% "reference"
+reference_folder <- function(folder, quarto_root) {
+  folder %||% read_quarto(quarto_root)[["reference"]][["dir"]] %||% "reference"
+}
+
+check_quarto_file_path <- function(quarto_file_path) {
+  if (!is.null(quarto_file_path) && !is_dir(quarto_file_path)) {
+    cli_abort(
+      "{.arg quarto_file_path} must be a directory path, not a file path."
+    )
+  }
 }
 
 # Copied from `r-lib/cli`

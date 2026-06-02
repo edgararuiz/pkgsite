@@ -1,7 +1,7 @@
 test_that("write-reference works", {
   temp_reference <- tempfile("/reference")
   suppressMessages(
-    write_reference(test_path("test-pkg"), folder = temp_reference)
+    write_reference(pkg = test_path("test-pkg"), folder = temp_reference)
   )
   expect_snapshot(
     dir(temp_reference)

@@ -35,9 +35,8 @@ rd_compare_titles <- function(path, project = ".", pkg = NULL) {
   )
 }
 
-rd_compare_pkg_titles <- function(project = ".", pkg = NULL) {
-  pkg <- pkg %||% ""
-  man_folder <- fs::path(project, pkg, "man")
+rd_compare_pkg_titles <- function(pkg = ".") {
+  man_folder <- fs::path(pkg, "man")
   rd_paths <- fs::dir_ls(man_folder, glob = "*.Rd")
   purrr::walk(rd_paths, function(x) {
     result <- rd_compare_titles(x)

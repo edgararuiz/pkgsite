@@ -9,10 +9,7 @@ rd_to_list(path, project = ".", pkg = NULL)
 \arguments{
 \item{path}{The path to the source Rd file}
 
-\item{project}{The path to the root folder of the project.}
-
-\item{pkg}{The path inside the project folder. Use only if the R package
-itself is in a sub-folder within the project.}
+\item{pkg}{Path to the root of the R package. Defaults to \code{"."}.}
 }
 \value{
 A list object that contains the contents of the Rd file
