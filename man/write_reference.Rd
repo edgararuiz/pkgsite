@@ -6,7 +6,7 @@
 \usage{
 write_reference(
   pkg = ".",
-  folder = NULL,
+  target_folder = NULL,
   examples = TRUE,
   not_run_examples = NULL,
   template = NULL,
@@ -18,7 +18,9 @@ write_reference(
 \arguments{
 \item{pkg}{Path to the root of the R package. Defaults to \code{"."}.}
 
-\item{folder}{The target folder to save the new Quarto files to}
+\item{target_folder}{Path to the folder where the Quarto files will be
+written. Defaults to \code{NULL}, which resolves to \code{"reference/"} (or the
+\code{dir} value under \code{pkgsite > reference} in \verb{_quarto.yml} if set).}
 
 \item{examples}{Flag that sets the examples code chunk to be evaluated when
 the Quarto document is rendered}
@@ -51,7 +53,7 @@ Writes the reference pages and index as Quarto files
 \donttest{
 library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
-write_reference(pkg = example_pkg, folder = tempdir())
+write_reference(pkg = example_pkg, target_folder = tempdir())
 }
 }
 \seealso{

@@ -6,7 +6,7 @@
 \usage{
 write_reference_index(
   pkg = ".",
-  folder = NULL,
+  target_folder = NULL,
   index_file = "index.qmd",
   index_template = NULL,
   quarto_file_path = NULL
@@ -15,7 +15,9 @@ write_reference_index(
 \arguments{
 \item{pkg}{Path to the root of the R package. Defaults to \code{"."}.}
 
-\item{folder}{The target folder to save the new Quarto files to}
+\item{target_folder}{Path to the folder where the Quarto files will be
+written. Defaults to \code{NULL}, which resolves to \code{"reference/"} (or the
+\code{dir} value under \code{pkgsite > reference} in \verb{_quarto.yml} if set).}
 
 \item{index_file}{The name assigned to the resulting index Quarto file}
 
@@ -38,7 +40,7 @@ Writes the index of the reference pages into a Quarto file
 \donttest{
 library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
-write_reference_index(pkg = example_pkg, folder = tempdir())
+write_reference_index(pkg = example_pkg, target_folder = tempdir())
 }
 }
 \seealso{

@@ -15,7 +15,7 @@ Writes the reference pages and index as Quarto files
 ```r
 write_reference(
   pkg = ".",
-  folder = NULL,
+  target_folder = NULL,
   examples = TRUE,
   not_run_examples = NULL,
   template = NULL,
@@ -29,7 +29,7 @@ write_reference(
 |Arguments|Description|
 |---|---|
 | pkg | Path to the root of the R package. Defaults to `"."`. |
-| folder | The target folder to save the new Quarto files to |
+| target_folder | Path to the folder where the Quarto files will be written. Defaults to `NULL`, which resolves to `"reference/"` (or the `dir` value under `pkgsite > reference` in _quarto.yml if set). |
 | examples | Flag that sets the examples code chunk to be evaluated when the Quarto document is rendered |
 | not_run_examples | Flag that sets the "do not run" examples code chunk to be evaluated when the Quarto document is rendered |
 | template | The path to a Quarto file that can be used as the template for all of the resulting reference files. If left NULL, `pkgsite` will use its default template. |
@@ -52,5 +52,5 @@ Other Quarto file creation: `write_reference_index()`, `write_reference_pages()`
 ```{r}
 library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
-write_reference(pkg = example_pkg, folder = tempdir())
+write_reference(pkg = example_pkg, target_folder = tempdir())
 ```

@@ -1,7 +1,9 @@
 #' Writes the reference pages and index as Quarto files
 #'
 #' @param pkg Path to the root of the R package. Defaults to `"."`.
-#' @param folder The target folder to save the new Quarto files to
+#' @param target_folder Path to the folder where the Quarto files will be
+#' written. Defaults to `NULL`, which resolves to `"reference/"` (or the
+#' `dir` value under `pkgsite > reference` in `_quarto.yml` if set).
 #' @param examples Flag that sets the examples code chunk to be evaluated when
 #' the Quarto document is rendered
 #' @param not_run_examples Flag that sets the "do not run" examples code chunk
@@ -23,12 +25,12 @@
 #' \donttest{
 #' library(pkgsite)
 #' example_pkg <- system.file("example", package = "pkgsite")
-#' write_reference(pkg = example_pkg, folder = tempdir())
+#' write_reference(pkg = example_pkg, target_folder = tempdir())
 #' }
 #' @export
 write_reference <- function(
   pkg = ".",
-  folder = NULL,
+  target_folder = NULL,
   examples = TRUE,
   not_run_examples = NULL,
   template = NULL,
@@ -39,7 +41,7 @@ write_reference <- function(
   check_quarto_file_path(quarto_file_path)
   quarto_root <- quarto_file_path %||% pkg
   pkg_site <- read_quarto(quarto_root)
-  folder <- reference_folder(folder, quarto_root)
+  target_folder <- reference_folder(target_folder, quarto_root)
   examples <- examples %||% pkg_site[["run_examples"]] %||% TRUE
   not_run_examples <- not_run_examples %||%
     pkg_site[["reference"]][["not_run_examples"]] %||%
@@ -55,14 +57,14 @@ write_reference <- function(
     "index.qmd"
   write_reference_index(
     pkg = pkg,
-    folder = folder,
+    target_folder = target_folder,
     index_file = index_file,
     index_template = index_template,
     quarto_file_path = quarto_file_path
   )
   write_reference_pages(
     pkg = pkg,
-    folder = folder,
+    target_folder = target_folder,
     examples = examples,
     not_run_examples = not_run_examples,
     template = template,
@@ -79,20 +81,20 @@ write_reference <- function(
 #' \donttest{
 #' library(pkgsite)
 #' example_pkg <- system.file("example", package = "pkgsite")
-#' write_reference_index(pkg = example_pkg, folder = tempdir())
+#' write_reference_index(pkg = example_pkg, target_folder = tempdir())
 #' }
 #' @export
 write_reference_index <- function(
   pkg = ".",
-  folder = NULL,
+  target_folder = NULL,
   index_file = "index.qmd",
   index_template = NULL,
   quarto_file_path = NULL
 ) {
   check_quarto_file_path(quarto_file_path)
-  folder <- reference_folder(folder, quarto_file_path %||% pkg)
-  try(dir_create(folder), silent = TRUE)
-  ref <- path(folder, index_file)
+  target_folder <- reference_folder(target_folder, quarto_file_path %||% pkg)
+  try(dir_create(target_folder), silent = TRUE)
+  ref <- path(target_folder, index_file)
   try(file_delete(ref), silent = TRUE)
   writeLines(index_to_qmd(pkg, index_template, quarto_file_path), ref)
   cli_h3("{.pkg pkgsite}")
@@ -109,19 +111,19 @@ write_reference_index <- function(
 #' \donttest{
 #' library(pkgsite)
 #' example_pkg <- system.file("example", package = "pkgsite")
-#' write_reference_pages(pkg = example_pkg, folder = tempdir())
+#' write_reference_pages(pkg = example_pkg, target_folder = tempdir())
 #' }
 #' @export
 write_reference_pages <- function(
   pkg = ".",
-  folder = NULL,
+  target_folder = NULL,
   examples = TRUE,
   not_run_examples = FALSE,
   template = NULL,
   quarto_file_path = NULL
 ) {
   check_quarto_file_path(quarto_file_path)
-  folder <- reference_folder(folder, quarto_file_path %||% pkg)
+  target_folder <- reference_folder(target_folder, quarto_file_path %||% pkg)
   man_folder <- path(pkg, "man")
   cli_inform("{.emph Converting .Rd to .qmd:}")
   if (l10n_info()$`UTF-8` && !is_latex_output()) {
@@ -132,7 +134,7 @@ write_reference_pages <- function(
   walk(
     path_file(dir_ls(man_folder, glob = "*.Rd")),
     function(x) {
-      ref <- paste0(folder, "/", path_ext_remove(x), ".qmd")
+      ref <- paste0(target_folder, "/", path_ext_remove(x), ".qmd")
       qmd <- rd_to_qmd(
         path(man_folder, x),
         pkg = pkg,
@@ -156,8 +158,10 @@ write_reference_pages <- function(
   )
 }
 
-reference_folder <- function(folder, quarto_root) {
-  folder %||% read_quarto(quarto_root)[["reference"]][["dir"]] %||% "reference"
+reference_folder <- function(target_folder, quarto_root) {
+  target_folder %||%
+    read_quarto(quarto_root)[["reference"]][["dir"]] %||%
+    "reference"
 }
 
 check_quarto_file_path <- function(quarto_file_path) {
