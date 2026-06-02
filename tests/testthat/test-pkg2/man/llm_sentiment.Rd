@@ -48,34 +48,3 @@ Applies to vector function only.}
 Use a Large Language Model (LLM) to perform sentiment analysis
 from the provided text
 }
-\examples{
-\donttest{
-library(mall)
-
-data("reviews")
-
-llm_use("ollama", "llama3.2", seed = 100, .silent = TRUE)
-
-llm_sentiment(reviews, review)
-
-# Use 'pred_name' to customize the new column's name
-llm_sentiment(reviews, review, pred_name = "review_sentiment")
-
-# Pass custom sentiment options
-llm_sentiment(reviews, review, c("positive", "negative"))
-
-# Specify values to return per sentiment
-llm_sentiment(reviews, review, c("positive" ~ 1, "negative" ~ 0))
-
-# For character vectors, instead of a data frame, use this function
-llm_vec_sentiment(c("I am happy", "I am sad"))
-
-# To preview the first call that will be made to the downstream R function
-llm_vec_sentiment(c("I am happy", "I am sad"), preview = TRUE)
-}
-}
-\seealso{
-Other LLM: 
-\code{\link{llm_classify}()}
-}
-\concept{LLM}

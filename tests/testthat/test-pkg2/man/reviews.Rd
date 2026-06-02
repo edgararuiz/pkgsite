@@ -14,10 +14,3 @@ reviews
 \description{
 Mini reviews data set
 }
-\examples{
-library(mall)
-data(reviews)
-reviews
-
-}
-\keyword{datasets}

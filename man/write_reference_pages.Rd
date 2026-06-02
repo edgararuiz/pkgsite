@@ -39,7 +39,7 @@ number of Rd files in the package.
 Converts the 'Rd' file into Quarto, and writes the file to a specified folder
 }
 \examples{
-\dontrun{
+\donttest{
 library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
 write_reference_pages(project = example_pkg, folder = tempdir())

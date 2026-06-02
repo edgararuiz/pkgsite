@@ -18,7 +18,7 @@
 #' number of Rd files in the package, plus an additional one that is the index.
 #' @family Quarto file creation
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(pkgsite)
 #' example_pkg <- system.file("example", package = "pkgsite")
 #' write_reference(project = example_pkg, folder = tempdir())
@@ -70,7 +70,7 @@ write_reference <- function(
 #' files
 #' @family Quarto file creation
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(pkgsite)
 #' example_pkg <- system.file("example", package = "pkgsite")
 #' write_reference_index(project = example_pkg, folder = tempdir())
@@ -98,7 +98,7 @@ write_reference_index <- function(
 #' number of Rd files in the package.
 #' @family Quarto file creation
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(pkgsite)
 #' example_pkg <- system.file("example", package = "pkgsite")
 #' write_reference_pages(project = example_pkg, folder = tempdir())

@@ -46,7 +46,7 @@ number of Rd files in the package, plus an additional one that is the index.
 Writes the reference pages and index as Quarto files
 }
 \examples{
-\dontrun{
+\donttest{
 library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
 write_reference(project = example_pkg, folder = tempdir())

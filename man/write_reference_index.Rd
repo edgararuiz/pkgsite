@@ -33,7 +33,7 @@ files
 Writes the index of the reference pages into a Quarto file
 }
 \examples{
-\dontrun{
+\donttest{
 library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
 write_reference_index(project = example_pkg, folder = tempdir())

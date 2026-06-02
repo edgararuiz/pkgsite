@@ -34,22 +34,3 @@ deterministic, provide the options in a vector. This function will set to
 Use a Large Language Model (LLM) to process the provided text using the
 instructions from \code{prompt}
 }
-\examples{
-\donttest{
-library(mall)
-
-data("reviews")
-
-llm_use("ollama", "llama3.2", seed = 100, .silent = TRUE)
-
-my_prompt <- paste(
-  "Answer a question.",
-  "Return only the answer, no explanation",
-  "Acceptable answers are 'yes', 'no'",
-  "Answer this about the following text, is this a happy customer?:"
-)
-
-reviews |>
-  llm_custom(review, my_prompt)
-}
-}

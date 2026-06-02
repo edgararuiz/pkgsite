@@ -42,15 +42,3 @@ Applies to vector function only.}
 Use a Large Language Model (LLM) to translate a text to a specific
 language
 }
-\examples{
-\donttest{
-library(mall)
-
-data("reviews")
-
-llm_use("ollama", "llama3.2", seed = 100, .silent = TRUE)
-
-# Pass the desired language to translate to
-llm_translate(reviews, review, "spanish")
-}
-}
