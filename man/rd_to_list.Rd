@@ -4,12 +4,10 @@
 \alias{rd_to_list}
 \title{Converts a given 'Rd' file into a list object}
 \usage{
-rd_to_list(path, project = ".", pkg = NULL)
+rd_to_list(path)
 }
 \arguments{
 \item{path}{The path to the source Rd file}
-
-\item{pkg}{Path to the root of the R package. Defaults to \code{"."}.}
 }
 \value{
 A list object that contains the contents of the Rd file

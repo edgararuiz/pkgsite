@@ -16,3 +16,5 @@
 ^_freeze$
 ^changelog\.qmd$
 ^cran-comments\.md$
+^CRAN-SUBMISSION$
+^README\.html$

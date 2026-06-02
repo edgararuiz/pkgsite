@@ -2,7 +2,7 @@
 #' @description This function is meant to be used as an intermediate object
 #' that could be used as an easy way to convert the information inside the 'Rd'
 #' into other formats or outputs.
-#' @inheritParams rd_to_qmd
+#' @param path The path to the source Rd file
 #' @returns A list object that contains the contents of the Rd file
 #' @family Conversion functions
 #' @examples
@@ -10,7 +10,7 @@
 #' example_pkg <- system.file("example", package = "pkgsite")
 #' rd_to_list(file.path(example_pkg, "man", "rd_to_list.Rd"))
 #' @export
-rd_to_list <- function(path, project = ".", pkg = NULL) {
+rd_to_list <- function(path) {
   rd_to_list_internal(
     path = path,
     internal = FALSE
