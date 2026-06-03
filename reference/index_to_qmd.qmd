@@ -5,6 +5,8 @@ execute:
   freeze: true
 ---
 
+[R/index_to_qmd.R](https://github.com/edgararuiz/pkgsite/blob/main/R/index_to_qmd.R)
+
 ## index_to_qmd
 
 ## Description
@@ -24,15 +26,10 @@ index_to_qmd(pkg = ".", template = NULL, quarto_file_path = NULL)
 | quarto_file_path | Path to the folder containing _quarto.yml. Use when the Quarto project root differs from the package root (e.g. the package lives in a sub-folder of a larger Quarto project). Must be a directory path. Defaults to `NULL`, in which case `pkg` is used. |
 
 
+
 ## Value
 A character vector with the contents of a document that links to the converted Quarto documents.
 
-
-
-
-
-## See Also
-Other Conversion functions: `rd_to_list()`, `rd_to_qmd()`
 
 ## Examples
 ```{r}
@@ -40,3 +37,8 @@ library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
 index_to_qmd(pkg = example_pkg)
 ```
+
+## See Also
+Other Conversion functions: `rd_to_list()`, `rd_to_qmd()`
+
+

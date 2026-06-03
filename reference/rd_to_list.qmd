@@ -5,6 +5,8 @@ execute:
   freeze: true
 ---
 
+[R/rd-to-list.R](https://github.com/edgararuiz/pkgsite/blob/main/R/rd-to-list.R)
+
 ## rd_to_list
 
 ## Description
@@ -22,15 +24,10 @@ rd_to_list(path)
 | path | The path to the source Rd file |
 
 
+
 ## Value
 A list object that contains the contents of the Rd file
 
-
-
-
-
-## See Also
-Other Conversion functions: `index_to_qmd()`, `rd_to_qmd()`
 
 ## Examples
 ```{r}
@@ -38,3 +35,8 @@ library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
 rd_to_list(file.path(example_pkg, "man", "rd_to_list.Rd"))
 ```
+
+## See Also
+Other Conversion functions: `index_to_qmd()`, `rd_to_qmd()`
+
+

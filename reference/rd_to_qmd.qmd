@@ -5,6 +5,8 @@ execute:
   freeze: true
 ---
 
+[R/rd-to-qmd.R](https://github.com/edgararuiz/pkgsite/blob/main/R/rd-to-qmd.R)
+
 ## rd_to_qmd
 
 ## Description
@@ -34,15 +36,10 @@ rd_to_qmd(
 | quarto_file_path | Path to the folder containing _quarto.yml. Use when the Quarto project root differs from the package root (e.g. the package lives in a sub-folder of a larger Quarto project). Must be a directory path. Defaults to `NULL`, in which case `pkg` is used. |
 
 
+
 ## Value
 A character vector with the resulting contents of converting the Rd file format into a Quarto file format.
 
-
-
-
-
-## See Also
-Other Conversion functions: `index_to_qmd()`, `rd_to_list()`
 
 ## Examples
 ```{r}
@@ -50,3 +47,8 @@ library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
 rd_to_qmd(file.path(example_pkg, "man", "rd_to_qmd.Rd"), pkg = example_pkg)
 ```
+
+## See Also
+Other Conversion functions: `index_to_qmd()`, `rd_to_list()`
+
+

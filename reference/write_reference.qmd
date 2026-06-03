@@ -5,6 +5,8 @@ execute:
   freeze: true
 ---
 
+[R/write-reference.R](https://github.com/edgararuiz/pkgsite/blob/main/R/write-reference.R)
+
 ## write_reference
 
 ## Description
@@ -38,15 +40,10 @@ write_reference(
 | quarto_file_path | Path to the folder containing _quarto.yml. Use when the Quarto project root differs from the package root (e.g. the package lives in a sub-folder of a larger Quarto project). Must be a directory path. Defaults to `NULL`, in which case `pkg` is used. |
 
 
+
 ## Value
 A set of Quarto files written to the specified path based on the number of Rd files in the package, plus an additional one that is the index.
 
-
-
-
-
-## See Also
-Other Quarto file creation: `write_reference_index()`, `write_reference_pages()`
 
 ## Examples
 ```{r}
@@ -54,3 +51,8 @@ library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
 write_reference(pkg = example_pkg, target_folder = tempdir())
 ```
+
+## See Also
+Other Quarto file creation: `write_reference_index()`, `write_reference_pages()`
+
+
