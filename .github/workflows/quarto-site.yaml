@@ -30,6 +30,7 @@ jobs:
         with:
           packages: |
             any::downlit
+            any::xml2
             deps::.
 
       - name: Install pkgsite
