@@ -40,6 +40,3 @@ A \code{mall_session} object
 Allows us to specify the back-end provider, model to use during the current
 R session
 }
-\examples{
-print(mtcars)
-}

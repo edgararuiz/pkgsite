@@ -4,17 +4,19 @@
 \alias{index_to_qmd}
 \title{Create a Quarto file that lists the available reference pages}
 \usage{
-index_to_qmd(project = ".", pkg = NULL, template = NULL)
+index_to_qmd(pkg = ".", template = NULL, quarto_file_path = NULL)
 }
 \arguments{
-\item{project}{The path to the root folder of the project.}
-
-\item{pkg}{The path inside the project folder. Use only if the R package
-itself is in a sub-folder within the project.}
+\item{pkg}{Path to the root of the R package. Defaults to \code{"."}.}
 
 \item{template}{The path to a Quarto file that can be used as the template
 for all of the resulting reference files. If left NULL, \code{pkgsite} will use
 its default template.}
+
+\item{quarto_file_path}{Path to the folder containing \verb{_quarto.yml}. Use
+when the Quarto project root differs from the package root (e.g. the
+package lives in a sub-folder of a larger Quarto project). Must be a
+directory path. Defaults to \code{NULL}, in which case \code{pkg} is used.}
 }
 \value{
 A character vector with the contents of a document that links to
@@ -26,7 +28,7 @@ Create a Quarto file that lists the available reference pages
 \examples{
 library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
-index_to_qmd(project = example_pkg)
+index_to_qmd(pkg = example_pkg)
 }
 \seealso{
 Other Conversion functions:

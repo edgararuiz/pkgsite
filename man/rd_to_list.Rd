@@ -4,15 +4,10 @@
 \alias{rd_to_list}
 \title{Converts a given 'Rd' file into a list object}
 \usage{
-rd_to_list(rd_file, project = ".", pkg = NULL)
+rd_to_list(path)
 }
 \arguments{
-\item{rd_file}{The name of the source Rd file}
-
-\item{project}{The path to the root folder of the project.}
-
-\item{pkg}{The path inside the project folder. Use only if the R package
-itself is in a sub-folder within the project.}
+\item{path}{The path to the source Rd file}
 }
 \value{
 A list object that contains the contents of the Rd file
@@ -25,7 +20,7 @@ into other formats or outputs.
 \examples{
 library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
-rd_to_list("rd_to_list.Rd", project = example_pkg)
+rd_to_list(file.path(example_pkg, "man", "rd_to_list.Rd"))
 }
 \seealso{
 Other Conversion functions:

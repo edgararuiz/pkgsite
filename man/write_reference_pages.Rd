@@ -5,21 +5,20 @@
 \title{Converts the 'Rd' file into Quarto, and writes the file to a specified folder}
 \usage{
 write_reference_pages(
-  project = ".",
-  pkg = NULL,
-  folder = "reference",
+  pkg = ".",
+  target_folder = NULL,
   examples = TRUE,
   not_run_examples = FALSE,
-  template = NULL
+  template = NULL,
+  quarto_file_path = NULL
 )
 }
 \arguments{
-\item{project}{The path to the root folder of the project.}
+\item{pkg}{Path to the root of the R package. Defaults to \code{"."}.}
 
-\item{pkg}{The path inside the project folder. Use only if the R package
-itself is in a sub-folder within the project.}
-
-\item{folder}{The target folder to save the new Quarto files to}
+\item{target_folder}{Path to the folder where the Quarto files will be
+written. Defaults to \code{NULL}, which resolves to \code{"reference/"} (or the
+\code{dir} value under \code{pkgsite > reference} in \verb{_quarto.yml} if set).}
 
 \item{examples}{Flag that sets the examples code chunk to be evaluated when
 the Quarto document is rendered}
@@ -30,6 +29,11 @@ to be evaluated when the Quarto document is rendered}
 \item{template}{The path to a Quarto file that can be used as the template
 for all of the resulting reference files. If left NULL, \code{pkgsite} will use
 its default template.}
+
+\item{quarto_file_path}{Path to the folder containing \verb{_quarto.yml}. Use
+when the Quarto project root differs from the package root (e.g. the
+package lives in a sub-folder of a larger Quarto project). Must be a
+directory path. Defaults to \code{NULL}, in which case \code{pkg} is used.}
 }
 \value{
 A set of Quarto files written to the specified path based on the
@@ -39,10 +43,10 @@ number of Rd files in the package.
 Converts the 'Rd' file into Quarto, and writes the file to a specified folder
 }
 \examples{
-\dontrun{
+\donttest{
 library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
-write_reference_pages(project = example_pkg, folder = tempdir())
+write_reference_pages(pkg = example_pkg, target_folder = tempdir())
 }
 }
 \seealso{

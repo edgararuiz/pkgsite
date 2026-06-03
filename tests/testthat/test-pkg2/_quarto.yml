@@ -41,15 +41,12 @@ format:
       light: [cosmo, site/theme.scss]
       dark: [cosmo, site/theme-dark.scss]
         
-pkgsite: 
-  dir: r
+pkgsite:
   reference:
     dir: reference
-    template: site/_template_reference.qmd
     not_run_examples: true
     index:
       file: r_index.qmd
-      template: site/_template_index.qmd
       contents:
         - section: LLM
           contents: 

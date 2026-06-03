@@ -5,21 +5,18 @@
 \title{Converts 'Rd' to Quarto files}
 \usage{
 rd_to_qmd(
-  rd_file,
-  project = ".",
-  pkg = NULL,
+  path,
+  pkg = ".",
   examples = TRUE,
   not_run_examples = FALSE,
-  template = NULL
+  template = NULL,
+  quarto_file_path = NULL
 )
 }
 \arguments{
-\item{rd_file}{The name of the source Rd file}
+\item{path}{The path to the source Rd file}
 
-\item{project}{The path to the root folder of the project.}
-
-\item{pkg}{The path inside the project folder. Use only if the R package
-itself is in a sub-folder within the project.}
+\item{pkg}{Path to the root of the R package. Defaults to \code{"."}.}
 
 \item{examples}{Flag that sets the examples code chunk to be evaluated when
 the Quarto document is rendered}
@@ -30,6 +27,11 @@ to be evaluated when the Quarto document is rendered}
 \item{template}{The path to a Quarto file that can be used as the template
 for all of the resulting reference files. If left NULL, \code{pkgsite} will use
 its default template.}
+
+\item{quarto_file_path}{Path to the folder containing \verb{_quarto.yml}. Use
+when the Quarto project root differs from the package root (e.g. the
+package lives in a sub-folder of a larger Quarto project). Must be a
+directory path. Defaults to \code{NULL}, in which case \code{pkg} is used.}
 }
 \value{
 A character vector with the resulting contents of converting the
@@ -41,7 +43,7 @@ Converts 'Rd' to Quarto files
 \examples{
 library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
-rd_to_qmd("rd_to_qmd.Rd", project = example_pkg)
+rd_to_qmd(file.path(example_pkg, "man", "rd_to_qmd.Rd"), pkg = example_pkg)
 }
 \seealso{
 Other Conversion functions:

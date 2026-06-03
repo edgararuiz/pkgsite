@@ -5,6 +5,8 @@ execute:
   freeze: true
 ---
 
+[{{{{notitle.source}}}}](https://github.com/edgararuiz/pkgsite/blob/main/{{{{notitle.source}}}})
+
 ## {{{{notitle.alias}}}}
 
 {{{{title.description}}}}
@@ -17,16 +19,16 @@ execute:
 
 {{{{title.details}}}}
 
-{{{{title.value}}}}
-
 {{{{title.section}}}}
 
+{{{{title.value}}}}
+
 {{{{title.note}}}}
+
+{{{{title.examples}}}}
+
+{{{{title.seealso}}}}
 
 {{{{title.author}}}}
 
 {{{{title.references}}}}
-
-{{{{title.seealso}}}}
-
-{{{{title.examples}}}}

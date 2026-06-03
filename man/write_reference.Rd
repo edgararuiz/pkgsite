@@ -5,23 +5,22 @@
 \title{Writes the reference pages and index as Quarto files}
 \usage{
 write_reference(
-  project = ".",
-  pkg = NULL,
-  folder = NULL,
+  pkg = ".",
+  target_folder = NULL,
   examples = TRUE,
   not_run_examples = NULL,
   template = NULL,
   index_file = NULL,
-  index_template = NULL
+  index_template = NULL,
+  quarto_file_path = NULL
 )
 }
 \arguments{
-\item{project}{The path to the root folder of the project.}
+\item{pkg}{Path to the root of the R package. Defaults to \code{"."}.}
 
-\item{pkg}{The path inside the project folder. Use only if the R package
-itself is in a sub-folder within the project.}
-
-\item{folder}{The target folder to save the new Quarto files to}
+\item{target_folder}{Path to the folder where the Quarto files will be
+written. Defaults to \code{NULL}, which resolves to \code{"reference/"} (or the
+\code{dir} value under \code{pkgsite > reference} in \verb{_quarto.yml} if set).}
 
 \item{examples}{Flag that sets the examples code chunk to be evaluated when
 the Quarto document is rendered}
@@ -37,6 +36,11 @@ its default template.}
 
 \item{index_template}{The path to a Quarto file that can be used as the
 template for the index Quarto file}
+
+\item{quarto_file_path}{Path to the folder containing \verb{_quarto.yml}. Use
+when the Quarto project root differs from the package root (e.g. the
+package lives in a sub-folder of a larger Quarto project). Must be a
+directory path. Defaults to \code{NULL}, in which case \code{pkg} is used.}
 }
 \value{
 A set of Quarto files written to the specified path based on the
@@ -46,10 +50,10 @@ number of Rd files in the package, plus an additional one that is the index.
 Writes the reference pages and index as Quarto files
 }
 \examples{
-\dontrun{
+\donttest{
 library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
-write_reference(project = example_pkg, folder = tempdir())
+write_reference(pkg = example_pkg, target_folder = tempdir())
 }
 }
 \seealso{

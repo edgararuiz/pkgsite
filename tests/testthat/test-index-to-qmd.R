@@ -5,7 +5,6 @@ test_that("Index parsing works", {
   expect_snapshot(
     reference_index_convert(
       pkg = path_abs(test_path("test-pkg2")),
-      project = "",
       index = index
     )
   )
@@ -15,8 +14,7 @@ test_that("Index parsing works", {
   skip_on_os("windows")
   expect_snapshot(
     index_to_qmd(
-      pkg = path_abs(test_path("test-pkg2")),
-      project = ""
+      pkg = path_abs(test_path("test-pkg2"))
     )
   )
 })

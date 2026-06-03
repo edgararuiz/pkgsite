@@ -1,5 +1,5 @@
 #' Converts 'Rd' to Quarto files
-#' @param rd_file The name of the source Rd file
+#' @param path The path to the source Rd file
 #' @inheritParams write_reference
 #' @returns A character vector with the resulting contents of converting the
 #' Rd file format into a Quarto file format.
@@ -7,25 +7,31 @@
 #' @examples
 #' library(pkgsite)
 #' example_pkg <- system.file("example", package = "pkgsite")
-#' rd_to_qmd("rd_to_qmd.Rd", project = example_pkg)
+#' rd_to_qmd(file.path(example_pkg, "man", "rd_to_qmd.Rd"), pkg = example_pkg)
 #' @export
 rd_to_qmd <- function(
-  rd_file,
-  project = ".",
-  pkg = NULL,
+  path,
+  pkg = ".",
   examples = TRUE,
   not_run_examples = FALSE,
-  template = NULL
+  template = NULL,
+  quarto_file_path = NULL
 ) {
-  pkg_site <- read_quarto(project)
+  check_quarto_file_path(quarto_file_path)
+  quarto_root <- quarto_file_path %||% pkg
+  pkg_site <- read_quarto(quarto_root)
   yaml_template <- NULL
   if (!is.null(pkg_site)) {
-    reference <- pkg_site[["reference"]]
-    yaml_template <- reference$template
+    ref_template <- pkg_site[["reference"]][["template"]]
+    yaml_template <- if (!is.null(ref_template)) {
+      path(quarto_root, ref_template)
+    } else {
+      NULL
+    }
   }
   pkg_template <- system.file("templates/_reference.qmd", package = "pkgsite")
   template <- template %||% yaml_template %||% pkg_template
-  parsed <- rd_to_list_internal(rd_file, project, pkg, internal = FALSE)
+  parsed <- rd_to_list_internal(path, internal = FALSE)
   if (is.null(parsed)) {
     return(NULL)
   }

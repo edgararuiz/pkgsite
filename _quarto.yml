@@ -65,4 +65,15 @@ pkgsite:
     index:
       file: index.qmd
       template: inst/templates/_index.qmd
+      contents:
+        - section: Write functions
+          contents:
+            - write_reference
+            - write_reference_index
+            - write_reference_pages
+        - section: Conversion functions
+          contents:
+            - index_to_qmd
+            - rd_to_list
+            - rd_to_qmd
       

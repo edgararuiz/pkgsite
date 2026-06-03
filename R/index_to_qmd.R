@@ -6,30 +6,38 @@
 #' @examples
 #' library(pkgsite)
 #' example_pkg <- system.file("example", package = "pkgsite")
-#' index_to_qmd(project = example_pkg)
+#' index_to_qmd(pkg = example_pkg)
 #' @export
 index_to_qmd <- function(
-  project = ".",
-  pkg = NULL,
-  template = NULL
+  pkg = ".",
+  template = NULL,
+  quarto_file_path = NULL
 ) {
-  pkg_site <- read_quarto(project)
+  check_quarto_file_path(quarto_file_path)
+  quarto_root <- quarto_file_path %||% pkg
+  pkg_site <- read_quarto(quarto_root)
   index <- pkg_site[["reference"]][["index"]]
   pkg_template <- system.file("templates/_index.qmd", package = "pkgsite")
-  template <- template %||% index$template %||% pkg_template
-  out <- reference_index_convert(project, pkg, index)
+  yaml_template <- if (!is.null(index$template)) {
+    path(quarto_root, index$template)
+  } else {
+    NULL
+  }
+  template <- template %||% yaml_template %||% pkg_template
+  out <- reference_index_convert(pkg, index)
   template |>
     template_parse(out) |>
     reduce(c)
 }
 
-reference_index_convert <- function(project, pkg = NULL, index = NULL) {
+reference_index_convert <- function(pkg = ".", index = NULL) {
   # This section creates reads the Rd files and extracts their name & description
-  pkg <- pkg %||% ""
-  rd_names <- path_file(dir_ls(path(project, pkg, "man"), glob = "*.Rd"))
+  man_folder <- path(pkg, "man")
+  rd_paths <- dir_ls(man_folder, glob = "*.Rd")
+  rd_names <- path_file(rd_paths)
   qmd_names <- path(path_ext_remove(rd_names), ext = "qmd")
-  rd_list <- rd_names |>
-    map(rd_to_list_internal, project, pkg) |>
+  rd_list <- rd_paths |>
+    map(rd_to_list_internal) |>
     set_names(qmd_names) |>
     map(
       function(x) {
