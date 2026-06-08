@@ -1,15 +1,11 @@
 ## Resubmission
 
-- This is a new package.
+- This is a new package
 
-- Examples for unexported functions: removed `\examples{}` blocks from all
-  `.Rd` fixture files in `tests/testthat/` that referenced unexported functions.
-
-- `\dontrun{}` replaced with `\donttest{}` in all three exported functions.
-
-- Writing to user's home filespace: `target_folder` now defaults to `NULL`
-  and resolves at runtime from `_quarto.yml` or falls back to `"reference/"`.
-  All examples write to `tempdir()`.
+- The `\dontrun{}` flagged in `index_to_qmd.Rd`, `rd_to_list.Rd`, and
+  `rd_to_qmd.Rd` may have originated from a fixture R file used in tests
+  (`tests/testthat/test-pkg/R/llm-extract.R`). Replaced `\dontrun{}` with
+  `\donttest{}` in that file.
 
 ## R CMD check results
 
