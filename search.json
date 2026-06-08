@@ -4,14 +4,14 @@
     "href": "cran-comments.html",
     "title": "pkgsite",
     "section": "",
-    "text": "This is a new package.\nExamples for unexported functions: removed \\examples{} blocks from all .Rd fixture files in tests/testthat/ that referenced unexported functions.\n\\dontrun{} replaced with \\donttest{} in all three exported functions.\nWriting to user’s home filespace: target_folder now defaults to NULL and resolves at runtime from _quarto.yml or falls back to \"reference/\". All examples write to tempdir()."
+    "text": "This is a new package\nThe \\dontrun{} flagged in index_to_qmd.Rd, rd_to_list.Rd, and rd_to_qmd.Rd may have originated from a fixture R file used in tests (tests/testthat/test-pkg/R/llm-extract.R). Replaced \\dontrun{} with \\donttest{} in that file."
   },
   {
     "objectID": "cran-comments.html#resubmission",
     "href": "cran-comments.html#resubmission",
     "title": "pkgsite",
     "section": "",
-    "text": "This is a new package.\nExamples for unexported functions: removed \\examples{} blocks from all .Rd fixture files in tests/testthat/ that referenced unexported functions.\n\\dontrun{} replaced with \\donttest{} in all three exported functions.\nWriting to user’s home filespace: target_folder now defaults to NULL and resolves at runtime from _quarto.yml or falls back to \"reference/\". All examples write to tempdir()."
+    "text": "This is a new package\nThe \\dontrun{} flagged in index_to_qmd.Rd, rd_to_list.Rd, and rd_to_qmd.Rd may have originated from a fixture R file used in tests (tests/testthat/test-pkg/R/llm-extract.R). Replaced \\dontrun{} with \\donttest{} in that file."
   },
   {
     "objectID": "cran-comments.html#r-cmd-check-results",

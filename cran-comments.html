@@ -292,10 +292,8 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header><section id="resubmission" class="level2"><h2 class="anchored" data-anchor-id="resubmission">Resubmission</h2>
 <ul>
-<li><p>This is a new package.</p></li>
-<li><p>Examples for unexported functions: removed <code>\examples{}</code> blocks from all <code>.Rd</code> fixture files in <code>tests/testthat/</code> that referenced unexported functions.</p></li>
-<li><p><code>\dontrun{}</code> replaced with <code>\donttest{}</code> in all three exported functions.</p></li>
-<li><p>Writing to user’s home filespace: <code>target_folder</code> now defaults to <code>NULL</code> and resolves at runtime from <code>_quarto.yml</code> or falls back to <code>"reference/"</code>. All examples write to <code><a href="https://rdrr.io/r/base/tempfile.html">tempdir()</a></code>.</p></li>
+<li><p>This is a new package</p></li>
+<li><p>The <code>\dontrun{}</code> flagged in <code>index_to_qmd.Rd</code>, <code>rd_to_list.Rd</code>, and <code>rd_to_qmd.Rd</code> may have originated from a fixture R file used in tests (<code>tests/testthat/test-pkg/R/llm-extract.R</code>). Replaced <code>\dontrun{}</code> with <code>\donttest{}</code> in that file.</p></li>
 </ul></section><section id="r-cmd-check-results" class="level2"><h2 class="anchored" data-anchor-id="r-cmd-check-results">R CMD check results</h2>
 <p>0 errors ✔ | 0 warnings ✔ | 0 notes ✔</p>
 
