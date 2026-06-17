@@ -1,79 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://edgararuiz.github.io/pkgsite/cran-comments.html</loc>
-    <lastmod>2026-06-08T21:05:47.198Z</lastmod>
-  </url>
-  <url>
-    <loc>https://edgararuiz.github.io/pkgsite/changelog.html</loc>
-    <lastmod>2026-06-08T21:05:47.198Z</lastmod>
-  </url>
-  <url>
-    <loc>https://edgararuiz.github.io/pkgsite/tests/testthat/test-pkg/NEWS.html</loc>
-    <lastmod>2026-06-08T21:05:47.205Z</lastmod>
-  </url>
-  <url>
-    <loc>https://edgararuiz.github.io/pkgsite/tests/testthat/test-pkg2/NEWS.html</loc>
-    <lastmod>2026-06-08T21:05:47.206Z</lastmod>
-  </url>
-  <url>
-    <loc>https://edgararuiz.github.io/pkgsite/articles/github-actions.html</loc>
-    <lastmod>2026-06-08T21:05:47.198Z</lastmod>
-  </url>
-  <url>
-    <loc>https://edgararuiz.github.io/pkgsite/articles/quarto-website.html</loc>
-    <lastmod>2026-06-08T21:05:47.198Z</lastmod>
-  </url>
-  <url>
-    <loc>https://edgararuiz.github.io/pkgsite/reference/write_reference_index.html</loc>
-    <lastmod>2026-06-08T21:05:47.201Z</lastmod>
+    <loc>https://edgararuiz.github.io/pkgsite/index.html</loc>
+    <lastmod>2026-06-17T17:14:09.473Z</lastmod>
   </url>
   <url>
     <loc>https://edgararuiz.github.io/pkgsite/reference/index_to_qmd.html</loc>
-    <lastmod>2026-06-08T21:05:47.201Z</lastmod>
-  </url>
-  <url>
-    <loc>https://edgararuiz.github.io/pkgsite/reference/index.html</loc>
-    <lastmod>2026-06-08T21:05:47.201Z</lastmod>
-  </url>
-  <url>
-    <loc>https://edgararuiz.github.io/pkgsite/reference/write_reference.html</loc>
-    <lastmod>2026-06-08T21:05:47.201Z</lastmod>
+    <lastmod>2026-06-17T17:14:09.476Z</lastmod>
   </url>
   <url>
     <loc>https://edgararuiz.github.io/pkgsite/reference/rd_to_list.html</loc>
-    <lastmod>2026-06-08T21:05:47.201Z</lastmod>
+    <lastmod>2026-06-17T17:14:09.476Z</lastmod>
   </url>
   <url>
-    <loc>https://edgararuiz.github.io/pkgsite/reference/rd_to_qmd.html</loc>
-    <lastmod>2026-06-08T21:05:47.201Z</lastmod>
-  </url>
-  <url>
-    <loc>https://edgararuiz.github.io/pkgsite/reference/write_reference_pages.html</loc>
-    <lastmod>2026-06-08T21:05:47.201Z</lastmod>
-  </url>
-  <url>
-    <loc>https://edgararuiz.github.io/pkgsite/LICENSE.html</loc>
-    <lastmod>2026-06-08T21:05:47.197Z</lastmod>
-  </url>
-  <url>
-    <loc>https://edgararuiz.github.io/pkgsite/articles/customize.html</loc>
-    <lastmod>2026-06-08T21:05:47.198Z</lastmod>
-  </url>
-  <url>
-    <loc>https://edgararuiz.github.io/pkgsite/tests/testthat/test-pkg2/LICENSE.html</loc>
-    <lastmod>2026-06-08T21:05:47.206Z</lastmod>
-  </url>
-  <url>
-    <loc>https://edgararuiz.github.io/pkgsite/tests/testthat/test-pkg/LICENSE.html</loc>
-    <lastmod>2026-06-08T21:05:47.205Z</lastmod>
-  </url>
-  <url>
-    <loc>https://edgararuiz.github.io/pkgsite/index.html</loc>
-    <lastmod>2026-06-08T21:05:47.198Z</lastmod>
+    <loc>https://edgararuiz.github.io/pkgsite/reference/write_reference_index.html</loc>
+    <lastmod>2026-06-17T17:14:09.476Z</lastmod>
   </url>
   <url>
     <loc>https://edgararuiz.github.io/pkgsite/NEWS.html</loc>
-    <lastmod>2026-06-08T21:05:47.197Z</lastmod>
+    <lastmod>2026-06-17T17:14:09.472Z</lastmod>
+  </url>
+  <url>
+    <loc>https://edgararuiz.github.io/pkgsite/tests/testthat/test-pkg2/LICENSE.html</loc>
+    <lastmod>2026-06-17T17:14:09.481Z</lastmod>
+  </url>
+  <url>
+    <loc>https://edgararuiz.github.io/pkgsite/tests/testthat/test-pkg/LICENSE.html</loc>
+    <lastmod>2026-06-17T17:14:09.480Z</lastmod>
+  </url>
+  <url>
+    <loc>https://edgararuiz.github.io/pkgsite/articles/quarto-website.html</loc>
+    <lastmod>2026-06-17T17:14:09.473Z</lastmod>
+  </url>
+  <url>
+    <loc>https://edgararuiz.github.io/pkgsite/articles/customize.html</loc>
+    <lastmod>2026-06-17T17:14:09.473Z</lastmod>
+  </url>
+  <url>
+    <loc>https://edgararuiz.github.io/pkgsite/changelog.html</loc>
+    <lastmod>2026-06-17T17:14:09.473Z</lastmod>
+  </url>
+  <url>
+    <loc>https://edgararuiz.github.io/pkgsite/cran-comments.html</loc>
+    <lastmod>2026-06-17T17:14:09.473Z</lastmod>
+  </url>
+  <url>
+    <loc>https://edgararuiz.github.io/pkgsite/articles/github-actions.html</loc>
+    <lastmod>2026-06-17T17:14:09.473Z</lastmod>
+  </url>
+  <url>
+    <loc>https://edgararuiz.github.io/pkgsite/LICENSE.html</loc>
+    <lastmod>2026-06-17T17:14:09.472Z</lastmod>
+  </url>
+  <url>
+    <loc>https://edgararuiz.github.io/pkgsite/tests/testthat/test-pkg/NEWS.html</loc>
+    <lastmod>2026-06-17T17:14:09.480Z</lastmod>
+  </url>
+  <url>
+    <loc>https://edgararuiz.github.io/pkgsite/tests/testthat/test-pkg2/NEWS.html</loc>
+    <lastmod>2026-06-17T17:14:09.481Z</lastmod>
+  </url>
+  <url>
+    <loc>https://edgararuiz.github.io/pkgsite/reference/write_reference_pages.html</loc>
+    <lastmod>2026-06-17T17:14:09.476Z</lastmod>
+  </url>
+  <url>
+    <loc>https://edgararuiz.github.io/pkgsite/reference/rd_to_qmd.html</loc>
+    <lastmod>2026-06-17T17:14:09.476Z</lastmod>
+  </url>
+  <url>
+    <loc>https://edgararuiz.github.io/pkgsite/reference/write_reference.html</loc>
+    <lastmod>2026-06-17T17:14:09.476Z</lastmod>
+  </url>
+  <url>
+    <loc>https://edgararuiz.github.io/pkgsite/reference/index.html</loc>
+    <lastmod>2026-06-17T17:14:09.475Z</lastmod>
   </url>
 </urlset>
