@@ -7,6 +7,8 @@
 
 <!-- badges: start -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/pkgsite)](https://CRAN.R-project.org/package=pkgsite)
 [![R-CMD-check](https://github.com/edgararuiz/pkgsite/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/edgararuiz/pkgsite/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/edgararuiz/pkgsite/branch/main/graph/badge.svg)](https://app.codecov.io/gh/edgararuiz/pkgsite?branch=main)
@@ -52,6 +54,12 @@ Python packages whose examples require an LLM to run. See the resulting
 
 ## Installation
 
+Install the released version of `pkgsite` from CRAN with:
+
+``` r
+install.packages("pkgsite")
+```
+
 You can install the development version of `pkgsite` from
 [GitHub](https://github.com/edgararuiz/pkgsite) with:
 
@@ -76,17 +84,17 @@ write_reference()
 #>   `reference/index.qmd`
 #> 
 #> Converting .Rd to .qmd:
-#>   `././man/index_to_qmd.Rd` → `reference/index_to_qmd.qmd`
+#>   `./man/index_to_qmd.Rd` → `reference/index_to_qmd.qmd`
 #> 
-#>   `././man/rd_to_list.Rd` → `reference/rd_to_list.qmd`
+#>   `./man/rd_to_list.Rd` → `reference/rd_to_list.qmd`
 #> 
-#>   `././man/rd_to_qmd.Rd` → `reference/rd_to_qmd.qmd`
+#>   `./man/rd_to_qmd.Rd` → `reference/rd_to_qmd.qmd`
 #> 
-#>   `././man/write_reference.Rd` → `reference/write_reference.qmd`
+#>   `./man/write_reference.Rd` → `reference/write_reference.qmd`
 #> 
-#>   `././man/write_reference_index.Rd` → `reference/write_reference_index.qmd`
+#>   `./man/write_reference_index.Rd` → `reference/write_reference_index.qmd`
 #> 
-#>   `././man/write_reference_pages.Rd` → `reference/write_reference_pages.qmd`
+#>   `./man/write_reference_pages.Rd` → `reference/write_reference_pages.qmd`
 ```
 
 The function uses sensible defaults, so calling it without any arguments
