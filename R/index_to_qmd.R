@@ -55,8 +55,11 @@ reference_index_convert <- function(pkg = ".", index = NULL) {
   null_rds <- map_lgl(rd_list, is.null)
   rd_list <- rd_list[!null_rds]
   ref_lines <- imap(rd_list, function(x, y) {
-    alias <- as.character(x[names(x) == "alias"])
+    alias <- usage_functions(x[["usage"]])
     paren <- "()"
+    if (length(alias) == 0) {
+      alias <- as.character(x[names(x) == "alias"])
+    }
     if (all(alias == "")) {
       # This is in case of non-aliased functions, such as infixes
       alias <- as.character(x[names(x) == "name"])
@@ -66,8 +69,7 @@ reference_index_convert <- function(pkg = ".", index = NULL) {
     c(
       paste0(alias_links, collapse = " "),
       "",
-      "",
-      paste0("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", x$title),
+      paste0("[", x$title, "]{.ref-desc}"),
       ""
     )
   })
@@ -117,4 +119,12 @@ reference_index_convert <- function(pkg = ".", index = NULL) {
   }
   ref_lines <- reduce(ref_lines, c)
   list("reference" = ref_lines)
+}
+
+# Function names called in the usage section. S3 methods are shown in the
+# usage as calls to the generic, so they are listed once, under its name.
+usage_functions <- function(usage) {
+  call <- "^(`[^`]+`|[A-Za-z.][A-Za-z0-9._]*)\\("
+  usage <- usage[grepl(call, usage)]
+  unique(sub(paste0(call, ".*$"), "\\1", usage))
 }

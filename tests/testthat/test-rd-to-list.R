@@ -23,3 +23,29 @@ test_that("Source reference is present", {
 test_that("Extract returns NULL on error", {
   expect_null(rd_extract_text2(notexists))
 })
+
+test_that("examplesIf wrapper becomes a condition", {
+  rd <- tools::parse_Rd(textConnection(
+    r"(\name{a}\title{a}
+\examples{
+\dontshow{if (rlang::is_installed("x")) withAutoprint(\{ # examplesIf}
+f(1)
+\dontshow{\}) # examplesIf}
+})"
+  ))
+  expect_equal(
+    rd_to_list(rd)$examples,
+    list(code_run = "f(1)", eval = "rlang::is_installed(\"x\")")
+  )
+})
+
+test_that("Arguments keep block content", {
+  rd <- tools::parse_Rd(textConnection(
+    r"(\name{a}\title{a}
+\arguments{\item{x}{Either: \itemize{\item a \item b}}})"
+  ))
+  expect_equal(
+    rd_to_list(rd)$arguments,
+    list(list(argument = "x", description = c("Either:", "", "- a", "- b")))
+  )
+})

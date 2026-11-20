@@ -48,29 +48,19 @@ rd_tag_process <- function(x) {
       tag_text <- list(rd_args_process(x))
     } else if (tag_name == "usage") {
       tag_text <- list(rd_extract_text2(x, FALSE, "tab"))
-    } else if (tag_name == "alias") {
-      tag_text <- list(rd_extract_text(x))
+    } else if (tag_name %in% c("alias", "name", "keyword", "concept")) {
+      tag_text <- list(trimws(rd_plain(x)))
+    } else if (tag_name == "title") {
+      tag_text <- list(rd_md_inline(x, escape = FALSE))
     } else if (tag_name == "examples") {
-      rd_tags <- map_chr(x, attr, "Rd_tag")
-      run <- "code_run"
-      if ("\\donttest" %in% rd_tags | "\\dontrun" %in% rd_tags) {
-        run <- "code_dont_run"
-      }
-      tag_text <- x |>
-        map(as.character) |>
-        reduce(c) |>
-        paste0(collapse = "") |>
-        trimws() |>
-        list() |>
-        set_names(run) |>
-        list()
+      tag_text <- list(rd_examples_process(x))
     } else if (tag_name == "section") {
       tag_text <- list(list(
-        title = as.character(x[[1]]),
-        contents = rd_extract_text2(x)
+        title = rd_md_inline(x[[1]], escape = FALSE),
+        contents = rd_md(x[[2]])
       ))
     } else {
-      tag_text <- list(rd_extract_text2(x))
+      tag_text <- list(rd_md(x))
     }
 
     out <- set_names(tag_text, tag_name)
@@ -80,45 +70,42 @@ rd_tag_process <- function(x) {
 
 rd_args_process <- function(x) {
   x |>
+    keep(\(x) identical(attr(x, "Rd_tag"), "\\item") && length(x) == 2) |>
     map(
       function(x) {
-        name <- rd_extract_text(x[1])
-        val <- rd_extract_text(x[2])
-        if (name != "") {
-          out <- list(argument = name, description = val)
-        } else {
-          out <- NULL
-        }
-        out
+        list(
+          argument = rd_md_inline(x[[1]]),
+          description = rd_md(x[[2]])
+        )
       }
     ) |>
-    discard(is.null)
+    discard(\(x) x$argument == "")
 }
 
-rd_extract_text <- function(x, collapse = TRUE) {
-  rd_tag <- attr(x, "Rd_tag") %||% ""
-  if (rd_tag == "\\dots") {
-    return(" ...")
+# roxygen2 wraps `@examplesIf` code in `\dontshow{}` lines. These are removed,
+# and the condition is returned in `eval`, so it can be used as a chunk option.
+# If there is more than one condition, all of them must be met.
+rd_examples_process <- function(x) {
+  rd_tags <- map_chr(x, \(x) attr(x, "Rd_tag") %||% "")
+  run <- "code_run"
+  if ("\\donttest" %in% rd_tags | "\\dontrun" %in% rd_tags) {
+    run <- "code_dont_run"
   }
-  attributes(x) <- NULL
-  class(x) <- "Rd"
-  rd_text <- as.character(x)
-  if (collapse) {
-    rd_text <- paste0(as.character(x), collapse = "")
+  code <- x |>
+    map(as.character) |>
+    reduce(c) |>
+    paste0(collapse = "")
+  lines <- strsplit(code, "\n", fixed = TRUE)[[1]]
+  open <- "^\\s*if \\((.*)\\) withAutoprint\\(\\{ # examplesIf\\s*$"
+  close <- "^\\s*\\}\\) # examplesIf\\s*$"
+  conditions <- unique(sub(open, "\\1", lines[grepl(open, lines)]))
+  lines <- lines[!grepl(open, lines) & !grepl(close, lines)]
+  out <- list(trimws(paste0(lines, collapse = "\n")))
+  names(out) <- run
+  if (length(conditions) > 0) {
+    out$eval <- paste0(conditions, collapse = " && ")
   }
-  temp_rd <- tempfile(fileext = ".Rd")
-  writeLines(rd_text, temp_rd)
-  old_opt <- options(useFancyQuotes = TRUE)
-  on.exit(options(old_opt))
-  suppressWarnings(
-    rd_txt <- capture.output(tools::Rd2txt(temp_rd, fragment = TRUE))
-  )
-  if (collapse) {
-    rd_txt <- paste0(rd_txt, collapse = " ")
-  }
-  rd_txt <- gsub("\U2018", "`", rd_txt)
-  rd_txt <- gsub("\U2019", "`", rd_txt)
-  rd_txt
+  out
 }
 
 rd_extract_text2 <- function(x, collapse = TRUE, trim = "full") {

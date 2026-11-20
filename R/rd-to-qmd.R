@@ -117,7 +117,7 @@ parse_line_tag <- function(line, con) {
           }
           if (!is.null(tag_content)) {
             if (tag_name_label != "Section") {
-              tag_content <- c(paste0("## ", tag_name_label), tag_content)
+              tag_content <- c(paste0("## ", tag_name_label), "", tag_content)
             }
           }
         }
@@ -147,6 +147,9 @@ reference_convert <- function(x, examples = TRUE, not_run_examples = FALSE) {
       if (not_run_examples) {
         ex_not <- "```{r}"
       }
+      if (examples && !is.null(curr$eval)) {
+        ex_run <- c(ex_run, paste0("#| eval: !expr ", curr$eval))
+      }
       if (!is.null(curr$code_run)) {
         out <- c(out, ex_run, curr$code_run, "```")
       }
@@ -164,17 +167,13 @@ reference_convert <- function(x, examples = TRUE, not_run_examples = FALSE) {
     }
 
     if (curr_name == "section") {
-      out <- c(out, paste("##", curr$title), curr$contents)
+      out <- c(out, paste("##", curr$title), "", curr$contents, "")
     }
 
     if (is.null(out)) {
       out <- curr
       if (is.list(out)) {
         out <- list_c(out)
-      }
-      if (length(out) > 1) {
-        out <- out |>
-          reduce(\(x, y) c(x, "", y), .init = NULL)
       }
     }
 
@@ -183,15 +182,61 @@ reference_convert <- function(x, examples = TRUE, not_run_examples = FALSE) {
 
     res <- c(res, out)
   }
-
+  # An Rd file can have more than one custom section
+  sections <- names(res) == "section"
+  if (sum(sections) > 1) {
+    merged <- list(section = list_c(res[sections]))
+    res <- c(res[!sections], merged)
+  }
   res
 }
 
-reference_arguments <- function(x) {
-  lines <- map_chr(
-    x,
-    \(.x) paste0(.x[[1]], " | ", paste0(.x[[2]], collapse = "<br>"))
-  )
-  rows <- paste0("| ", lines, " |")
-  c("|Arguments|Description|", "|---|---|", rows)
+# Written as a grid table, because its cells can hold lists and code blocks
+reference_arguments <- function(x, width = 60) {
+  args <- map(x, \(.x) strwrap(.x[[1]], width = 20))
+  descs <- map(x, \(.x) md_wrap_lines(.x[[2]], width))
+  w_arg <- max(nchar(c("Arguments", list_c(args)), type = "width"))
+  w_desc <- max(nchar(c("Description", list_c(descs)), type = "width"))
+  pad <- function(x, w) {
+    paste0(x, strrep(" ", w - nchar(x, type = "width")))
+  }
+  row <- function(a, d) {
+    n <- max(length(a), length(d), 1)
+    a <- c(a, rep("", n - length(a)))
+    d <- c(d, rep("", n - length(d)))
+    paste0("| ", pad(a, w_arg), " | ", pad(d, w_desc), " |")
+  }
+  line <- function(ch) {
+    paste0("+", strrep(ch, w_arg + 2), "+", strrep(ch, w_desc + 2), "+")
+  }
+  body <- map2(args, descs, \(a, d) c(row(a, d), line("-")))
+  c(line("-"), row("Arguments", "Description"), line("="), list_c(body))
+}
+
+# Wraps the paragraphs and list items of Markdown lines. Code blocks and
+# tables are left as they are.
+md_wrap_lines <- function(lines, width) {
+  if (length(lines) == 0) {
+    return("")
+  }
+  in_code <- FALSE
+  out <- list()
+  for (l in lines) {
+    fence <- grepl("^\\s*```", l)
+    if (in_code || fence || grepl("^\\s*\\|", l) || l == "") {
+      out <- c(out, list(l))
+    } else {
+      prefix <- regmatches(l, regexpr("^\\s*([-:]|[0-9]+\\.)?\\s*", l))
+      indent <- strrep(" ", nchar(prefix))
+      wrapped <- strwrap(substring(l, nchar(prefix) + 1), width - nchar(prefix))
+      out <- c(
+        out,
+        list(paste0(c(prefix, rep(indent, length(wrapped) - 1)), wrapped))
+      )
+    }
+    if (fence) {
+      in_code <- !in_code
+    }
+  }
+  list_c(out)
 }
