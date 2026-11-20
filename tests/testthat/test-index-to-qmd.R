@@ -18,3 +18,14 @@ test_that("Index parsing works", {
     )
   )
 })
+
+test_that("Index lists S3 methods under their generic", {
+  usage <- c(
+    "tidy(x, ...)",
+    "",
+    "## S3 method for class 'foo'",
+    "tidy(x, ...)",
+    "`%+%`(e1, e2)"
+  )
+  expect_equal(usage_functions(usage), c("tidy", "`%+%`"))
+})
