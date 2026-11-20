@@ -7,33 +7,27 @@ toc: false
 
 [write_reference()](write_reference.qmd)
 
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writes the reference pages and index as Quarto files
+[Writes the reference pages and index as Quarto files]{.ref-desc}
 
 [write_reference_index()](write_reference_index.qmd)
 
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Writes the index of the reference pages into a Quarto file
+[Writes the index of the reference pages into a Quarto file]{.ref-desc}
 
 [write_reference_pages()](write_reference_pages.qmd)
 
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts the 'Rd' file into Quarto, and writes the file to a specified folder
+[Converts the 'Rd' file into Quarto, and writes the file to a specified folder]{.ref-desc}
 
 ### Conversion functions
 
 [index_to_qmd()](index_to_qmd.qmd)
 
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create a Quarto file that lists the available reference pages
+[Create a Quarto file that lists the available reference pages]{.ref-desc}
 
 [rd_to_list()](rd_to_list.qmd)
 
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts a given 'Rd' file into a list object
+[Converts a given 'Rd' file into a list object]{.ref-desc}
 
 [rd_to_qmd()](rd_to_qmd.qmd)
 
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Converts 'Rd' to Quarto files
+[Converts 'Rd' to Quarto files]{.ref-desc}
 

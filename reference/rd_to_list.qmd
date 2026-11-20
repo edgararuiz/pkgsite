@@ -10,26 +10,33 @@ execute:
 ## rd_to_list
 
 ## Description
+
 This function is meant to be used as an intermediate object that could be used as an easy way to convert the information inside the 'Rd' into other formats or outputs.
 
 
 ## Usage
+
 ```r
 rd_to_list(path)
 ```
 
 ## Arguments
-|Arguments|Description|
-|---|---|
-| path | The path to the source Rd file |
+
++-----------+--------------------------------+
+| Arguments | Description                    |
++===========+================================+
+| path      | The path to the source Rd file |
++-----------+--------------------------------+
 
 
 
 ## Value
+
 A list object that contains the contents of the Rd file
 
 
 ## Examples
+
 ```{r}
 library(pkgsite)
 example_pkg <- system.file("example", package = "pkgsite")
@@ -37,6 +44,7 @@ rd_to_list(file.path(example_pkg, "man", "rd_to_list.Rd"))
 ```
 
 ## See Also
+
 Other Conversion functions: `index_to_qmd()`, `rd_to_qmd()`
 
 

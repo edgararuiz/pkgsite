@@ -10,7 +10,9 @@ import(cli)
 import(fs)
 import(purrr)
 import(yaml)
-importFrom(rlang,empty_env)
-importFrom(rlang,env)
-importFrom(rlang,env_bind)
+importFrom(rlang,
+  empty_env,
+  env,
+  env_bind
+)
 importFrom(utils,capture.output)
